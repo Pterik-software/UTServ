@@ -13,7 +13,7 @@ type
     N2: TMenuItem;
     N3: TMenuItem;
     N4: TMenuItem;
-    mnuAbout: TMenuItem;
+    N5: TMenuItem;
     N6: TMenuItem;
     N7: TMenuItem;
     N8: TMenuItem;
@@ -33,13 +33,9 @@ type
     N22: TMenuItem;
     N23: TMenuItem;
     BitBtn1: TBitBtn;
-    N5: TMenuItem;
-    Help1: TMenuItem;
-    N24: TMenuItem;
     procedure N3Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure N5Click(Sender: TObject);
-    procedure mnuAboutClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -53,16 +49,9 @@ implementation
 
 {$R *.dfm}
 
-uses AboutForm, PayersForm;
-
 procedure TFormMain.BitBtn1Click(Sender: TObject);
 begin
 FormMain.Close;
-end;
-
-procedure TFormMain.mnuAboutClick(Sender: TObject);
-begin
-FormPayers.ShowModal;
 end;
 
 procedure TFormMain.N3Click(Sender: TObject);
@@ -72,7 +61,7 @@ end;
 
 procedure TFormMain.N5Click(Sender: TObject);
 begin
-FormAbout.ShowModal;
+fommAbout.ShowModal;
 end;
 
 end.

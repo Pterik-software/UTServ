@@ -4,10 +4,10 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.Buttons;
 
 type
-  TForm1 = class(TForm)
+  TFormMain = class(TForm)
     MainMenu1: TMainMenu;
     N1: TMenuItem;
     N2: TMenuItem;
@@ -32,7 +32,10 @@ type
     N21: TMenuItem;
     N22: TMenuItem;
     N23: TMenuItem;
+    BitBtn1: TBitBtn;
     procedure N3Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure N5Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -40,15 +43,25 @@ type
   end;
 
 var
-  Form1: TForm1;
+  FormMain: TFormMain;
 
 implementation
 
 {$R *.dfm}
 
-procedure TForm1.N3Click(Sender: TObject);
+procedure TFormMain.BitBtn1Click(Sender: TObject);
 begin
-FormMain.exit;
+FormMain.Close;
+end;
+
+procedure TFormMain.N3Click(Sender: TObject);
+begin
+FormMain.Close;
+end;
+
+procedure TFormMain.N5Click(Sender: TObject);
+begin
+fmAbout.ShowModal;
 end;
 
 end.

@@ -1,9 +1,10 @@
 object FormMain: TFormMain
   Left = 0
   Top = 0
-  Caption = 'FormMain'
-  ClientHeight = 299
-  ClientWidth = 635
+  Anchors = [akRight, akBottom]
+  Caption = #1055#1088#1086#1075#1088#1072#1084#1084#1072' '#1088#1072#1089#1095#1105#1090#1072' '#1082#1086#1084#1084#1091#1085#1072#1083#1100#1085#1099#1093' '#1091#1089#1083#1091#1075
+  ClientHeight = 400
+  ClientWidth = 600
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,6 +15,17 @@ object FormMain: TFormMain
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object BitBtn1: TBitBtn
+    Left = 504
+    Top = 360
+    Width = 75
+    Height = 25
+    Caption = #1042#1099#1093#1086#1076
+    Kind = bkClose
+    NumGlyphs = 2
+    TabOrder = 0
+    OnClick = BitBtn1Click
+  end
   object MainMenu1: TMainMenu
     Left = 48
     Top = 8
@@ -29,7 +41,7 @@ object FormMain: TFormMain
     end
     object N4: TMenuItem
       Caption = #1057#1087#1088#1072#1074#1086#1095#1085#1080#1082#1080
-      object N5: TMenuItem
+      object mnuAbout: TMenuItem
         Caption = #1055#1083#1072#1090#1077#1083#1100#1097#1080#1082#1080
       end
       object N6: TMenuItem
@@ -86,6 +98,16 @@ object FormMain: TFormMain
     end
     object N20: TMenuItem
       Caption = #1055#1086#1084#1086#1097#1100
+      object Help1: TMenuItem
+        Caption = 'Help '#1087#1088#1086#1075#1088#1072#1084#1084#1099
+      end
+      object N5: TMenuItem
+        Caption = #1054' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
+        OnClick = N5Click
+      end
+      object N24: TMenuItem
+        Caption = #1057#1082#1072#1095#1072#1090#1100' '#1086#1073#1085#1086#1074#1083#1077#1085#1080#1077
+      end
     end
   end
 end

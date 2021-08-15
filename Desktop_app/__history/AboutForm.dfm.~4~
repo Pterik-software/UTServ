@@ -1,0 +1,27 @@
+object FormAbout: TFormAbout
+  Left = 0
+  Top = 0
+  Caption = 'FormAbout'
+  ClientHeight = 311
+  ClientWidth = 484
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object BitBtn1: TBitBtn
+    Left = 552
+    Top = 266
+    Width = 75
+    Height = 25
+    Caption = #1047#1072#1082#1088#1099#1090#1100
+    Kind = bkClose
+    NumGlyphs = 2
+    TabOrder = 0
+    OnClick = BitBtn1Click
+  end
+end

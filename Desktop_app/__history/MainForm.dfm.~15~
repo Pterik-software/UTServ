@@ -2,8 +2,8 @@ object FormMain: TFormMain
   Left = 0
   Top = 0
   Caption = #1055#1088#1086#1075#1088#1072#1084#1084#1072' '#1088#1072#1089#1095#1105#1090#1072' '#1082#1086#1084#1084#1091#1085#1072#1083#1100#1085#1099#1093' '#1091#1089#1083#1091#1075
-  ClientHeight = 541
-  ClientWidth = 784
+  ClientHeight = 400
+  ClientWidth = 600
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,19 +15,15 @@ object FormMain: TFormMain
   PixelsPerInch = 96
   TextHeight = 13
   object BitBtn1: TBitBtn
-    Left = 688
-    Top = 501
+    Left = 8
+    Top = 360
     Width = 75
     Height = 25
-    Align = alCustom
-    Anchors = [akRight, akBottom]
     Caption = #1042#1099#1093#1086#1076
     Kind = bkClose
     NumGlyphs = 2
     TabOrder = 0
     OnClick = BitBtn1Click
-    ExplicitLeft = 504
-    ExplicitTop = 360
   end
   object MainMenu1: TMainMenu
     Left = 48
@@ -46,7 +42,6 @@ object FormMain: TFormMain
       Caption = #1057#1087#1088#1072#1074#1086#1095#1085#1080#1082#1080
       object mnuAbout: TMenuItem
         Caption = #1055#1083#1072#1090#1077#1083#1100#1097#1080#1082#1080
-        OnClick = mnuAboutClick
       end
       object N6: TMenuItem
         Caption = #1040#1076#1088#1077#1089#1072' '#1087#1083#1072#1090#1077#1083#1100#1097#1080#1082#1086#1074

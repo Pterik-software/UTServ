@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2021.08.15 22:52:36.551,=C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021.08.15 22:52:59.536,D:\Projects\GitHub\UTServ\Desktop_app\MainForm.pas=C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021.08.15 22:52:59.536,D:\Projects\GitHub\UTServ\Desktop_app\MainForm.dfm=C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2021.08.15 22:53:08.181,D:\Projects\GitHub\UTServ\Desktop_app\UtServ.dproj=C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

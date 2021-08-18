@@ -36,6 +36,7 @@ type
     N5: TMenuItem;
     Help1: TMenuItem;
     N24: TMenuItem;
+    N25: TMenuItem;
     procedure N3Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure N5Click(Sender: TObject);

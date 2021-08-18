@@ -26,8 +26,6 @@ object FormMain: TFormMain
     NumGlyphs = 2
     TabOrder = 0
     OnClick = BitBtn1Click
-    ExplicitLeft = 504
-    ExplicitTop = 360
   end
   object MainMenu1: TMainMenu
     Left = 48
@@ -56,6 +54,9 @@ object FormMain: TFormMain
       end
       object N21: TMenuItem
         Caption = #1056#1072#1089#1095#1105#1090' '#1087#1077#1085#1080
+      end
+      object N25: TMenuItem
+        Caption = #1044#1086#1075#1086#1074#1086#1088#1072
       end
     end
     object N8: TMenuItem

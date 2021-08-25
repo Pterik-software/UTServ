@@ -42,7 +42,6 @@ type
     N24: TMenuItem;
     N25: TMenuItem;
     N26: TMenuItem;
-    C1: TMenuItem;
     procedure N3Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure N5Click(Sender: TObject);

@@ -12,6 +12,7 @@ object FormMain: TFormMain
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object BitBtn1: TBitBtn
@@ -42,21 +43,23 @@ object FormMain: TFormMain
     end
     object N4: TMenuItem
       Caption = #1057#1087#1088#1072#1074#1086#1095#1085#1080#1082#1080
-      object mnuAbout: TMenuItem
-        Caption = #1055#1083#1072#1090#1077#1083#1100#1097#1080#1082#1080
-        OnClick = mnuAboutClick
+      object N26: TMenuItem
+        Caption = #1055#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1080
+        OnClick = N26Click
       end
-      object N6: TMenuItem
-        Caption = #1040#1076#1088#1077#1089#1072' '#1087#1083#1072#1090#1077#1083#1100#1097#1080#1082#1086#1074
+      object mnuAbout: TMenuItem
+        Caption = #1055#1083#1072#1090#1077#1083#1100#1097#1080#1082#1080' '#1080' '#1072#1076#1088#1077#1089#1072
+        OnClick = mnuAboutClick
       end
       object N7: TMenuItem
         Caption = #1055#1083#1072#1085#1099' '#1086#1087#1083#1072#1090#1099
-      end
-      object N21: TMenuItem
-        Caption = #1056#1072#1089#1095#1105#1090' '#1087#1077#1085#1080
+        OnClick = N7Click
       end
       object N25: TMenuItem
         Caption = #1044#1086#1075#1086#1074#1086#1088#1072
+      end
+      object C1: TMenuItem
+        Caption = #1057#1095#1077#1090#1072
       end
     end
     object N8: TMenuItem
@@ -71,13 +74,13 @@ object FormMain: TFormMain
         Caption = #1047#1072#1076#1086#1083#1078#1077#1085#1085#1086#1089#1090#1080
       end
       object N12: TMenuItem
-        Caption = #1040#1088#1093#1080#1074
+        Caption = #1040#1088#1093#1080#1074' '#1086#1087#1083#1072#1090
       end
       object N13: TMenuItem
         Caption = #1054#1073#1086#1088#1086#1090#1085#1072#1103' '#1074#1077#1076#1086#1084#1086#1089#1090#1100
       end
       object N22: TMenuItem
-        Caption = #1055#1077#1085#1103
+        Caption = #1041#1072#1085#1082#1086#1074#1089#1082#1080#1077' '#1074#1099#1087#1080#1089#1082#1080
       end
     end
     object N14: TMenuItem

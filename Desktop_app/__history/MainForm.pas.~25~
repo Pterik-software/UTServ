@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.Buttons;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.Buttons,
+  Data.FMTBcd, Data.DBXMySql, Data.DB, Data.SqlExpr;
 
 type
   TFormMain = class(TForm)
@@ -36,9 +37,16 @@ type
     N5: TMenuItem;
     Help1: TMenuItem;
     N24: TMenuItem;
+    N25: TMenuItem;
+    N26: TMenuItem;
+    SQLTable1: TSQLTable;
+    SQLConnection: TSQLConnection;
     procedure N3Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure N5Click(Sender: TObject);
+    procedure mnuAboutClick(Sender: TObject);
+    procedure N26Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -52,11 +60,38 @@ implementation
 
 {$R *.dfm}
 
-uses AboutForm;
+uses AboutForm, PayersForm, UsersForm;
 
 procedure TFormMain.BitBtn1Click(Sender: TObject);
 begin
 FormMain.Close;
+end;
+
+procedure TFormMain.FormCreate(Sender: TObject);
+begin
+SQLConnection.ConnectionName:='MySQLConnection';
+  SQLConnection.LoginPrompt:=False;
+  SQLConnection.Params.Values['ServerCharSet']:='cp1251';
+  SQLConnection.DriverName:='MySQL';
+  SQLConnection.Params.Values['HostName']:='localhost';
+  SQLConnection.Params.Values['Database']:='TestDB';
+  ...
+  with DBDataModule.SQLConnection do
+  begin
+    Params.Values['User_Name']:=EditLogin.Text;
+    Params.Values['Password']:=EditPassword.Text;
+    Connected:=True;
+  end;
+end;
+
+procedure TFormMain.mnuAboutClick(Sender: TObject);
+begin
+FormPayers.ShowModal;
+end;
+
+procedure TFormMain.N26Click(Sender: TObject);
+begin
+FormUsers.ShowModal;
 end;
 
 procedure TFormMain.N3Click(Sender: TObject);

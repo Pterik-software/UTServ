@@ -20,6 +20,7 @@ type
     N3: TMenuItem;
     N4: TMenuItem;
     mnuAbout: TMenuItem;
+    N6: TMenuItem;
     N7: TMenuItem;
     N8: TMenuItem;
     N9: TMenuItem;
@@ -34,6 +35,7 @@ type
     N18: TMenuItem;
     N19: TMenuItem;
     N20: TMenuItem;
+    N21: TMenuItem;
     N22: TMenuItem;
     N23: TMenuItem;
     BitBtn1: TBitBtn;
@@ -42,14 +44,16 @@ type
     N24: TMenuItem;
     N25: TMenuItem;
     N26: TMenuItem;
-    C1: TMenuItem;
+    FDConnection1: TFDConnection;
+    FDTable1: TFDTable;
+    FDLocalSQL1: TFDLocalSQL;
+    FDLocalSQL2: TFDLocalSQL;
     procedure N3Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure N5Click(Sender: TObject);
     procedure mnuAboutClick(Sender: TObject);
     procedure N26Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure N7Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -63,7 +67,7 @@ implementation
 
 {$R *.dfm}
 
-uses AboutForm, PayersForm, UsersForm, PlansForm;
+uses AboutForm, PayersForm, UsersForm;
 
 procedure TFormMain.BitBtn1Click(Sender: TObject);
 begin
@@ -105,11 +109,6 @@ end;
 procedure TFormMain.N5Click(Sender: TObject);
 begin
 FormAbout.ShowModal;
-end;
-
-procedure TFormMain.N7Click(Sender: TObject);
-begin
-FormPlans.ShowModal;
 end;
 
 end.

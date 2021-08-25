@@ -1,15 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.181,C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Project1.dproj=D:\Projects\GitHub\UTServ\Desktop_app\UtServ.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.463,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.520,D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas=D:\Projects\GitHub\UTServ\Desktop_app\AboutForm.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.955,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.633,D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas=D:\Projects\GitHub\UTServ\Desktop_app\PayersForm.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.520,D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm=D:\Projects\GitHub\UTServ\Desktop_app\AboutForm.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.633,D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm=D:\Projects\GitHub\UTServ\Desktop_app\PayersForm.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.536,C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.dfm=D:\Projects\GitHub\UTServ\Desktop_app\MainForm.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.551,=C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.536,C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.pas=D:\Projects\GitHub\UTServ\Desktop_app\MainForm.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.181,D:\Projects\GitHub\UTServ\Desktop_app\UtServ.dproj=C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.633,D:\Projects\GitHub\UTServ\Desktop_app\PayersForm.dfm=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.955,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.980,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.463,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.520,D:\Projects\GitHub\UTServ\Desktop_app\AboutForm.pas=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.536,D:\Projects\GitHub\UTServ\Desktop_app\MainForm.pas=C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.412,D:\Projects\GitHub\UTServ\Desktop_app\UsersForm.dfm=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.536,D:\Projects\GitHub\UTServ\Desktop_app\MainForm.dfm=C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.412,D:\Projects\GitHub\UTServ\Desktop_app\UsersForm.pas=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.520,D:\Projects\GitHub\UTServ\Desktop_app\AboutForm.dfm=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.633,D:\Projects\GitHub\UTServ\Desktop_app\PayersForm.pas=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>2021.08.25 23:04:12.171,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>2021.08.25 23:05:48.580,D:\Projects\GitHub\UTServ\Desktop_app\PlansForm.dfm=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm</Transaction>
+    <Transaction>2021.08.25 23:05:48.580,D:\Projects\GitHub\UTServ\Desktop_app\PlansForm.pas=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

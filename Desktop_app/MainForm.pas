@@ -5,12 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.Buttons,
-  Data.FMTBcd, Data.DBXMySql, Data.DB, Data.SqlExpr, FireDAC.Stan.Intf,
-  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
-  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
-  FireDAC.Phys.ODBC, FireDAC.Phys.ODBCDef, FireDAC.VCLUI.Wait,
-  FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
-  FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Phys.SQLiteVDataSet;
+  UniProvider, MySQLUniProvider, Data.DB, DBAccess, Uni, DASQLMonitor,
+  UniSQLMonitor;
 
 type
   TFormMain = class(TForm)
@@ -43,6 +39,9 @@ type
     N25: TMenuItem;
     N26: TMenuItem;
     C1: TMenuItem;
+    UniConnection: TUniConnection;
+    MySQLUniProvider1: TMySQLUniProvider;
+    UniSQLMonitor1: TUniSQLMonitor;
     procedure N3Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure N5Click(Sender: TObject);
@@ -58,6 +57,7 @@ type
 
 var
   FormMain: TFormMain;
+//FormMain.UniConnection
 
 implementation
 

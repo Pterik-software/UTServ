@@ -2,7 +2,7 @@ object FormMain: TFormMain
   Left = 0
   Top = 0
   Caption = #1055#1088#1086#1075#1088#1072#1084#1084#1072' '#1088#1072#1089#1095#1105#1090#1072' '#1082#1086#1084#1084#1091#1085#1072#1083#1100#1085#1099#1093' '#1091#1089#1083#1091#1075
-  ClientHeight = 541
+  ClientHeight = 461
   ClientWidth = 784
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,7 +17,7 @@ object FormMain: TFormMain
   TextHeight = 13
   object BitBtn1: TBitBtn
     Left = 688
-    Top = 501
+    Top = 421
     Width = 75
     Height = 25
     Align = alCustom
@@ -117,5 +117,25 @@ object FormMain: TFormMain
         Caption = #1057#1082#1072#1095#1072#1090#1100' '#1086#1073#1085#1086#1074#1083#1077#1085#1080#1077
       end
     end
+  end
+  object UniConnection: TUniConnection
+    ProviderName = 'MySQL'
+    Port = 3306
+    Database = 'utilbills'
+    Username = 'test'
+    Server = 'localhost'
+    Connected = True
+    LoginPrompt = False
+    Left = 128
+    Top = 104
+    EncryptedPassword = '8BFF9AFF8CFF8BFFCEFFCDFFCCFF'
+  end
+  object MySQLUniProvider1: TMySQLUniProvider
+    Left = 232
+    Top = 112
+  end
+  object UniSQLMonitor1: TUniSQLMonitor
+    Left = 144
+    Top = 224
   end
 end

@@ -22,8 +22,26 @@ object FormUsers: TFormUsers
     Width = 108
     Height = 40
     Anchors = [akRight, akBottom]
-    Caption = #1047#1072#1082#1088#1099#1090#1100
-    Kind = bkClose
+    Caption = #1054#1090#1084#1077#1085#1072
+    Glyph.Data = {
+      DE010000424DDE01000000000000760000002800000024000000120000000100
+      0400000000006801000000000000000000001000000000000000000000000000
+      80000080000000808000800000008000800080800000C0C0C000808080000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+      333333333333333333333333000033338833333333333333333F333333333333
+      0000333911833333983333333388F333333F3333000033391118333911833333
+      38F38F333F88F33300003339111183911118333338F338F3F8338F3300003333
+      911118111118333338F3338F833338F3000033333911111111833333338F3338
+      3333F8330000333333911111183333333338F333333F83330000333333311111
+      8333333333338F3333383333000033333339111183333333333338F333833333
+      00003333339111118333333333333833338F3333000033333911181118333333
+      33338333338F333300003333911183911183333333383338F338F33300003333
+      9118333911183333338F33838F338F33000033333913333391113333338FF833
+      38F338F300003333333333333919333333388333338FFF830000333333333333
+      3333333333333333333888330000333333333333333333333333333333333333
+      0000}
+    Layout = blGlyphRight
+    ModalResult = 2
     NumGlyphs = 2
     TabOrder = 0
     OnClick = BitBtnCloseClick
@@ -34,6 +52,12 @@ object FormUsers: TFormUsers
     Width = 668
     Height = 385
     DataSource = UniDataSource1
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -42,52 +66,60 @@ object FormUsers: TFormUsers
     TitleFont.Style = []
     Columns = <
       item
+        Alignment = taLeftJustify
         Expanded = False
         FieldName = 'user_id'
+        Title.Caption = #8470
         Width = 38
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'full_name'
-        Width = 178
+        Title.Caption = #1060#1048#1054
+        Width = 192
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'user'
+        Title.Caption = #1051#1086#1075#1080#1085
         Width = 75
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'role_id'
-        Width = 134
+        Title.Caption = #1056#1086#1083#1100
+        Width = 131
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'is_active'
-        Width = 68
+        FieldName = 'is_active_rus'
+        Title.Caption = #1056#1072#1073#1086#1090#1072#1077#1090
+        Width = 63
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'hiring_date'
+        Title.Caption = #1053#1072#1105#1084
+        Width = 69
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'closure_date'
+        Title.Caption = #1059#1074#1086#1083#1100#1085#1077#1085#1080#1077
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'password'
         Visible = True
       end>
   end
-  object BitBtn1: TBitBtn
+  object BitBtnNew: TBitBtn
     Left = 8
     Top = 413
     Width = 161
@@ -176,9 +208,10 @@ object FormUsers: TFormUsers
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00}
+    Layout = blGlyphRight
     TabOrder = 2
   end
-  object BitBtn2: TBitBtn
+  object BitBtnEdit: TBitBtn
     Left = 200
     Top = 413
     Width = 169
@@ -271,9 +304,11 @@ object FormUsers: TFormUsers
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFF0000}
+    Layout = blGlyphRight
     TabOrder = 3
+    OnClick = BitBtnEditClick
   end
-  object BitBtn3: TBitBtn
+  object BitBtnDismiss: TBitBtn
     Left = 392
     Top = 413
     Width = 145
@@ -322,18 +357,20 @@ object FormUsers: TFormUsers
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFF}
+    Layout = blGlyphRight
     TabOrder = 4
   end
-  object UniTable1: TUniTable
-    TableName = 'users'
-    Connection = FormMain.UniConnection1
-    Active = True
-    Left = 56
+  object UniDataSource1: TUniDataSource
+    DataSet = UniQuery1
+    Left = 136
     Top = 184
   end
-  object UniDataSource1: TUniDataSource
-    DataSet = UniTable1
-    Left = 168
+  object UniQuery1: TUniQuery
+    Connection = FormMain.UniConnection
+    SQL.Strings = (
+      'select * from v_users_rus')
+    Active = True
+    Left = 232
     Top = 192
   end
 end

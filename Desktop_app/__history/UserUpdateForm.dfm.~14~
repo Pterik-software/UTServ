@@ -17,8 +17,8 @@ object FormNewUser: TFormNewUser
   PixelsPerInch = 96
   TextHeight = 13
   object Label2: TLabel
-    Left = 24
-    Top = 64
+    Left = 32
+    Top = 120
     Width = 35
     Height = 16
     Caption = #1051#1086#1075#1080#1085
@@ -30,8 +30,8 @@ object FormNewUser: TFormNewUser
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 24
-    Top = 112
+    Left = 32
+    Top = 168
     Width = 43
     Height = 16
     Caption = #1055#1072#1088#1086#1083#1100
@@ -43,11 +43,24 @@ object FormNewUser: TFormNewUser
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 24
-    Top = 160
+    Left = 32
+    Top = 216
     Width = 106
     Height = 16
     Caption = #1056#1086#1083#1100' '#1074' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 32
+    Top = 24
+    Width = 37
+    Height = 16
+    Caption = #1053#1086#1084#1077#1088
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -79,14 +92,17 @@ object FormNewUser: TFormNewUser
     Layout = blGlyphRight
     NumGlyphs = 2
     TabOrder = 1
+    OnClick = BitBtn1Click
     ExplicitLeft = 496
     ExplicitTop = 413
   end
   object DBEdit1: TDBEdit
-    Left = 243
-    Top = 20
+    Left = 251
+    Top = 76
     Width = 289
     Height = 24
+    Anchors = [akLeft, akTop, akRight]
+    DataField = 'full_name'
     DataSource = UniDataSource1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -97,10 +113,12 @@ object FormNewUser: TFormNewUser
     TabOrder = 2
   end
   object DBEdit2: TDBEdit
-    Left = 243
-    Top = 61
+    Left = 251
+    Top = 120
     Width = 289
     Height = 24
+    Anchors = [akLeft, akTop, akRight]
+    DataField = 'user'
     DataSource = UniDataSource1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -111,10 +129,12 @@ object FormNewUser: TFormNewUser
     TabOrder = 3
   end
   object DBEdit3: TDBEdit
-    Left = 243
-    Top = 109
+    Left = 251
+    Top = 165
     Width = 289
     Height = 24
+    Anchors = [akLeft, akTop, akRight]
+    DataField = 'password'
     DataSource = UniDataSource1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -125,10 +145,11 @@ object FormNewUser: TFormNewUser
     TabOrder = 4
   end
   object DBEdit4: TDBEdit
-    Left = 243
-    Top = 157
+    Left = 251
+    Top = 213
     Width = 289
     Height = 24
+    DataField = 'role_id'
     DataSource = UniDataSource1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -139,8 +160,8 @@ object FormNewUser: TFormNewUser
     TabOrder = 5
   end
   object StaticText1: TStaticText
-    Left = 24
-    Top = 20
+    Left = 32
+    Top = 76
     Width = 161
     Height = 24
     Caption = #1060#1072#1084#1080#1083#1080#1103' '#1048#1084#1103' '#1054#1090#1095#1077#1089#1090#1074#1086
@@ -152,16 +173,36 @@ object FormNewUser: TFormNewUser
     ParentFont = False
     TabOrder = 6
   end
+  object DBEdit5: TDBEdit
+    Left = 251
+    Top = 24
+    Width = 289
+    Height = 24
+    Anchors = [akLeft, akTop, akRight]
+    BiDiMode = bdLeftToRight
+    DataField = 'user_id'
+    DataSource = UniDataSource1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 7
+  end
   object UniTable1: TUniTable
     TableName = 'users'
     Connection = FormMain.UniConnection
     UniDirectional = True
     Active = True
-    Left = 56
-    Top = 200
+    Left = 48
+    Top = 240
   end
   object UniDataSource1: TUniDataSource
-    Left = 120
-    Top = 200
+    DataSet = UniTable1
+    Left = 168
+    Top = 240
   end
 end

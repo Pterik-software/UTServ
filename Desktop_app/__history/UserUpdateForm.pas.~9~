@@ -23,11 +23,14 @@ type
     StaticText1: TStaticText;
     Label1: TLabel;
     DBEdit5: TDBEdit;
-    DBListBox1: TDBListBox;
+    procedure BitBtn1Click(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    UserID:integer;
+    function GetUserID: integer;
+    procedure SetUserID(value: integer);
   end;
 
 var
@@ -36,5 +39,20 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFormNewUser.BitBtn1Click(Sender: TObject);
+begin
+Close;
+end;
+
+function TFormNewUser.GetUserID: integer;
+begin
+Result:=UserID;
+end;
+
+procedure TFormNewUser.SetUserID(value: integer);
+begin
+
+end;
 
 end.

@@ -1,7 +1,6 @@
 object FormMain: TFormMain
   Left = 0
   Top = 0
-  Anchors = [akRight, akBottom]
   Caption = #1055#1088#1086#1075#1088#1072#1084#1084#1072' '#1088#1072#1089#1095#1105#1090#1072' '#1082#1086#1084#1084#1091#1085#1072#1083#1100#1085#1099#1093' '#1091#1089#1083#1091#1075
   ClientHeight = 461
   ClientWidth = 784
@@ -23,7 +22,6 @@ object FormMain: TFormMain
     Height = 40
     Align = alCustom
     Anchors = [akRight, akBottom]
-    BiDiMode = bdLeftToRight
     Caption = #1042#1099#1093#1086#1076
     Glyph.Data = {
       A2070000424DA207000000000000360000002800000019000000190000000100
@@ -88,8 +86,6 @@ object FormMain: TFormMain
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFF00}
-    Layout = blGlyphRight
-    ParentBiDiMode = False
     TabOrder = 0
     OnClick = BitBtn1Click
   end

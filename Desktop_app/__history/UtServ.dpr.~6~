@@ -6,8 +6,7 @@ uses
   AboutForm in 'AboutForm.pas' {FormAbout},
   PayersForm in 'PayersForm.pas' {FormPayers},
   UsersForm in 'UsersForm.pas' {FormUsers},
-  PlansForm in 'PlansForm.pas' {FormPlans},
-  UserUpdateForm in 'UserUpdateForm.pas' {FormNewUser};
+  PlansForm in 'PlansForm.pas' {FormPlans};
 
 {$R *.res}
 
@@ -19,6 +18,5 @@ begin
   Application.CreateForm(TFormPayers, FormPayers);
   Application.CreateForm(TFormUsers, FormUsers);
   Application.CreateForm(TFormPlans, FormPlans);
-  Application.CreateForm(TFormNewUser, FormNewUser);
   Application.Run;
 end.

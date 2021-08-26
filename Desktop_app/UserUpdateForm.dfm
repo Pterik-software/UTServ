@@ -175,7 +175,7 @@ object FormNewUser: TFormNewUser
   end
   object DBEdit5: TDBEdit
     Left = 251
-    Top = 24
+    Top = 21
     Width = 289
     Height = 24
     Anchors = [akLeft, akTop, akRight]
@@ -195,14 +195,39 @@ object FormNewUser: TFormNewUser
   object UniTable1: TUniTable
     TableName = 'users'
     Connection = FormMain.UniConnection
+    FilterSQL = 'where user_id = :p_user_id'
     UniDirectional = True
-    Active = True
     Left = 48
     Top = 240
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'p_user_id'
+        Value = nil
+      end>
   end
   object UniDataSource1: TUniDataSource
     DataSet = UniTable1
     Left = 168
     Top = 240
+  end
+  object UniStoredProc1: TUniStoredProc
+    Connection = FormMain.UniConnection
+    Left = 552
+    Top = 112
+  end
+  object UniSQL1: TUniSQL
+    Connection = FormMain.UniConnection
+    SQL.Strings = (
+      'select * from users'
+      'where user_id = :p_user_id')
+    Left = 352
+    Top = 272
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'p_user_id'
+        Value = nil
+      end>
   end
 end

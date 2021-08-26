@@ -35,7 +35,6 @@ uses UserUpdateForm;
 
 procedure TFormUsers.BitBtnEditClick(Sender: TObject);
 begin
-FormNewUser.SetUserID(UniQuery1['user_id']);
 FormNewUser.ShowModal;
 end;
 

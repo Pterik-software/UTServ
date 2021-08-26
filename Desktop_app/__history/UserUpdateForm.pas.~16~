@@ -24,7 +24,6 @@ type
     Label1: TLabel;
     DBEdit5: TDBEdit;
     UniStoredProc1: TUniStoredProc;
-    UniSQL1: TUniSQL;
     procedure BitBtn1Click(Sender: TObject);
   private
     { Private declarations }
@@ -33,6 +32,7 @@ type
     UserID:integer;
     function GetUserID: integer;
     procedure SetUserID(value: integer);
+    function isUserIDExists(value:integer):boolean;
   end;
 
 var
@@ -49,12 +49,12 @@ end;
 
 function TFormNewUser.GetUserID: integer;
 begin
-Result := UserID;
+Result:=UserID;
 end;
 
 procedure TFormNewUser.SetUserID(value: integer);
 begin
-UserID := Value;
+UserID = Value;
 end;
 
 end.

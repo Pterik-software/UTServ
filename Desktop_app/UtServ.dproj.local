@@ -1,21 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.955,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.463,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.181,D:\Projects\GitHub\UTServ\Desktop_app\UtServ.dproj=C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.551,=C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.633,D:\Projects\GitHub\UTServ\Desktop_app\PayersForm.dfm=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.520,D:\Projects\GitHub\UTServ\Desktop_app\AboutForm.pas=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.980,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.580,D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas=D:\Projects\GitHub\UTServ\Desktop_app\PlansForm.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.412,D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas=D:\Projects\GitHub\UTServ\Desktop_app\UsersForm.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.171,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.536,D:\Projects\GitHub\UTServ\Desktop_app\MainForm.pas=C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.633,D:\Projects\GitHub\UTServ\Desktop_app\PayersForm.pas=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.536,D:\Projects\GitHub\UTServ\Desktop_app\MainForm.dfm=C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.412,D:\Projects\GitHub\UTServ\Desktop_app\UsersForm.dfm=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.520,D:\Projects\GitHub\UTServ\Desktop_app\AboutForm.dfm=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.580,D:\Projects\GitHub\UTServ\Desktop_app\PlansForm.dfm=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.580,D:\Projects\GitHub\UTServ\Desktop_app\PlansForm.pas=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.412,D:\Projects\GitHub\UTServ\Desktop_app\UsersForm.pas=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.633,D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas=D:\Projects\GitHub\UTServ\Desktop_app\PayersForm.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.633,D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm=D:\Projects\GitHub\UTServ\Desktop_app\PayersForm.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.580,D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm=D:\Projects\GitHub\UTServ\Desktop_app\PlansForm.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.536,C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.dfm=D:\Projects\GitHub\UTServ\Desktop_app\MainForm.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.412,D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm=D:\Projects\GitHub\UTServ\Desktop_app\UsersForm.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.520,D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm=D:\Projects\GitHub\UTServ\Desktop_app\AboutForm.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.181,C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Project1.dproj=D:\Projects\GitHub\UTServ\Desktop_app\UtServ.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.536,C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.pas=D:\Projects\GitHub\UTServ\Desktop_app\MainForm.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.551,=C:\Users\vital\OneDrive\Документы в облаке\Мои документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.955,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.520,D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas=D:\Projects\GitHub\UTServ\Desktop_app\AboutForm.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.980,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.463,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>2021.08.26 19:40:01.967,=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>2021.08.26 19:41:17.668,D:\Projects\GitHub\UTServ\Desktop_app\UserNewForm.dfm=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.dfm</Transaction>
+    <Transaction>2021.08.26 19:41:17.668,D:\Projects\GitHub\UTServ\Desktop_app\UserNewForm.pas=D:\Projects\GitHub\UTServ\Desktop_app\Unit1.pas</Transaction>
+    <Transaction>2021.08.26 19:57:24.581,D:\Projects\GitHub\UTServ\Desktop_app\UserUpdateForm.pas=D:\Projects\GitHub\UTServ\Desktop_app\UserNewForm.pas</Transaction>
+    <Transaction>2021.08.26 19:57:24.581,D:\Projects\GitHub\UTServ\Desktop_app\UserUpdateForm.dfm=D:\Projects\GitHub\UTServ\Desktop_app\UserNewForm.dfm</Transaction>
   </Transactions>
 </BorlandProject>

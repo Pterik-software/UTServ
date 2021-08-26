@@ -24,7 +24,6 @@ type
     Label1: TLabel;
     DBEdit5: TDBEdit;
     UniStoredProc1: TUniStoredProc;
-    UniSQL1: TUniSQL;
     procedure BitBtn1Click(Sender: TObject);
   private
     { Private declarations }

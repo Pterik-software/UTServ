@@ -59,7 +59,7 @@ object FormUsers: TFormUsers
         Expanded = False
         FieldName = 'full_name'
         Title.Caption = #1060#1048#1054
-        Width = 178
+        Width = 192
         Visible = True
       end
       item
@@ -73,20 +73,21 @@ object FormUsers: TFormUsers
         Expanded = False
         FieldName = 'role_id'
         Title.Caption = #1056#1086#1083#1100
-        Width = 134
+        Width = 131
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'is_active'
+        FieldName = 'is_active_rus'
         Title.Caption = #1056#1072#1073#1086#1090#1072#1077#1090
-        Width = 68
+        Width = 63
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'hiring_date'
         Title.Caption = #1053#1072#1105#1084
+        Width = 69
         Visible = True
       end
       item
@@ -97,12 +98,10 @@ object FormUsers: TFormUsers
       end
       item
         Expanded = False
-        FieldName = 'password'
-        Title.Caption = #1055#1072#1088#1086#1083#1100
         Visible = True
       end>
   end
-  object BitBtn1: TBitBtn
+  object BitBtnNew: TBitBtn
     Left = 8
     Top = 413
     Width = 161
@@ -193,7 +192,7 @@ object FormUsers: TFormUsers
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00}
     TabOrder = 2
   end
-  object BitBtn2: TBitBtn
+  object BitBtnEdit: TBitBtn
     Left = 200
     Top = 413
     Width = 169
@@ -287,8 +286,9 @@ object FormUsers: TFormUsers
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFF0000}
     TabOrder = 3
+    OnClick = BitBtnEditClick
   end
-  object BitBtn3: TBitBtn
+  object BitBtnDismiss: TBitBtn
     Left = 392
     Top = 413
     Width = 145
@@ -339,16 +339,17 @@ object FormUsers: TFormUsers
       FFFFFFFFFFFF}
     TabOrder = 4
   end
-  object UniTable1: TUniTable
-    TableName = 'users'
-    Connection = FormMain.UniConnection1
-    Active = True
-    Left = 56
+  object UniDataSource1: TUniDataSource
+    DataSet = UniQuery1
+    Left = 136
     Top = 184
   end
-  object UniDataSource1: TUniDataSource
-    DataSet = UniTable1
-    Left = 168
-    Top = 192
+  object UniQuery1: TUniQuery
+    Connection = FormMain.UniConnection
+    SQL.Strings = (
+      'select * from v_users_rus')
+    Active = True
+    Left = 232
+    Top = 176
   end
 end

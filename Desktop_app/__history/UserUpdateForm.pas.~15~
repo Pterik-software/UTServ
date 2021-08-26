@@ -23,10 +23,16 @@ type
     StaticText1: TStaticText;
     Label1: TLabel;
     DBEdit5: TDBEdit;
+    UniStoredProc1: TUniStoredProc;
+    procedure BitBtn1Click(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    UserID:integer;
+    function GetUserID: integer;
+    procedure SetUserID(value: integer);
+    function isUserIDExists(value:integer):boolean;
   end;
 
 var
@@ -35,5 +41,25 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFormNewUser.BitBtn1Click(Sender: TObject);
+begin
+Close;
+end;
+
+function TFormNewUser.GetUserID: integer;
+begin
+Result:=UserID;
+end;
+
+function TFormNewUser.isUserIDExists(value: integer): boolean;
+begin
+
+end;
+
+procedure TFormNewUser.SetUserID(value: integer);
+begin
+UserID = Value;
+end;
 
 end.

@@ -119,7 +119,15 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UserUpdateForm.pas">
-            <Form>FormNewUser</Form>
+            <Form>FormUpdateUser</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="DMForm.pas">
+            <Form>FormDM</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UserDismissForm.pas">
+            <Form>FormDismissUser</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

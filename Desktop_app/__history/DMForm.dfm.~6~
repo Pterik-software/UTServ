@@ -1,0 +1,62 @@
+object FormDM: TFormDM
+  Left = 0
+  Top = 0
+  Caption = 'FormDM'
+  ClientHeight = 441
+  ClientWidth = 437
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object UniMySQL: TUniConnection
+    ProviderName = 'MySQL'
+    Port = 3306
+    Database = 'utilbills'
+    Username = 'test'
+    Server = 'localhost'
+    Connected = True
+    LoginPrompt = False
+    Left = 32
+    Top = 32
+    EncryptedPassword = '8BFF9AFF8CFF8BFFCEFFCDFFCCFF'
+  end
+  object MySQLUniProvider1: TMySQLUniProvider
+    Left = 152
+    Top = 32
+  end
+  object UniSQLMonitor1: TUniSQLMonitor
+    Left = 256
+    Top = 32
+  end
+  object UniSQLite: TUniConnection
+    ProviderName = 'SQLite'
+    Database = 'd:\Projects\GitHub\UTServ\SQLite\Bills.SQLITE'
+    DefaultTransaction = UniTransactionSQLite
+    Debug = True
+    Username = 'test'
+    Connected = True
+    LoginPrompt = False
+    Left = 24
+    Top = 120
+    EncryptedPassword = '8BFF9AFF8CFF8BFFCEFFCDFFCCFF'
+  end
+  object SQLiteUniProvider1: TSQLiteUniProvider
+    Left = 128
+    Top = 120
+  end
+  object UniTransactionSQLite: TUniTransaction
+    DefaultConnection = UniSQLite
+    Left = 224
+    Top = 120
+  end
+  object UniTransactionMySQL: TUniTransaction
+    DefaultConnection = UniMySQL
+    Left = 352
+    Top = 120
+  end
+end

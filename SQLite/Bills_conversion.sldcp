@@ -1,0 +1,526 @@
+<database_converter>
+  <transfer_options generate_database_objects="true" insert_records_into_database="true" use_bulk_insert="false" save_metadata_script_to_file="false" save_insert_statements_to_file="false" script_file_name="C:\Users\vital\OneDrive\Документы в облаке\Мои документы\metadata.sql" enable_logging="true" log_file_name="C:\Users\vital\OneDrive\Документы в облаке\Мои документы\databaseconverter.log" show_log_on_error="true"/>
+  <target_database_options target_type="1" drop_database_if_exists="false" server_version="3080000">
+    <connection_options host="" port="0" login="test" password="[/WK[*FJJP~~" database="D:\Projects\GitHub\UTServ\SQLite\Bills" client_encoding="" all_fields_unicode="true" extensions="" initial_foreign_key_mode="2" use_binary_guids="false" date_time_storage_format="0" date_storage_format="0" time_storage_format="0" database_key="" database_encryption_algorithm="0" open_in_read_only_mode="false">
+      <ssh_secure secure="false" port="22" authentication_mode="0"/>
+      <http_tunnel tunneling="false" url="">
+        <http_proxy_server use_proxy="false" port="8080"/>
+        <http_authentication/>
+      </http_tunnel>
+      <auto_attached_databases/>
+    </connection_options>
+  </target_database_options>
+  <source_database_options server_name="MySQL">
+    <connection_options host="localhost" port="3306" login="root" password="R.S]ZO'SJ?7YX/D~" database="utilbills" client_encoding="utf8" allow_old_password="true">
+      <ssh_secure secure="false" port="22" authentication_mode="0"/>
+      <http_tunnel tunneling="false" url="">
+        <http_proxy_server use_proxy="false" port="8080"/>
+        <http_authentication/>
+      </http_tunnel>
+    </connection_options>
+  </source_database_options>
+  <custom_scripts>
+    <after_connect/>
+    <before_data_import/>
+    <after_converting/>
+  </custom_scripts>
+  <source_selected_objects>
+    <tables>
+      <table name="accounts">
+        <fields>
+          <field name="account_id"/>
+          <field name="payer_id"/>
+          <field name="account_amount"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="addresses">
+        <fields>
+          <field name="address_id"/>
+          <field name="address_type_id"/>
+          <field name="location"/>
+        </fields>
+        <indexes>
+          <index name="FK_address_type_"/>
+        </indexes>
+        <foreign_keys>
+          <foreign_key name="FK_address_type_"/>
+        </foreign_keys>
+      </table>
+      <table name="address_types">
+        <fields>
+          <field name="address_type"/>
+        </fields>
+        <indexes>
+          <index name="address_type_unique"/>
+        </indexes>
+        <foreign_keys/>
+      </table>
+      <table name="agreements">
+        <fields>
+          <field name="agrement_id"/>
+          <field name="agreement_header"/>
+          <field name="payer_id"/>
+          <field name="can_be_published"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="bills">
+        <fields>
+          <field name="bill_id"/>
+          <field name="payer_id"/>
+          <field name="period_id"/>
+          <field name="bill_amount"/>
+          <field name="credit_account_id"/>
+          <field name="debet_account_id"/>
+          <field name="payment_date"/>
+          <field name="payment_status"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="business_items">
+        <fields>
+          <field name="business_id"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="calendar">
+        <fields>
+          <field name="calendar_id"/>
+          <field name="c_date"/>
+          <field name="c_day"/>
+          <field name="c_is_work_day"/>
+          <field name="c_month"/>
+          <field name="c_year"/>
+          <field name="c_quater"/>
+          <field name="с_week"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="messages">
+        <fields>
+          <field name="message_id"/>
+          <field name="payer_id"/>
+          <field name="message_type"/>
+          <field name="message_text"/>
+          <field name="send_date"/>
+          <field name="updated"/>
+          <field name="updated_by"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="message_types">
+        <fields>
+          <field name="message_type"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="objects">
+        <fields>
+          <field name="object_id"/>
+          <field name="house_address"/>
+          <field name="location"/>
+          <field name="payer_id"/>
+          <field name="apartment_number"/>
+          <field name="apartment_code"/>
+          <field name="front_door_number"/>
+          <field name="front_door_code"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="payers">
+        <fields>
+          <field name="payer_id"/>
+          <field name="full_name"/>
+          <field name="telephon_number"/>
+          <field name="old_telephon_number"/>
+          <field name="email"/>
+          <field name="bank_filter_id"/>
+          <field name="agreement_id"/>
+          <field name="billing_address"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="payments">
+        <fields>
+          <field name="payment_id"/>
+          <field name="payer_id"/>
+          <field name="amount"/>
+          <field name="payment_date"/>
+          <field name="bank_statements_date"/>
+          <field name="bank_statement_description"/>
+          <field name="payment_status"/>
+          <field name="payment_type_id"/>
+          <field name="bank_statements_number"/>
+          <field name="is_cancelled"/>
+          <field name="created_by"/>
+          <field name="created_date"/>
+          <field name="updated_by"/>
+          <field name="updated_date"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="payment_statuses">
+        <fields>
+          <field name="status"/>
+          <field name="status_description"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="payment_transactions">
+        <fields>
+          <field name="payment_id"/>
+          <field name="transaction_id"/>
+          <field name="created_date"/>
+          <field name="created_by"/>
+          <field name="updated_date"/>
+          <field name="updated_by"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="payment_types">
+        <fields>
+          <field name="payment_type_id"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="period_calendar">
+        <fields>
+          <field name="period_id"/>
+          <field name="start_date"/>
+          <field name="end_date"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="settings">
+        <fields>
+          <field name="setting_id"/>
+          <field name="key"/>
+          <field name="value"/>
+          <field name="required"/>
+          <field name="created_date"/>
+          <field name="created_by"/>
+          <field name="updated_date"/>
+          <field name="update_by"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="transactions">
+        <fields>
+          <field name="transaction_id"/>
+          <field name="payment_id"/>
+          <field name="account_id"/>
+          <field name="amount"/>
+          <field name="created_date"/>
+          <field name="created_by"/>
+          <field name="updated_date"/>
+          <field name="updated_by"/>
+          <field name="is_cancelled"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table name="users">
+        <fields>
+          <field name="user_id"/>
+          <field name="full_name"/>
+          <field name="user"/>
+          <field name="password"/>
+          <field name="role_id"/>
+          <field name="is_active"/>
+          <field name="hiring_date"/>
+          <field name="closure_date"/>
+        </fields>
+        <indexes>
+          <index name="FK_users_role_id"/>
+        </indexes>
+        <foreign_keys>
+          <foreign_key name="FK_users_role_id"/>
+        </foreign_keys>
+      </table>
+      <table name="user_roles">
+        <fields>
+          <field name="role_id"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+    </tables>
+  </source_selected_objects>
+  <target_objects_map>
+    <database encoding="UTF-8"/>
+    <tables>
+      <table source_name="accounts" target_name="accounts">
+        <fields>
+          <field source_name="accounts.account_id" target_name="account_id" is_primary_key="true" is_not_null="true" type="integer" is_auto_inc="true"/>
+          <field source_name="accounts.payer_id" target_name="payer_id" is_not_null="true" type="integer"/>
+          <field source_name="accounts.account_amount" target_name="account_amount" is_not_null="true" type="numeric" size="15" precision="4"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="addresses" target_name="addresses">
+        <fields>
+          <field source_name="addresses.address_id" target_name="address_id" is_primary_key="true" is_not_null="true" type="bigint" is_auto_inc="true"/>
+          <field source_name="addresses.address_type_id" target_name="address_type_id" type="varchar" size="100"/>
+          <field source_name="addresses.location" target_name="location" is_not_null="true" type="varchar" size="200"/>
+        </fields>
+        <indexes>
+          <index source_name="addresses.FK_address_type_" target_name="FK_address_type_"/>
+        </indexes>
+        <foreign_keys>
+          <foreign_key source_name="addresses.FK_address_type_" target_name="FK_address_type_"/>
+        </foreign_keys>
+      </table>
+      <table source_name="address_types" target_name="address_types">
+        <fields>
+          <field source_name="address_types.address_type" target_name="address_type" is_primary_key="true" is_not_null="true" type="varchar" size="100"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="agreements" target_name="agreements">
+        <fields>
+          <field source_name="agreements.agrement_id" target_name="agrement_id" is_primary_key="true" is_not_null="true" type="bigint" is_auto_inc="true"/>
+          <field source_name="agreements.agreement_header" target_name="agreement_header" type="varchar" size="255"/>
+          <field source_name="agreements.payer_id" target_name="payer_id" type="integer"/>
+          <field source_name="agreements.can_be_published" target_name="can_be_published" type="smallint"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="bills" target_name="bills">
+        <fields>
+          <field source_name="bills.bill_id" target_name="bill_id" is_primary_key="true" is_not_null="true" type="integer" is_auto_inc="true"/>
+          <field source_name="bills.payer_id" target_name="payer_id" type="integer"/>
+          <field source_name="bills.period_id" target_name="period_id" type="integer"/>
+          <field source_name="bills.bill_amount" target_name="bill_amount" type="numeric" size="15" precision="4"/>
+          <field source_name="bills.credit_account_id" target_name="credit_account_id" type="integer"/>
+          <field source_name="bills.debet_account_id" target_name="debet_account_id" type="integer"/>
+          <field source_name="bills.payment_date" target_name="payment_date" type="datetime"/>
+          <field source_name="bills.payment_status" target_name="payment_status" type="char" size="1"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="business_items" target_name="business_items">
+        <fields>
+          <field source_name="business_items.business_id" target_name="business_id" is_primary_key="true" is_not_null="true" type="varchar" size="50"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="calendar" target_name="calendar">
+        <fields>
+          <field source_name="calendar.calendar_id" target_name="calendar_id" is_primary_key="true" is_not_null="true" type="bigint" is_auto_inc="true"/>
+          <field source_name="calendar.c_date" target_name="c_date" is_not_null="true" type="date"/>
+          <field source_name="calendar.c_day" target_name="c_day" is_not_null="true" type="bigint"/>
+          <field source_name="calendar.c_is_work_day" target_name="c_is_work_day" is_not_null="true" type="smallint"/>
+          <field source_name="calendar.c_month" target_name="c_month" is_not_null="true" type="bigint"/>
+          <field source_name="calendar.c_year" target_name="c_year" is_not_null="true" type="bigint"/>
+          <field source_name="calendar.c_quater" target_name="c_quater" is_not_null="true" type="bigint"/>
+          <field source_name="calendar.с_week" target_name="с_week" is_not_null="true" type="bigint"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="messages" target_name="messages">
+        <fields>
+          <field source_name="messages.message_id" target_name="message_id" is_primary_key="true" is_not_null="true" type="integer" is_auto_inc="true"/>
+          <field source_name="messages.payer_id" target_name="payer_id" type="integer"/>
+          <field source_name="messages.message_type" target_name="message_type" type="varchar" size="50"/>
+          <field source_name="messages.message_text" target_name="message_text" type="text"/>
+          <field source_name="messages.send_date" target_name="send_date" type="datetime"/>
+          <field source_name="messages.updated" target_name="updated" type="datetime"/>
+          <field source_name="messages.updated_by" target_name="updated_by" type="varchar" size="255"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="message_types" target_name="message_types">
+        <fields>
+          <field source_name="message_types.message_type" target_name="message_type" is_primary_key="true" is_not_null="true" type="varchar" size="50"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="objects" target_name="objects">
+        <fields>
+          <field source_name="objects.object_id" target_name="object_id" is_primary_key="true" is_not_null="true" type="bigint" is_auto_inc="true"/>
+          <field source_name="objects.house_address" target_name="house_address" type="varchar" size="255"/>
+          <field source_name="objects.location" target_name="location" type="varchar" size="255"/>
+          <field source_name="objects.payer_id" target_name="payer_id" is_not_null="true" type="integer"/>
+          <field source_name="objects.apartment_number" target_name="apartment_number" type="integer"/>
+          <field source_name="objects.apartment_code" target_name="apartment_code" type="varchar" size="50"/>
+          <field source_name="objects.front_door_number" target_name="front_door_number" type="integer"/>
+          <field source_name="objects.front_door_code" target_name="front_door_code" type="varchar" size="50"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="payers" target_name="payers">
+        <fields>
+          <field source_name="payers.payer_id" target_name="payer_id" is_primary_key="true" is_not_null="true" type="bigint" is_auto_inc="true"/>
+          <field source_name="payers.full_name" target_name="full_name" type="varchar" size="255"/>
+          <field source_name="payers.telephon_number" target_name="telephon_number" type="varchar" size="255"/>
+          <field source_name="payers.old_telephon_number" target_name="old_telephon_number" type="varchar" size="255"/>
+          <field source_name="payers.email" target_name="email" type="varchar" size="50"/>
+          <field source_name="payers.bank_filter_id" target_name="bank_filter_id" type="integer"/>
+          <field source_name="payers.agreement_id" target_name="agreement_id" type="integer"/>
+          <field source_name="payers.billing_address" target_name="billing_address" type="varchar" size="255"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="payments" target_name="payments">
+        <fields>
+          <field source_name="payments.payment_id" target_name="payment_id" is_primary_key="true" is_not_null="true" type="bigint" is_auto_inc="true"/>
+          <field source_name="payments.payer_id" target_name="payer_id" is_not_null="true" type="integer"/>
+          <field source_name="payments.amount" target_name="amount" is_not_null="true" type="float" size="14" precision="4"/>
+          <field source_name="payments.payment_date" target_name="payment_date" is_not_null="true" type="date"/>
+          <field source_name="payments.bank_statements_date" target_name="bank_statements_date" type="date"/>
+          <field source_name="payments.bank_statement_description" target_name="bank_statement_description" type="text"/>
+          <field source_name="payments.payment_status" target_name="payment_status" is_not_null="true" type="char" size="1"/>
+          <field source_name="payments.payment_type_id" target_name="payment_type_id" is_not_null="true" type="varchar" size="255"/>
+          <field source_name="payments.bank_statements_number" target_name="bank_statements_number" type="integer"/>
+          <field source_name="payments.is_cancelled" target_name="is_cancelled" is_not_null="true" type="smallint" default_value="0"/>
+          <field source_name="payments.created_by" target_name="created_by" type="integer"/>
+          <field source_name="payments.created_date" target_name="created_date" type="datetime"/>
+          <field source_name="payments.updated_by" target_name="updated_by" type="integer"/>
+          <field source_name="payments.updated_date" target_name="updated_date" type="datetime"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="payment_statuses" target_name="payment_statuses">
+        <fields>
+          <field source_name="payment_statuses.status" target_name="status" is_primary_key="true" is_not_null="true" type="char" size="1"/>
+          <field source_name="payment_statuses.status_description" target_name="status_description" is_not_null="true" type="varchar" size="255"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="payment_transactions" target_name="payment_transactions">
+        <fields>
+          <field source_name="payment_transactions.payment_id" target_name="payment_id" is_not_null="true" type="integer"/>
+          <field source_name="payment_transactions.transaction_id" target_name="transaction_id" is_not_null="true" type="integer"/>
+          <field source_name="payment_transactions.created_date" target_name="created_date" is_not_null="true" type="datetime"/>
+          <field source_name="payment_transactions.created_by" target_name="created_by" is_not_null="true" type="integer"/>
+          <field source_name="payment_transactions.updated_date" target_name="updated_date" type="datetime"/>
+          <field source_name="payment_transactions.updated_by" target_name="updated_by" type="integer"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="payment_types" target_name="payment_types">
+        <fields>
+          <field source_name="payment_types.payment_type_id" target_name="payment_type_id" is_primary_key="true" is_not_null="true" type="varchar" size="255"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="period_calendar" target_name="period_calendar">
+        <fields>
+          <field source_name="period_calendar.period_id" target_name="period_id" is_primary_key="true" is_not_null="true" type="bigint"/>
+          <field source_name="period_calendar.start_date" target_name="start_date" is_not_null="true" type="date"/>
+          <field source_name="period_calendar.end_date" target_name="end_date" is_not_null="true" type="date"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="settings" target_name="settings">
+        <fields>
+          <field source_name="settings.setting_id" target_name="setting_id" is_primary_key="true" is_not_null="true" type="bigint" is_auto_inc="true"/>
+          <field source_name="settings.key" target_name="key" type="varchar" size="255"/>
+          <field source_name="settings.value" target_name="value" type="varchar" size="255"/>
+          <field source_name="settings.required" target_name="required" is_not_null="true" type="smallint"/>
+          <field source_name="settings.created_date" target_name="created_date" type="datetime"/>
+          <field source_name="settings.created_by" target_name="created_by" type="integer"/>
+          <field source_name="settings.updated_date" target_name="updated_date" type="datetime"/>
+          <field source_name="settings.update_by" target_name="update_by" type="integer"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="transactions" target_name="transactions">
+        <fields>
+          <field source_name="transactions.transaction_id" target_name="transaction_id" is_primary_key="true" is_not_null="true" type="bigint" is_auto_inc="true"/>
+          <field source_name="transactions.payment_id" target_name="payment_id" type="integer"/>
+          <field source_name="transactions.account_id" target_name="account_id" type="integer"/>
+          <field source_name="transactions.amount" target_name="amount" type="numeric" size="14" precision="4"/>
+          <field source_name="transactions.created_date" target_name="created_date" type="datetime"/>
+          <field source_name="transactions.created_by" target_name="created_by" type="integer"/>
+          <field source_name="transactions.updated_date" target_name="updated_date" type="datetime"/>
+          <field source_name="transactions.updated_by" target_name="updated_by" type="integer"/>
+          <field source_name="transactions.is_cancelled" target_name="is_cancelled" is_not_null="true" type="smallint" default_value="0"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+      <table source_name="users" target_name="users">
+        <fields>
+          <field source_name="users.user_id" target_name="user_id" is_primary_key="true" is_not_null="true" type="integer" is_auto_inc="true"/>
+          <field source_name="users.full_name" target_name="full_name" is_not_null="true" type="varchar" size="255"/>
+          <field source_name="users.user" target_name="user" is_not_null="true" type="varchar" size="255"/>
+          <field source_name="users.password" target_name="password" is_not_null="true" type="varchar" size="255"/>
+          <field source_name="users.role_id" target_name="role_id" is_not_null="true" type="varchar" size="255"/>
+          <field source_name="users.is_active" target_name="is_active" is_not_null="true" type="smallint" default_value="1"/>
+          <field source_name="users.hiring_date" target_name="hiring_date" type="date"/>
+          <field source_name="users.closure_date" target_name="closure_date" type="date"/>
+        </fields>
+        <indexes>
+          <index source_name="users.FK_users_role_id" target_name="FK_users_role_id"/>
+        </indexes>
+        <foreign_keys>
+          <foreign_key source_name="users.FK_users_role_id" target_name="FK_users_role_id"/>
+        </foreign_keys>
+      </table>
+      <table source_name="user_roles" target_name="user_roles">
+        <fields>
+          <field source_name="user_roles.role_id" target_name="role_id" is_primary_key="true" is_not_null="true" type="varchar" size="50"/>
+        </fields>
+        <indexes/>
+        <foreign_keys/>
+      </table>
+    </tables>
+  </target_objects_map>
+  <source_tables_for_data_import>
+    <table name="accounts"/>
+    <table name="addresses"/>
+    <table name="address_types"/>
+    <table name="agreements"/>
+    <table name="bills"/>
+    <table name="business_items"/>
+    <table name="calendar"/>
+    <table name="messages"/>
+    <table name="message_types"/>
+    <table name="objects"/>
+    <table name="payers"/>
+    <table name="payments"/>
+    <table name="payment_statuses"/>
+    <table name="payment_transactions"/>
+    <table name="payment_types"/>
+    <table name="period_calendar"/>
+    <table name="settings"/>
+    <table name="transactions"/>
+    <table name="users"/>
+    <table name="user_roles"/>
+  </source_tables_for_data_import>
+  <naming_options AppendNamespace="false" TableNamePrefix="" TableNameSuffix="" ObjectNameCase="0"/>
+  <data_type_mappings/>
+</database_converter>

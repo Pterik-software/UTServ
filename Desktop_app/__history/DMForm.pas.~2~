@@ -1,0 +1,31 @@
+unit DMForm;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DASQLMonitor, UniSQLMonitor,
+  UniProvider, MySQLUniProvider, Data.DB, DBAccess, Uni, SQLiteUniProvider;
+
+type
+  TFormDM = class(TForm)
+    UniMySQL: TUniConnection;
+    MySQLUniProvider1: TMySQLUniProvider;
+    UniSQLMonitor1: TUniSQLMonitor;
+    UniSQLite: TUniConnection;
+    SQLiteUniProvider1: TSQLiteUniProvider;
+    UniTransactionSQLite: TUniTransaction;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormDM: TFormDM;
+
+implementation
+
+{$R *.dfm}
+
+end.

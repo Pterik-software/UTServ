@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.Buttons,
-  UniProvider, MySQLUniProvider, Data.DB, DBAccess, Uni, DASQLMonitor,
+  UniProvider, MySQLUniProvider, Data.DB,  DBAccess, Uni, DASQLMonitor,
   UniSQLMonitor;
 
 type
@@ -39,9 +39,6 @@ type
     N25: TMenuItem;
     N26: TMenuItem;
     C1: TMenuItem;
-    UniConnection: TUniConnection;
-    MySQLUniProvider1: TMySQLUniProvider;
-    UniSQLMonitor1: TUniSQLMonitor;
     procedure N3Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure N5Click(Sender: TObject);
@@ -57,7 +54,7 @@ type
 
 var
   FormMain: TFormMain;
-//FormMain.UniConnection
+//FormDM.UniMySQL
 
 implementation
 

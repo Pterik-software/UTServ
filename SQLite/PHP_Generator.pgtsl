@@ -1,0 +1,327 @@
+<Project version="20.5.0.6" edition="pro" localizationFileName="C:\Program Files (x86)\SQL Maestro Group\SQLite PHP Generator Professional\lang.en.php" phpDriver="0" outputPath="D:\Projects\GitHub\UTServ\SQLite\Bills" copySystemFiles="true" generateModifiedDataOnly="true" outputFilesExtension="php" colorSchemeName="cerulean">
+  <ConnectionOptions host="" port="0" login="test" password="[/WK[*FJJP~~" database="D:\Projects\GitHub\UTServ\SQLite\Bills.SQLITE" client_encoding="" all_fields_unicode="true" extensions="" initial_foreign_key_mode="1" use_binary_guids="false" date_time_storage_format="0" date_storage_format="0" time_storage_format="0" database_key="" database_encryption_algorithm="0" open_in_read_only_mode="false">
+    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <http_tunnel tunneling="false" url="">
+      <http_proxy_server use_proxy="false" port="8080"/>
+      <http_authentication/>
+    </http_tunnel>
+    <auto_attached_databases/>
+  </ConnectionOptions>
+  <ScriptConnectionOptions host="" port="0" login="test" password="[/WK[*FJJP~~" database="D:\Projects\GitHub\UTServ\SQLite\Bills.SQLITE" client_encoding="" all_fields_unicode="true" extensions="" initial_foreign_key_mode="1" use_binary_guids="false" date_time_storage_format="0" date_storage_format="0" time_storage_format="0" database_key="" database_encryption_algorithm="0" open_in_read_only_mode="false">
+    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <http_tunnel tunneling="false" url="">
+      <http_proxy_server use_proxy="false" port="8080"/>
+      <http_authentication/>
+    </http_tunnel>
+    <auto_attached_databases/>
+  </ScriptConnectionOptions>
+  <DataSources>
+    <DataSource name="accounts"/>
+    <DataSource name="address_types"/>
+    <DataSource name="addresses"/>
+  </DataSources>
+  <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false">
+    <Pages>
+      <Page type="table" tableName="accounts" numberByDataSource="0" fileName="accounts" caption="Accounts" shortCaption="Accounts" addSeparator="true" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <DetailedDescription/>
+        <ColumnPresentations>
+          <ColumnPresentation fieldName="account_id" caption="Account Id" showColumnFilter="false" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="payer_id" caption="Payer Id" showColumnFilter="false" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="account_amount" caption="Account Amount" showColumnFilter="false" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" numberAfterDecimal="4" decimalSeparator="." thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+        </ColumnPresentations>
+        <Columns>
+          <List>
+            <Column fieldName="account_id"/>
+            <Column fieldName="payer_id"/>
+            <Column fieldName="account_amount"/>
+          </List>
+          <View>
+            <Column fieldName="account_id"/>
+            <Column fieldName="payer_id"/>
+            <Column fieldName="account_amount"/>
+          </View>
+          <Edit>
+            <Column fieldName="account_id" visible="false"/>
+            <Column fieldName="payer_id"/>
+            <Column fieldName="account_amount"/>
+          </Edit>
+          <Insert>
+            <Column fieldName="account_id" visible="false"/>
+            <Column fieldName="payer_id"/>
+            <Column fieldName="account_amount"/>
+          </Insert>
+          <QuickFilter>
+            <Column fieldName="account_id"/>
+            <Column fieldName="payer_id"/>
+            <Column fieldName="account_amount"/>
+          </QuickFilter>
+          <FilterBuilder>
+            <Column fieldName="account_id"/>
+            <Column fieldName="payer_id"/>
+            <Column fieldName="account_amount"/>
+          </FilterBuilder>
+          <Print>
+            <Column fieldName="account_id"/>
+            <Column fieldName="payer_id"/>
+            <Column fieldName="account_amount"/>
+          </Print>
+          <Export>
+            <Column fieldName="account_id"/>
+            <Column fieldName="payer_id"/>
+            <Column fieldName="account_amount"/>
+          </Export>
+          <Compare>
+            <Column fieldName="account_id" visible="false"/>
+            <Column fieldName="payer_id"/>
+            <Column fieldName="account_amount"/>
+          </Compare>
+          <MultiEdit>
+            <Column fieldName="account_id" visible="false"/>
+            <Column fieldName="payer_id"/>
+            <Column fieldName="account_amount"/>
+          </MultiEdit>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="address_types" numberByDataSource="0" fileName="address_types" caption="Address Types" shortCaption="Address Types" addSeparator="true" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <DetailedDescription/>
+        <ColumnPresentations>
+          <ColumnPresentation fieldName="address_type" caption="Address Type" showColumnFilter="false" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textBox" maxLength="100"/>
+          </ColumnPresentation>
+        </ColumnPresentations>
+        <Columns>
+          <List>
+            <Column fieldName="address_type"/>
+          </List>
+          <View>
+            <Column fieldName="address_type"/>
+          </View>
+          <Edit>
+            <Column fieldName="address_type"/>
+          </Edit>
+          <Insert>
+            <Column fieldName="address_type"/>
+          </Insert>
+          <QuickFilter>
+            <Column fieldName="address_type"/>
+          </QuickFilter>
+          <FilterBuilder>
+            <Column fieldName="address_type"/>
+          </FilterBuilder>
+          <Print>
+            <Column fieldName="address_type"/>
+          </Print>
+          <Export>
+            <Column fieldName="address_type"/>
+          </Export>
+          <Compare>
+            <Column fieldName="address_type"/>
+          </Compare>
+          <MultiEdit>
+            <Column fieldName="address_type" visible="false"/>
+          </MultiEdit>
+        </Columns>
+        <Details>
+          <Detail caption="Addresses">
+            <Page type="table" tableName="addresses" numberByDataSource="0" fileName="addresses" caption="Addresses" shortCaption="Addresses" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+              <BeforeGridText/>
+              <DetailedDescription/>
+              <ColumnPresentations>
+                <ColumnPresentation fieldName="address_id" caption="Address Id" showColumnFilter="false" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" thousandSeparator=","/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="address_type_id" caption="Address Type Id" canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="address_types" linkFieldName="address_type" displayFieldName="address_type" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="dynamicCombobox"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="location" caption="Location" showColumnFilter="false" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+                </ColumnPresentation>
+              </ColumnPresentations>
+              <Columns>
+                <List>
+                  <Column fieldName="address_id"/>
+                  <Column fieldName="address_type_id"/>
+                  <Column fieldName="location"/>
+                </List>
+                <View>
+                  <Column fieldName="address_id"/>
+                  <Column fieldName="address_type_id"/>
+                  <Column fieldName="location"/>
+                </View>
+                <Edit>
+                  <Column fieldName="address_id"/>
+                  <Column fieldName="address_type_id"/>
+                  <Column fieldName="location"/>
+                </Edit>
+                <Insert>
+                  <Column fieldName="address_id"/>
+                  <Column fieldName="address_type_id"/>
+                  <Column fieldName="location"/>
+                </Insert>
+                <QuickFilter>
+                  <Column fieldName="address_id"/>
+                  <Column fieldName="address_type_id"/>
+                  <Column fieldName="location"/>
+                </QuickFilter>
+                <FilterBuilder>
+                  <Column fieldName="address_id"/>
+                  <Column fieldName="address_type_id"/>
+                  <Column fieldName="location"/>
+                </FilterBuilder>
+                <Print>
+                  <Column fieldName="address_id"/>
+                  <Column fieldName="address_type_id"/>
+                  <Column fieldName="location"/>
+                </Print>
+                <Export>
+                  <Column fieldName="address_id"/>
+                  <Column fieldName="address_type_id"/>
+                  <Column fieldName="location"/>
+                </Export>
+                <Compare>
+                  <Column fieldName="address_id"/>
+                  <Column fieldName="address_type_id"/>
+                  <Column fieldName="location"/>
+                </Compare>
+                <MultiEdit>
+                  <Column fieldName="address_id" visible="false"/>
+                  <Column fieldName="address_type_id"/>
+                  <Column fieldName="location"/>
+                </MultiEdit>
+              </Columns>
+              <Details/>
+              <RecordPermissions useRecordPermissions="false"/>
+              <PartitionNavigators/>
+            </Page>
+            <MasterForeignKeyColumnMap>
+              <FieldMap masterColumnName="address_type" foreginColumnName="address_type_id"/>
+            </MasterForeignKeyColumnMap>
+          </Detail>
+        </Details>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="addresses" numberByDataSource="0" fileName="addresses" caption="Addresses" shortCaption="Addresses" addSeparator="true" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <DetailedDescription/>
+        <ColumnPresentations>
+          <ColumnPresentation fieldName="address_id" caption="Address Id" showColumnFilter="false" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="address_type_id" caption="Address Type Id" canSetNull="true" selectedFilterOperators="1589247">
+            <Lookup tableName="address_types" linkFieldName="address_type" displayFieldName="address_type" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="dynamicCombobox"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="location" caption="Location" showColumnFilter="false" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+        </ColumnPresentations>
+        <Columns>
+          <List>
+            <Column fieldName="address_id"/>
+            <Column fieldName="address_type_id"/>
+            <Column fieldName="location"/>
+          </List>
+          <View>
+            <Column fieldName="address_id"/>
+            <Column fieldName="address_type_id"/>
+            <Column fieldName="location"/>
+          </View>
+          <Edit>
+            <Column fieldName="address_id"/>
+            <Column fieldName="address_type_id"/>
+            <Column fieldName="location"/>
+          </Edit>
+          <Insert>
+            <Column fieldName="address_id"/>
+            <Column fieldName="address_type_id"/>
+            <Column fieldName="location"/>
+          </Insert>
+          <QuickFilter>
+            <Column fieldName="address_id"/>
+            <Column fieldName="address_type_id"/>
+            <Column fieldName="location"/>
+          </QuickFilter>
+          <FilterBuilder>
+            <Column fieldName="address_id"/>
+            <Column fieldName="address_type_id"/>
+            <Column fieldName="location"/>
+          </FilterBuilder>
+          <Print>
+            <Column fieldName="address_id"/>
+            <Column fieldName="address_type_id"/>
+            <Column fieldName="location"/>
+          </Print>
+          <Export>
+            <Column fieldName="address_id"/>
+            <Column fieldName="address_type_id"/>
+            <Column fieldName="location"/>
+          </Export>
+          <Compare>
+            <Column fieldName="address_id"/>
+            <Column fieldName="address_type_id"/>
+            <Column fieldName="location"/>
+          </Compare>
+          <MultiEdit>
+            <Column fieldName="address_id" visible="false"/>
+            <Column fieldName="address_type_id"/>
+            <Column fieldName="location"/>
+          </MultiEdit>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+    </Pages>
+    <UserAuthorization/>
+    <UserGrants/>
+    <Header>
+&lt;div class=&quot;alert alert-danger SQLGeneratorEvaluationVersion&quot;&gt;&lt;h3 class=&quot;SQLGeneratorEvaluationVersion-head&quot;&gt;This website was created by evaluation version of &lt;a href=&quot;http://www.sqlmaestro.com/products/sqlite/phpgenerator/&quot; class=&quot;alert-link&quot;&gt;SQLite PHP Generator Professional&lt;/a&gt;.&lt;/h3&gt;&lt;img class=&quot;SQLGeneratorEvaluationVersion-justify&quot; src=&quot;components/assets/img/btn-loading.png&quot;&gt;&lt;/div&gt;    </Header>
+    <Footer>
+&lt;p align=&quot;right&quot;&gt;(C) &lt;span&gt;2002-&lt;script type=&quot;text/javascript&quot;&gt;document.write(new Date().getFullYear().toString())&lt;/script&gt;&lt;/span&gt;&lt;a href=&quot;http://www.sqlmaestro.com/products/sqlite/phpgenerator/&quot;&gt; SQL Maestro Group&lt;/a&gt;.&lt;/p&gt;    </Footer>
+    <PHPOptions/>
+    <Groups>
+      <Group caption="No group"/>
+    </Groups>
+    <outgoingMailSettings mailer="0" fromEmail="" fromName=""/>
+  </Presentation>
+  <UserCSS/>
+  <PdfUserStyles/>
+  <PrintUserStyles/>
+  <UserJS/>
+  <ExcludedPaths/>
+  <DefaultPageProperties recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" useActionImages="true" showKeyColumnsImagesInGridHeader="false"/>
+  <DefaultDataFormats numberAfterDecimal="4" DecimalSeparator="." ThousandSeparator="," DateTimeFormat="Y-m-d H:i:s" DateFormat="Y-m-d" firstDayOfWeek="0"/>
+</Project>

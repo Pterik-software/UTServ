@@ -10,14 +10,27 @@ uses
 type
   TFormUsers = class(TForm)
     BitBtnClose: TBitBtn;
-    UniDataSource1: TUniDataSource;
     DBGrid1: TDBGrid;
     BitBtnNew: TBitBtn;
     BitBtnEdit: TBitBtn;
     BitBtnDismiss: TBitBtn;
-    UniQuery1: TUniQuery;
+    UniSQLUsers: TUniQuery;
+    UniDataSource1: TDataSource;
+    UniSQLUsersuser_id: TIntegerField;
+    UniSQLUsersfull_name: TStringField;
+    UniSQLUsersuser: TStringField;
+    UniSQLUserspassword: TStringField;
+    UniSQLUsersrole_id: TStringField;
+    UniSQLUsersis_active: TBooleanField;
+    UniSQLUsershiring_date: TDateField;
+    UniSQLUsersclosure_date: TDateField;
+    UniSQLUsersis_working: TStringField;
     procedure BitBtnCloseClick(Sender: TObject);
     procedure BitBtnEditClick(Sender: TObject);
+    procedure UniSQLUsersCalcFields(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
+    procedure BitBtnNewClick(Sender: TObject);
+    procedure BitBtnDismissClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,12 +44,45 @@ implementation
 
 {$R *.dfm}
 
-uses UserUpdateForm;
+uses DMForm, UserUpdateForm, UserNewForm, UserDismissForm;
+
+procedure TFormUsers.BitBtnDismissClick(Sender: TObject);
+begin
+FormDismissUser.SetUserID(UniSQLUsers['user_id']);
+if (UniSQLUsers['is_active']=True)
+  then FormDismissUser.SetDismiss(true);
+if (UniSQLUsers['is_active']=false)
+  then FormDismissUser.SetDismiss(false);
+FormDismissUser.SetFormValues;
+FormDismissUser.ShowModal;
+UniSQLUsers.Refresh;
+end;
 
 procedure TFormUsers.BitBtnEditClick(Sender: TObject);
 begin
-FormNewUser.SetUserID(UniQuery1['user_id']);
+FormUpdateUser.SetUserID(UniSQLUsers['user_id']);
+FormUpdateUser.SetFormValues;
+FormUpdateUser.ShowModal;
+UniSQLUsers.Refresh;
+end;
+
+procedure TFormUsers.BitBtnNewClick(Sender: TObject);
+begin
+FormNewUser.SetFormValues;
 FormNewUser.ShowModal;
+UniSQLUsers.Refresh;
+end;
+
+procedure TFormUsers.FormCreate(Sender: TObject);
+begin
+if not UniSQLUsers.Active then UniSQLUsers.Active:=true;
+end;
+
+procedure TFormUsers.UniSQLUsersCalcFields(DataSet: TDataSet);
+begin
+if UniSQLUsers['is_active']=True
+  then UniSQLUsers['is_working']:='Да'
+  else UniSQLUsers['is_working']:='Нет';
 end;
 
 procedure TFormUsers.BitBtnCloseClick(Sender: TObject);

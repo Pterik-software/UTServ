@@ -1,9 +1,9 @@
-object FormNewUser: TFormNewUser
+object FormUpdateUser: TFormUpdateUser
   Left = 0
   Top = 0
   Caption = #1048#1079#1084#1077#1085#1080#1090#1100' '#1076#1072#1085#1085#1099#1077' '#1086' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1077
-  ClientHeight = 329
-  ClientWidth = 598
+  ClientHeight = 408
+  ClientWidth = 430
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,13 +12,13 @@ object FormNewUser: TFormNewUser
   Font.Style = []
   OldCreateOrder = False
   DesignSize = (
-    598
-    329)
+    430
+    408)
   PixelsPerInch = 96
   TextHeight = 13
   object Label2: TLabel
-    Left = 32
-    Top = 120
+    Left = 34
+    Top = 110
     Width = 35
     Height = 16
     Caption = #1051#1086#1075#1080#1085
@@ -30,8 +30,8 @@ object FormNewUser: TFormNewUser
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 32
-    Top = 168
+    Left = 34
+    Top = 208
     Width = 43
     Height = 16
     Caption = #1055#1072#1088#1086#1083#1100
@@ -44,10 +44,10 @@ object FormNewUser: TFormNewUser
   end
   object Label4: TLabel
     Left = 32
-    Top = 216
-    Width = 106
+    Top = 160
+    Width = 32
     Height = 16
-    Caption = #1056#1086#1083#1100' '#1074' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
+    Caption = #1056#1086#1083#1100' '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -57,7 +57,7 @@ object FormNewUser: TFormNewUser
   end
   object Label1: TLabel
     Left = 32
-    Top = 24
+    Top = 10
     Width = 37
     Height = 16
     Caption = #1053#1086#1084#1077#1088
@@ -68,10 +68,49 @@ object FormNewUser: TFormNewUser
     Font.Style = []
     ParentFont = False
   end
-  object BitBtnClose: TBitBtn
-    Left = 48
-    Top = 281
-    Width = 156
+  object Label5: TLabel
+    Left = 32
+    Top = 60
+    Width = 27
+    Height = 16
+    Caption = #1060#1048#1054
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object LabelHired: TLabel
+    Left = 34
+    Top = 258
+    Width = 42
+    Height = 16
+    Caption = #1055#1088#1080#1085#1103#1090
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object LabelDismissed: TLabel
+    Left = 36
+    Top = 308
+    Width = 42
+    Height = 16
+    Caption = #1059#1074#1086#1083#1077#1085
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object BitBtnSave: TBitBtn
+    Left = 32
+    Top = 360
+    Width = 113
     Height = 40
     Anchors = [akLeft, akBottom]
     Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
@@ -79,31 +118,28 @@ object FormNewUser: TFormNewUser
     Layout = blGlyphRight
     NumGlyphs = 2
     TabOrder = 0
-    ExplicitTop = 413
+    OnClick = BitBtnSaveClick
   end
-  object BitBtn1: TBitBtn
-    Left = 410
-    Top = 281
-    Width = 156
+  object BitBtnCancel: TBitBtn
+    Left = 339
+    Top = 360
+    Width = 83
     Height = 40
     Anchors = [akRight, akBottom]
-    Caption = #1054#1090#1084#1077#1085#1080#1090#1100
+    Caption = #1054#1090#1084#1077#1085#1072
     Kind = bkCancel
     Layout = blGlyphRight
     NumGlyphs = 2
     TabOrder = 1
-    OnClick = BitBtn1Click
-    ExplicitLeft = 496
-    ExplicitTop = 413
+    OnClick = BitBtnCancelClick
+    ExplicitLeft = 518
   end
-  object DBEdit1: TDBEdit
-    Left = 251
-    Top = 76
-    Width = 289
+  object EditUserID: TEdit
+    Left = 91
+    Top = 10
+    Width = 39
     Height = 24
-    Anchors = [akLeft, akTop, akRight]
-    DataField = 'full_name'
-    DataSource = UniDataSource1
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -111,15 +147,13 @@ object FormNewUser: TFormNewUser
     Font.Style = []
     ParentFont = False
     TabOrder = 2
+    Text = 'EditUserID'
   end
-  object DBEdit2: TDBEdit
-    Left = 251
-    Top = 120
-    Width = 289
+  object EditFullName: TEdit
+    Left = 91
+    Top = 60
+    Width = 282
     Height = 24
-    Anchors = [akLeft, akTop, akRight]
-    DataField = 'user'
-    DataSource = UniDataSource1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -127,15 +161,14 @@ object FormNewUser: TFormNewUser
     Font.Style = []
     ParentFont = False
     TabOrder = 3
+    Text = 'EditFullName'
+    OnChange = EditFullNameChange
   end
-  object DBEdit3: TDBEdit
-    Left = 251
-    Top = 165
-    Width = 289
+  object EditLogin: TEdit
+    Left = 90
+    Top = 110
+    Width = 199
     Height = 24
-    Anchors = [akLeft, akTop, akRight]
-    DataField = 'password'
-    DataSource = UniDataSource1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -143,87 +176,182 @@ object FormNewUser: TFormNewUser
     Font.Style = []
     ParentFont = False
     TabOrder = 4
+    Text = 'EditLogin'
+    OnChange = EditLoginChange
   end
-  object DBEdit4: TDBEdit
-    Left = 251
-    Top = 213
-    Width = 289
+  object EditPassword: TEdit
+    Left = 91
+    Top = 210
+    Width = 121
     Height = 24
-    DataField = 'role_id'
-    DataSource = UniDataSource1
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+    PasswordChar = '*'
     TabOrder = 5
+    Text = 'EditPassword'
+    OnChange = EditPasswordChange
   end
-  object StaticText1: TStaticText
-    Left = 32
-    Top = 76
-    Width = 161
-    Height = 24
-    Caption = #1060#1072#1084#1080#1083#1080#1103' '#1048#1084#1103' '#1054#1090#1095#1077#1089#1090#1074#1086
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
+  object CheckBoxWorking: TCheckBox
+    Left = 276
+    Top = 265
+    Width = 97
+    Height = 17
+    Caption = #1056#1072#1073#1086#1090#1072#1077#1090
+    Checked = True
+    Enabled = False
+    State = cbChecked
     TabOrder = 6
+    OnClick = CheckBoxWorkingClick
   end
-  object DBEdit5: TDBEdit
-    Left = 251
-    Top = 21
-    Width = 289
+  object DTHired: TDateTimePicker
+    Left = 93
+    Top = 260
+    Width = 129
     Height = 24
-    Anchors = [akLeft, akTop, akRight]
-    BiDiMode = bdLeftToRight
-    DataField = 'user_id'
-    DataSource = UniDataSource1
+    Date = 44436.705664988420000000
+    Time = 44436.705664988420000000
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
-    ParentBiDiMode = False
     ParentFont = False
-    ReadOnly = True
     TabOrder = 7
+    OnChange = DTHiredChange
   end
-  object UniTable1: TUniTable
-    TableName = 'users'
-    Connection = FormMain.UniConnection
-    FilterSQL = 'where user_id = :p_user_id'
-    UniDirectional = True
-    Left = 48
-    Top = 240
+  object DTDismissed: TDateTimePicker
+    Left = 93
+    Top = 310
+    Width = 129
+    Height = 24
+    Date = 44436.705664988420000000
+    Time = 44436.705664988420000000
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 8
+    OnChange = DTDismissedChange
+  end
+  object BitBtnPassword: TBitBtn
+    Left = 178
+    Top = 360
+    Width = 127
+    Height = 40
+    Anchors = [akLeft, akBottom]
+    Caption = #1057#1084#1077#1085#1080#1090#1100' '#1087#1072#1088#1086#1083#1100
+    Kind = bkHelp
+    Layout = blGlyphRight
+    NumGlyphs = 2
+    TabOrder = 9
+    OnClick = BitBtnPasswordClick
+  end
+  object ComboBoxRoles: TComboBox
+    Left = 91
+    Top = 157
+    Width = 198
+    Height = 24
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 10
+    OnKeyPress = ComboBoxRolesKeyPress
+    OnMouseEnter = ComboBoxRolesMouseEnter
+  end
+  object QueryCurrUser: TUniQuery
+    UpdatingTable = 'users'
+    Connection = FormDM.UniSQLite
+    Transaction = FormDM.UniTransactionSQLite
+    SQL.Strings = (
+      'select'
+      '    user_id,'
+      '    full_name,'
+      '    user,'
+      '    password,'
+      '    role_id,'
+      '    is_active,'
+      '    hiring_date,'
+      '    closure_date'
+      'from'
+      '    users'
+      'where user_id = :p_user_id')
+    Left = 256
+    Top = 16
     ParamData = <
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'p_user_id'
-        Value = nil
+        ParamType = ptInput
+        Value = 0
       end>
   end
-  object UniDataSource1: TUniDataSource
-    DataSet = UniTable1
-    Left = 168
-    Top = 240
-  end
-  object UniStoredProc1: TUniStoredProc
-    Connection = FormMain.UniConnection
-    Left = 552
-    Top = 112
-  end
-  object UniSQL1: TUniSQL
-    Connection = FormMain.UniConnection
+  object UniQueryRoles: TUniQuery
+    Connection = FormDM.UniSQLite
     SQL.Strings = (
-      'select * from users'
-      'where user_id = :p_user_id')
-    Left = 352
-    Top = 272
+      'select * from user_roles')
+    Left = 232
+    Top = 216
+    object UniQueryRolesrole_id: TStringField
+      FieldName = 'role_id'
+      Size = 50
+    end
+  end
+  object UniUpdateSQLUser: TUniSQL
+    Connection = FormDM.UniSQLite
+    SQL.Strings = (
+      'UPDATE users'
+      'SET'
+      '  full_name = :p_full_name, user = :p_user, '
+      '  password = :p_password, role_id = :p_role_id, '
+      '  hiring_date = :p_hiring_date, '
+      '  closure_date =:p_closure_date'
+      'WHERE'
+      '  user_id = :p_user_id')
+    Left = 248
+    Top = 304
     ParamData = <
+      item
+        DataType = ftWideString
+        Name = 'p_full_name'
+        Value = nil
+      end
+      item
+        DataType = ftWideString
+        Name = 'p_user'
+        Value = nil
+      end
+      item
+        DataType = ftWideString
+        Name = 'p_password'
+        Value = nil
+      end
+      item
+        DataType = ftWideString
+        Name = 'p_role_id'
+        Value = nil
+      end
+      item
+        DataType = ftDate
+        Name = 'p_hiring_date'
+        Value = nil
+      end
+      item
+        DataType = ftDate
+        Name = 'p_closure_date'
+        Value = nil
+      end
       item
         DataType = ftInteger
         Name = 'p_user_id'

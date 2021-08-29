@@ -11,6 +11,7 @@ object FormUpdateUser: TFormUpdateUser
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCloseQuery = FormCloseQuery
   DesignSize = (
     430
     408)
@@ -132,7 +133,6 @@ object FormUpdateUser: TFormUpdateUser
     NumGlyphs = 2
     TabOrder = 1
     OnClick = BitBtnCancelClick
-    ExplicitLeft = 518
   end
   object EditUserID: TEdit
     Left = 91
@@ -215,7 +215,6 @@ object FormUpdateUser: TFormUpdateUser
     Height = 24
     Date = 44436.705664988420000000
     Time = 44436.705664988420000000
-    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -260,6 +259,7 @@ object FormUpdateUser: TFormUpdateUser
     Top = 157
     Width = 198
     Height = 24
+    Style = csDropDownList
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -269,11 +269,14 @@ object FormUpdateUser: TFormUpdateUser
     TabOrder = 10
     OnKeyPress = ComboBoxRolesKeyPress
     OnMouseEnter = ComboBoxRolesMouseEnter
+    Items.Strings = (
+      #1055#1077#1088#1089#1086#1085#1072#1083
+      #1055#1077#1088#1089#1086#1085#1072#1083'2')
   end
   object QueryCurrUser: TUniQuery
     UpdatingTable = 'users'
-    Connection = FormDM.UniSQLite
-    Transaction = FormDM.UniTransactionSQLite
+    Connection = DM.UniSQLite
+    Transaction = DM.UniTransactionSQLite
     SQL.Strings = (
       'select'
       '    user_id,'
@@ -287,7 +290,7 @@ object FormUpdateUser: TFormUpdateUser
       'from'
       '    users'
       'where user_id = :p_user_id')
-    Left = 256
+    Left = 200
     Top = 16
     ParamData = <
       item
@@ -298,10 +301,12 @@ object FormUpdateUser: TFormUpdateUser
       end>
   end
   object UniQueryRoles: TUniQuery
-    Connection = FormDM.UniSQLite
+    Connection = DM.UniSQLite
+    Transaction = DM.UniTransactionSQLite
     SQL.Strings = (
-      'select * from user_roles')
-    Left = 232
+      'select role_id from user_roles'
+      'order by orderby')
+    Left = 256
     Top = 216
     object UniQueryRolesrole_id: TStringField
       FieldName = 'role_id'
@@ -309,7 +314,8 @@ object FormUpdateUser: TFormUpdateUser
     end
   end
   object UniUpdateSQLUser: TUniSQL
-    Connection = FormDM.UniSQLite
+    Connection = DM.UniSQLite
+    Transaction = DM.UniTransactionSQLite
     SQL.Strings = (
       'UPDATE users'
       'SET'

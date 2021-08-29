@@ -31,7 +31,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure BitBtnNewClick(Sender: TObject);
     procedure BitBtnDismissClick(Sender: TObject);
+    procedure UniDataSource1DataChange(Sender: TObject; Field: TField);
   private
+    procedure ChangeDismissCaption;
     { Private declarations }
   public
     { Public declarations }
@@ -44,14 +46,14 @@ implementation
 
 {$R *.dfm}
 
-uses DMForm, UserUpdateForm, UserNewForm, UserDismissForm;
+uses UserUpdateForm, UserNewForm, UserDismissForm;
 
 procedure TFormUsers.BitBtnDismissClick(Sender: TObject);
 begin
 FormDismissUser.SetUserID(UniSQLUsers['user_id']);
-if (UniSQLUsers['is_active']=True)
+if (UniSQLUsers['is_active'])
   then FormDismissUser.SetDismiss(true);
-if (UniSQLUsers['is_active']=false)
+if (not UniSQLUsers['is_active'])
   then FormDismissUser.SetDismiss(false);
 FormDismissUser.SetFormValues;
 FormDismissUser.ShowModal;
@@ -60,6 +62,12 @@ end;
 
 procedure TFormUsers.BitBtnEditClick(Sender: TObject);
 begin
+if not UniSQLUsers['is_active'] then
+  begin
+    ShowMessage('Сотрудник уволен, отмените увольнение и сделайте исправление');
+    exit;
+  end;
+
 FormUpdateUser.SetUserID(UniSQLUsers['user_id']);
 FormUpdateUser.SetFormValues;
 FormUpdateUser.ShowModal;
@@ -73,14 +81,26 @@ FormNewUser.ShowModal;
 UniSQLUsers.Refresh;
 end;
 
+procedure TFormUsers.ChangeDismissCaption;
+begin
+if UniSQLUsers['is_active']
+  then BitBtnDismiss.Caption:='Увольнение'
+  else BitBtnDismiss.Caption:='Отмена увольнения';
+end;
+
 procedure TFormUsers.FormCreate(Sender: TObject);
 begin
 if not UniSQLUsers.Active then UniSQLUsers.Active:=true;
 end;
 
+procedure TFormUsers.UniDataSource1DataChange(Sender: TObject; Field: TField);
+begin
+ChangeDismissCaption;
+end;
+
 procedure TFormUsers.UniSQLUsersCalcFields(DataSet: TDataSet);
 begin
-if UniSQLUsers['is_active']=True
+if UniSQLUsers['is_active']
   then UniSQLUsers['is_working']:='Да'
   else UniSQLUsers['is_working']:='Нет';
 end;

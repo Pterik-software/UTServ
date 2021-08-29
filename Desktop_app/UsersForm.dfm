@@ -23,7 +23,7 @@ object FormUsers: TFormUsers
     Width = 160
     Height = 40
     Anchors = [akRight, akBottom]
-    Caption = #1054#1090#1084#1077#1085#1072
+    Caption = #1047#1072#1082#1088#1099#1090#1100
     Glyph.Data = {
       DE010000424DDE01000000000000760000002800000024000000120000000100
       0400000000006801000000000000000000001000000000000000000000000000
@@ -59,6 +59,7 @@ object FormUsers: TFormUsers
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+    ReadOnly = True
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -367,9 +368,7 @@ object FormUsers: TFormUsers
         FieldName = 'is_active'
         FieldType = ftBoolean
       end>
-    Connection = FormDM.UniSQLite
-    Transaction = FormDM.UniTransactionSQLite
-    UpdateTransaction = FormDM.UniTransactionSQLite
+    Connection = DM.UniSQLite
     SQL.Strings = (
       'select '
       'user_id, full_name, user, password, '
@@ -422,6 +421,7 @@ object FormUsers: TFormUsers
   end
   object UniDataSource1: TDataSource
     DataSet = UniSQLUsers
+    OnDataChange = UniDataSource1DataChange
     Left = 336
     Top = 184
   end

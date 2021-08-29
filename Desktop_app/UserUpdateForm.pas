@@ -43,6 +43,7 @@ type
     procedure CheckBoxWorkingClick(Sender: TObject);
     procedure ComboBoxRolesKeyPress(Sender: TObject; var Key: Char);
     procedure ComboBoxRolesMouseEnter(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     FormChanged:boolean;
     UserID:integer;
@@ -59,7 +60,7 @@ implementation
 
 {$R *.dfm}
 
-uses DMForm;
+uses DataModule;
 
 procedure TFormUpdateUser.BitBtnCancelClick(Sender: TObject);
 begin
@@ -75,8 +76,15 @@ ShowMessage('Введите новый пароль и нажмите "Сохранить"');
 end;
 
 procedure TFormUpdateUser.BitBtnSaveClick(Sender: TObject);
+var CanSave:boolean;
 begin
-if FormChanged=true then
+CanSave:=true;
+if not FormChanged then
+  begin
+    CanSave:=false;
+    ShowMessage('Данные не изменялись, сохранение отменено');
+  end;
+if CanSave then
   begin
   UniUpdateSQLUser.Prepare;
   UniUpdateSQLUser.ParamByName('p_user_id').Value:= UserID;
@@ -88,7 +96,6 @@ if FormChanged=true then
   UniUpdateSQLUser.ParamByName('p_closure_date').Value:= DTDismissed.Date;
   UniUpdateSQLUser.Execute;
   end
-  else begin ShowMessage('Данные не изменялись, сохранение отменено'); end;
 end;
 
 procedure TFormUpdateUser.CheckBoxWorkingClick(Sender: TObject);
@@ -131,13 +138,23 @@ begin
 FormChanged:=true;
 end;
 
+procedure TFormUpdateUser.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+if (DTHired.Date >= DTDismissed.Date)
+  then CanClose:=False
+  else CanClose:=True;
+end;
+
 function TFormUpdateUser.GetUserID: integer;
 begin
 Result := UserID;
 end;
 
 procedure TFormUpdateUser.SetFormValues;
+var ComboRolesIndex:integer;
 begin
+ComboRolesIndex:=0;
 NullStrictConvert := false;
 QueryCurrUser.Close;
 QueryCurrUser.ParamByName('p_user_id').Value := UserID;
@@ -154,14 +171,17 @@ if VarIsNull(QueryCurrUser['closure_date'])
   then begin DTDismissed.Visible:=false; LabelDismissed.Visible:=false; end
   else begin DTDismissed.Visible:=true; LabelDismissed.Visible:=true; DTDismissed.DateTime:=QueryCurrUser['closure_date']; end;
 
+ComboboxRoles.Clear;
 UniQueryRoles.Close;
 UniQueryRoles.Open;
 while not UniQueryRoles.EOF do
   begin
     ComboBoxRoles.Items.Add(UniQueryRoles['role_id']);
+    if UniQueryRoles['role_id'] = QueryCurrUser['role_id']  then ComboRolesIndex:=ComboBoxRoles.Items.Count-1;
     UniQueryRoles.Next;
   end;
 ComboBoxRoles.text:=QueryCurrUser['role_id'];
+ComboBoxRoles.ItemIndex:=ComboRolesIndex;
 EditPassword.Enabled:=false;
 EditPassword.ReadOnly:=true;
 EditPassword.PasswordChar:='*';

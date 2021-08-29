@@ -122,13 +122,18 @@
             <Form>FormUpdateUser</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="DMForm.pas">
-            <Form>FormDM</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="UserDismissForm.pas">
             <Form>FormDismissUser</Form>
             <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UserNewForm.pas">
+            <Form>FormNewUser</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="DataModule.pas">
+            <Form>DM</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

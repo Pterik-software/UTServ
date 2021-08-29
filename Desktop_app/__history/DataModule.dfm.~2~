@@ -1,0 +1,51 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 281
+  Width = 538
+  object UniMySQL: TUniConnection
+    ProviderName = 'MySQL'
+    Port = 3306
+    Database = 'utilbills'
+    Username = 'test'
+    Server = 'localhost'
+    Connected = True
+    LoginPrompt = False
+    Left = 32
+    Top = 32
+    EncryptedPassword = '8BFF9AFF8CFF8BFFCEFFCDFFCCFF'
+  end
+  object MySQLUniProvider1: TMySQLUniProvider
+    Left = 152
+    Top = 32
+  end
+  object UniSQLMonitor1: TUniSQLMonitor
+    Left = 407
+    Top = 40
+  end
+  object UniTransactionMySQL: TUniTransaction
+    DefaultConnection = UniMySQL
+    Left = 287
+    Top = 40
+  end
+  object UniSQLite: TUniConnection
+    ProviderName = 'SQLite'
+    Database = 'd:\Projects\GitHub\UTServ\SQLite\Bills.SQLITE'
+    DefaultTransaction = UniTransactionSQLite
+    Debug = True
+    Username = 'test'
+    Connected = True
+    LoginPrompt = False
+    Left = 40
+    Top = 118
+    EncryptedPassword = '8BFF9AFF8CFF8BFFCEFFCDFFCCFF'
+  end
+  object SQLiteUniProvider1: TSQLiteUniProvider
+    Left = 128
+    Top = 118
+  end
+  object UniTransactionSQLite: TUniTransaction
+    DefaultConnection = UniSQLite
+    Left = 287
+    Top = 118
+  end
+end

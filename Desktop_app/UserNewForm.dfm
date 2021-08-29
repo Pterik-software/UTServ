@@ -1,7 +1,7 @@
 object FormNewUser: TFormNewUser
   Left = 0
   Top = 0
-  Caption = 'FormNewUser'
+  Caption = #1042#1074#1086#1076' '#1076#1072#1085#1085#1099#1093' '#1086' '#1085#1086#1074#1086#1084' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1077
   ClientHeight = 367
   ClientWidth = 458
   Color = clBtnFace
@@ -11,6 +11,7 @@ object FormNewUser: TFormNewUser
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCloseQuery = FormCloseQuery
   DesignSize = (
     458
     367)
@@ -155,6 +156,7 @@ object FormNewUser: TFormNewUser
     Top = 157
     Width = 282
     Height = 24
+    Style = csDropDownList
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -192,11 +194,11 @@ object FormNewUser: TFormNewUser
     TabOrder = 6
   end
   object StaticText1: TStaticText
-    Left = 91
-    Top = 108
-    Width = 206
+    Left = 111
+    Top = 131
+    Width = 229
     Height = 20
-    Caption = #1048#1089#1087#1086#1083#1100#1079#1091#1081#1090#1077' '#1085#1077' '#1073#1086#1083#1077#1077' 8 '#1089#1080#1084#1074#1086#1083#1086#1074
+    Caption = #1056#1077#1082#1086#1084#1077#1085#1076#1091#1077#1090#1089#1103' '#1074#1099#1073#1088#1072#1090#1100' '#1082#1086#1088#1086#1090#1082#1086#1077' '#1080#1084#1103
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -206,8 +208,8 @@ object FormNewUser: TFormNewUser
     TabOrder = 7
   end
   object StaticText2: TStaticText
-    Left = 93
-    Top = 131
+    Left = 111
+    Top = 105
     Width = 211
     Height = 20
     Caption = #1052#1086#1078#1085#1086' '#1091#1082#1072#1079#1072#1090#1100' '#1101#1083#1077#1082#1090#1088#1086#1085#1085#1091#1102' '#1087#1086#1095#1090#1091
@@ -220,7 +222,7 @@ object FormNewUser: TFormNewUser
     TabOrder = 8
   end
   object UniQueryRoles: TUniQuery
-    Connection = FormDM.UniSQLite
+    Connection = DM.UniSQLite
     SQL.Strings = (
       'select * from user_roles')
     Left = 248
@@ -231,7 +233,7 @@ object FormNewUser: TFormNewUser
     end
   end
   object UniInsertSQLUser: TUniSQL
-    Connection = FormDM.UniSQLite
+    Connection = DM.UniSQLite
     SQL.Strings = (
       'insert into users '
       

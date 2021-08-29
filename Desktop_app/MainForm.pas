@@ -32,7 +32,7 @@ type
     N20: TMenuItem;
     N22: TMenuItem;
     N23: TMenuItem;
-    BitBtn1: TBitBtn;
+    BitBtnClose: TBitBtn;
     N5: TMenuItem;
     Help1: TMenuItem;
     N24: TMenuItem;
@@ -40,11 +40,10 @@ type
     N26: TMenuItem;
     C1: TMenuItem;
     procedure N3Click(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtnCloseClick(Sender: TObject);
     procedure N5Click(Sender: TObject);
     procedure mnuAboutClick(Sender: TObject);
     procedure N26Click(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure N7Click(Sender: TObject);
   private
     { Private declarations }
@@ -54,7 +53,7 @@ type
 
 var
   FormMain: TFormMain;
-//FormDM.UniMySQL
+//DM.UniSQLite
 
 implementation
 
@@ -62,26 +61,9 @@ implementation
 
 uses AboutForm, PayersForm, UsersForm, PlansForm;
 
-procedure TFormMain.BitBtn1Click(Sender: TObject);
+procedure TFormMain.BitBtnCloseClick(Sender: TObject);
 begin
 FormMain.Close;
-end;
-
-procedure TFormMain.FormCreate(Sender: TObject);
-begin
-//  SQLConnection.ConnectionName:='MySQLConnection';
-//  SQLConnection.LoginPrompt:=False;
-//  SQLConnection.Params.Values['ServerCharSet']:='cp1251';
-//  SQLConnection.DriverName:='MySQL';
-//  SQLConnection.Params.Values['HostName']:='localhost';
-//  SQLConnection.Params.Values['Database']:='TestDB';
-//  ...
-//  with DBDataModule.SQLConnection do
-//  begin
-//    Params.Values['User_Name']:=EditLogin.Text;
-//    Params.Values['Password']:=EditPassword.Text;
-//    Connected:=True;
-//  end;
 end;
 
 procedure TFormMain.mnuAboutClick(Sender: TObject);

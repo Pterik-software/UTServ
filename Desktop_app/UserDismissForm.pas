@@ -28,8 +28,10 @@ type
     EditUserID: TEdit;
     UniSQLDismiss: TUniSQL;
     LabelWarning: TLabel;
+    LabelDismissComment: TLabel;
     procedure BitBtnCancelClick(Sender: TObject);
     procedure BitBtnSaveClick(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     UserID:integer;
     DismissUser:boolean;
@@ -53,12 +55,45 @@ Close;
 end;
 
 procedure TFormDismissUser.BitBtnSaveClick(Sender: TObject);
+var CanSave:boolean;
 begin
-UniSQLDismiss.Prepare;
-UniSQLDismiss.ParamByName('p_user_id').Value:= UserID;
-UniSQLDismiss.ParamByName('p_is_active').Value:= not DismissUser;
-UniSQLDismiss.ParamByName('p_closure_date').Value:= DTDismissed.Date;
-UniSQLDismiss.Execute;
+CanSave:=true;
+if DismissUser then
+  begin
+    //Увольняем пользователя и проверяем его даты
+
+  end;
+if not DismissUser then
+  begin
+    //Увольняем пользователя и проверяем его даты
+
+  end;
+
+if (DTHired.Date >= DTDismissed.Date) and DismissUser then
+  begin
+  ShowMessage('Дата увольнения меньше, чем дата наёма. Исправьте ошибку.');
+  LabelDismissComment.Caption:='Дата увольнения меньше, чем дата наёма. Исправьте ошибку.';
+  LabelDismissComment.Visible:=true;
+  LabelDismissComment.Font.Color:=clRed;
+  CanSave:=false;
+  end;
+if CanSave then
+  begin
+  UniSQLDismiss.Prepare;
+  UniSQLDismiss.ParamByName('p_user_id').Value:= UserID;
+  UniSQLDismiss.ParamByName('p_is_active').Value:= not DismissUser;
+  UniSQLDismiss.ParamByName('p_closure_date').Value:= DTDismissed.Date;
+  UniSQLDismiss.Execute;
+  end;
+ModalResult:=mrCancel;
+end;
+
+procedure TFormDismissUser.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+if (DTHired.Date >= DTDismissed.Date) and DismissUser
+  then CanClose:=False
+  else CanClose:=True;
 end;
 
 function TFormDismissUser.GetUserID: integer;
@@ -110,9 +145,7 @@ if DismissUser
   then DTDismissed.Visible:=true
   else DTDismissed.Visible:=false;
 
-//if DismissUser
-//  then DTDismissed.DateTime:=Now()
-//  else DTDismissed.DateTime:=QueryCurrUser['closure_date'];
+LabelDismissComment.Visible:=false;
 
 end;
 

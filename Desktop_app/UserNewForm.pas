@@ -28,8 +28,9 @@ type
     StaticText2: TStaticText;
     procedure BitBtnCancelClick(Sender: TObject);
     procedure BitBtnSaveClick(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
-    { Private declarations }
+    FormCanBeClosed:boolean;
   public
     { Public declarations }
     procedure SetFormValues;
@@ -42,50 +43,43 @@ implementation
 
 {$R *.dfm}
 
+uses system.UItypes;
+
 procedure TFormNewUser.BitBtnCancelClick(Sender: TObject);
 begin
+FormCanBeClosed:=true;
 Close;
 end;
 
 procedure TFormNewUser.BitBtnSaveClick(Sender: TObject);
 var CanSave:boolean;
-i:integer;
 begin
 CanSave:=true;
+FormCanBeClosed:=true;
+
 if EditFullName.Text='' then
   begin
   MessageDlg('Укажите Фамилию Имя Отчество (ФИО). Поле не может быть пустым.',mtError, [mbOk],0);
   CanSave:=false;
+  FormCanBeClosed:=false;
+  exit;
   end;
 if EditLogin.Text='' then
   begin
   MessageDlg('Укажите логин пользователя. Это поле не может быть пустым.',mtError, [mbOk],0);
   CanSave:=false;
+  FormCanBeClosed:=false;
+  exit;
   end;
 
 if EditPassword.Text='' then
   begin
   MessageDlg('Укажите пароль пользователя. Это поле не может быть пустым.',mtError, [mbOk],0);
   CanSave:=false;
+  FormCanBeClosed:=false;
+  exit;
   end;
 
-UniQueryRoles.Close;
-UniQueryRoles.Open;
-CanSave:=false;
-while not UniQueryRoles.EOF do
-  begin
-    for i:=1 to ComboBoxRoles.Items.Count-1 do
-      begin
-      if (UniQueryRoles['role_id']=ComboBoxRoles.Items[i])
-      then
-        begin
-        CanSave:=true;
-        break;
-        end;
-      if CanSave then break;
-      end;
-    UniQueryRoles.Next;
-  end;
 if CanSave then
   begin
   UniInsertSQLUser.Prepare;
@@ -98,8 +92,15 @@ if CanSave then
   end;
 end;
 
-procedure TFormNewUser.SetFormValues;
+procedure TFormNewUser.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
+CanClose:= FormCanBeClosed;
+end;
+
+procedure TFormNewUser.SetFormValues;
+var ComboBoxRolesIndex:integer;
+begin
+ComboBoxRolesIndex:=0;
 EditFullName.Text:='';
 EditLogin.Text:='';
 EditPassword.Text:='';
@@ -108,9 +109,10 @@ UniQueryRoles.Open;
 while not UniQueryRoles.EOF do
   begin
     ComboBoxRoles.Items.Add(UniQueryRoles['role_id']);
+    if UniQueryRoles['role_id'] = 'Персонал' then ComboBoxRolesIndex:=ComboBoxRoles.Items.Count-1;
     UniQueryRoles.Next;
   end;
-ComboBoxRoles.text:='Персонал';
+ComboBoxRoles.ItemIndex:=ComboBoxRolesIndex;
 DTHired.DateTime:=Now();
 end;
 

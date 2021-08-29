@@ -3,7 +3,7 @@ object FormMain: TFormMain
   Top = 0
   Anchors = [akRight, akBottom]
   Caption = #1055#1088#1086#1075#1088#1072#1084#1084#1072' '#1088#1072#1089#1095#1105#1090#1072' '#1082#1086#1084#1084#1091#1085#1072#1083#1100#1085#1099#1093' '#1091#1089#1083#1091#1075
-  ClientHeight = 441
+  ClientHeight = 401
   ClientWidth = 784
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,12 +13,11 @@ object FormMain: TFormMain
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
-  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object BitBtn1: TBitBtn
+  object BitBtnClose: TBitBtn
     Left = 648
-    Top = 393
+    Top = 353
     Width = 115
     Height = 40
     Align = alCustom
@@ -91,7 +90,7 @@ object FormMain: TFormMain
     Layout = blGlyphRight
     ParentBiDiMode = False
     TabOrder = 0
-    OnClick = BitBtn1Click
+    OnClick = BitBtnCloseClick
   end
   object MainMenu1: TMainMenu
     Left = 48

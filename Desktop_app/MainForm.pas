@@ -63,7 +63,8 @@ implementation
 
 {$R *.dfm}
 
-uses AboutForm, PayersForm, UsersForm, PlansForm, SettingsForm, DataModule;
+uses AboutForm, PayersForm, UsersForm, PlansForm, SettingsForm, DataModule,
+  CalendarForm;
 
 procedure TFormMain.BitBtnCloseClick(Sender: TObject);
 begin

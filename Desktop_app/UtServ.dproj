@@ -136,6 +136,10 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="CalendarForm.pas">
+            <Form>FormCalendar</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UsersForm.pas">
             <Form>FormUsers</Form>
             <FormType>dfm</FormType>
         </DCCReference>

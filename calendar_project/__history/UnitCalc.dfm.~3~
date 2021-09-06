@@ -73,17 +73,30 @@ object Form1: TForm1
     Text = '2020'
   end
   object UniConnection1: TUniConnection
-    ProviderName = 'MySQL'
+    ProviderName = 'SQLite'
     Port = 3306
-    Database = 'utilbills'
-    Username = 'test'
+    Database = 'd:\Projects\GitHub\UTServ\SQLite\Bills.SQLITE'
     Server = 'localhost'
     Connected = True
     Left = 104
     Top = 136
-    EncryptedPassword = '8BFF9AFF8CFF8BFFCEFFCDFFCCFF'
   end
   object UniQueryDates: TUniQuery
+    SQLInsert.Strings = (
+      'INSERT INTO `calendar`(c_date,'
+      '                     c_day,'
+      '                     c_is_work_day,'
+      '                     c_month,'
+      '                     c_year,'
+      '                     c_quater,'
+      '                     `'#1089'_week`)'
+      '     VALUES (:p_date,'
+      '             :p_day,'
+      '             :p_work_day,'
+      '             :p_month,'
+      '             :p_year,'
+      '             :p_quater,'
+      '             :p_week)')
     Connection = UniConnection1
     SQL.Strings = (
       'INSERT INTO `calendar`(c_date,'
@@ -93,7 +106,7 @@ object Form1: TForm1
       '                     c_month,'
       '                     c_year,'
       '                     c_quater,'
-      '                     c_day_of_week, '
+      '                     '#1089'_day_of_week, '
       '                     c_week_of_year,'
       '                     c_reason_day_off)'
       '     VALUES (:p_date,'

@@ -11,8 +11,7 @@ uses
   SettingsForm in 'SettingsForm.pas' {FormSettings},
   UserUpdateForm in 'UserUpdateForm.pas' {FormUpdateUser},
   CompanyCardForm in 'CompanyCardForm.pas' {FormCompanyCard},
-  CalendarForm in 'CalendarForm.pas' {FormCalendar},
-  UsersForm in 'UsersForm.pas' {FormUsers};
+  CalendarForm in 'CalendarForm.pas' {FormUsers};
 
 {$R *.res}
 
@@ -29,11 +28,7 @@ begin
   Application.CreateForm(TFormSettings, FormSettings);
   Application.CreateForm(TFormCompanyCard, FormCompanyCard);
   Application.CreateForm(TFormUpdateUser, FormUpdateUser);
-  Application.CreateForm(TFormUsers, FormUsers);
-  Application.CreateForm(TFormCalendar, FormCalendar);
   Application.CreateForm(TFormUsers1, FormUsers1);
   Application.CreateForm(TFormUsers, FormUsers);
-  Application.CreateForm(TFormCalendar, FormCalendar);
-  Application.CreateForm(TFormUsers2, FormUsers2);
   Application.Run;
 end.

@@ -1,0 +1,31 @@
+DROP TABLE utilbills.calendar;
+
+CREATE TABLE utilbills.calendar
+(
+   calendar_id         INT(20) UNSIGNED
+                         NOT NULL
+                         AUTO_INCREMENT
+                         COMMENT 'autoincrement value for the PK',
+   c_date              DATE NOT NULL COMMENT 'Дата',
+   c_day_of_month      INT(20) UNSIGNED
+                         NOT NULL
+                         COMMENT 'Порядковый день в месяце',
+   c_is_work_day       TINYINT(1)
+                         NOT NULL
+                         COMMENT 'Отмечаем нерабочие дни недели и праздники',
+   c_month             INT(20) UNSIGNED NOT NULL COMMENT 'Месяц года',
+   c_year              INT(20) UNSIGNED NOT NULL COMMENT 'Year of date',
+   c_quater            INT(20) UNSIGNED NOT NULL COMMENT 'quater of year',
+   c_day_of_week       INT(11) UNSIGNED NOT NULL COMMENT 'Week of the year',
+   c_reason_day_off    VARCHAR(100)
+                         CHARACTER SET utf8
+                         COLLATE utf8_general_ci
+                         NULL
+                         COMMENT 'Причина по которой день считается выходным',
+   c_week_of_year      INT(20) UNSIGNED NULL,
+   c_day_of_year       INT(20) UNSIGNED NULL,
+   PRIMARY KEY(calendar_id)
+)
+ENGINE INNODB
+COLLATE 'utf8_general_ci'
+ROW_FORMAT DEFAULT

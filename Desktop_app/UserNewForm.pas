@@ -52,22 +52,20 @@ Close;
 end;
 
 procedure TFormNewUser.BitBtnSaveClick(Sender: TObject);
-var CanSave:boolean;
 begin
-CanSave:=true;
 FormCanBeClosed:=true;
+
+try
 
 if EditFullName.Text='' then
   begin
   MessageDlg('Укажите Фамилию Имя Отчество (ФИО). Поле не может быть пустым.',mtError, [mbOk],0);
-  CanSave:=false;
   FormCanBeClosed:=false;
   exit;
   end;
 if EditLogin.Text='' then
   begin
   MessageDlg('Укажите логин пользователя. Это поле не может быть пустым.',mtError, [mbOk],0);
-  CanSave:=false;
   FormCanBeClosed:=false;
   exit;
   end;
@@ -75,21 +73,22 @@ if EditLogin.Text='' then
 if EditPassword.Text='' then
   begin
   MessageDlg('Укажите пароль пользователя. Это поле не может быть пустым.',mtError, [mbOk],0);
-  CanSave:=false;
   FormCanBeClosed:=false;
   exit;
   end;
 
-if CanSave then
-  begin
-  UniInsertSQLUser.Prepare;
-  UniInsertSQLUser.ParambyName('p_full_name').Value:= EditFullName.Text;
-  UniInsertSQLUser.ParamByName('p_user').Value:= EditLogin.Text;
-  UniInsertSQLUser.ParamByName('p_role_id').Value:= ComboboxRoles.Text;
-  UniInsertSQLUser.ParamByName('p_password').Value:= EditPassword.Text;
-  UniInsertSQLUser.ParamByName('p_hiring_date').Value:= DTHired.Date;
-  UniInsertSQLUser.Execute;
-  end;
+UniInsertSQLUser.Prepare;
+UniInsertSQLUser.ParambyName('p_full_name').Value:= EditFullName.Text;
+UniInsertSQLUser.ParamByName('p_user').Value:= EditLogin.Text;
+UniInsertSQLUser.ParamByName('p_role_id').Value:= ComboboxRoles.Text;
+UniInsertSQLUser.ParamByName('p_password').Value:= EditPassword.Text;
+UniInsertSQLUser.ParamByName('p_hiring_date').Value:= DTHired.Date;
+UniInsertSQLUser.Execute;
+
+except on Exception do
+FormCanBeClosed:=false;
+end;
+
 end;
 
 procedure TFormNewUser.FormCloseQuery(Sender: TObject; var CanClose: Boolean);

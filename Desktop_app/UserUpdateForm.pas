@@ -46,6 +46,7 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     FormChanged:boolean;
+    FormCanBeClosed:boolean;
     UserID:integer;
   public
     function GetUserID: integer;
@@ -78,6 +79,7 @@ end;
 procedure TFormUpdateUser.BitBtnSaveClick(Sender: TObject);
 var CanSave:boolean;
 begin
+try
 CanSave:=true;
 if not FormChanged then
   begin
@@ -95,7 +97,12 @@ if CanSave then
   UniUpdateSQLUser.ParamByName('p_hiring_date').Value:= DTHired.Date;
   UniUpdateSQLUser.ParamByName('p_closure_date').Value:= DTDismissed.Date;
   UniUpdateSQLUser.Execute;
-  end
+  end;
+
+except on Exception do
+FormCanBeClosed:=false;
+end;
+
 end;
 
 procedure TFormUpdateUser.CheckBoxWorkingClick(Sender: TObject);
@@ -141,9 +148,8 @@ end;
 procedure TFormUpdateUser.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
-if (DTHired.Date >= DTDismissed.Date)
-  then CanClose:=False
-  else CanClose:=True;
+if (DTHired.Date >= DTDismissed.Date) then FormCanBeClosed:=False;
+CanClose:= FormCanBeClosed;
 end;
 
 function TFormUpdateUser.GetUserID: integer;
@@ -154,6 +160,7 @@ end;
 procedure TFormUpdateUser.SetFormValues;
 var ComboRolesIndex:integer;
 begin
+FormCanBeClosed:=true;
 ComboRolesIndex:=0;
 NullStrictConvert := false;
 QueryCurrUser.Close;

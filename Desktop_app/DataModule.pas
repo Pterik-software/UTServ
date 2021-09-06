@@ -18,7 +18,7 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+     CurrentUser:string;
   end;
 
 var

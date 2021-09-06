@@ -39,31 +39,40 @@ type
     N25: TMenuItem;
     N26: TMenuItem;
     C1: TMenuItem;
+    R1: TMenuItem;
+    N6: TMenuItem;
     procedure N3Click(Sender: TObject);
     procedure BitBtnCloseClick(Sender: TObject);
     procedure N5Click(Sender: TObject);
     procedure mnuAboutClick(Sender: TObject);
     procedure N26Click(Sender: TObject);
     procedure N7Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure N6Click(Sender: TObject);
   private
     { Private declarations }
   public
-    { Public declarations }
   end;
 
 var
   FormMain: TFormMain;
-//DM.UniSQLite
+
 
 implementation
 
 {$R *.dfm}
 
-uses AboutForm, PayersForm, UsersForm, PlansForm;
+uses AboutForm, PayersForm, UsersForm, PlansForm, SettingsForm, DataModule;
 
 procedure TFormMain.BitBtnCloseClick(Sender: TObject);
 begin
 FormMain.Close;
+end;
+
+procedure TFormMain.FormCreate(Sender: TObject);
+begin
+DM.CurrentUser:='Admin';
 end;
 
 procedure TFormMain.mnuAboutClick(Sender: TObject);
@@ -76,6 +85,12 @@ begin
 FormUsers.ShowModal;
 end;
 
+procedure TFormMain.N2Click(Sender: TObject);
+begin
+FormSettings.SetFormValues;
+FormSettings.ShowModal;
+end;
+
 procedure TFormMain.N3Click(Sender: TObject);
 begin
 FormMain.Close;
@@ -84,6 +99,11 @@ end;
 procedure TFormMain.N5Click(Sender: TObject);
 begin
 FormAbout.ShowModal;
+end;
+
+procedure TFormMain.N6Click(Sender: TObject);
+begin
+FormCalendar.ShowModal;
 end;
 
 procedure TFormMain.N7Click(Sender: TObject);

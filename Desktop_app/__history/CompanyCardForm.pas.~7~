@@ -1,0 +1,46 @@
+unit CompanyCardForm;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Data.DB,
+  MemDS, DBAccess, Uni, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TFormCompanyCard = class(TForm)
+    BitBtnClose: TBitBtn;
+    BitBtnNew: TBitBtn;
+    BitBtnEdit: TBitBtn;
+    BitBtnDismiss: TBitBtn;
+    UniSQLUsers: TUniQuery;
+    UniDataSource1: TDataSource;
+    UniSQLUsersuser_id: TIntegerField;
+    UniSQLUsersfull_name: TStringField;
+    UniSQLUsersuser: TStringField;
+    UniSQLUserspassword: TStringField;
+    UniSQLUsersrole_id: TStringField;
+    UniSQLUsersis_active: TBooleanField;
+    UniSQLUsershiring_date: TDateField;
+    UniSQLUsersclosure_date: TDateField;
+    UniSQLUsersis_working: TStringField;
+    procedure BitBtnCloseClick(Sender: TObject);
+  private
+  public
+  end;
+
+var
+  FormCompanyCard: TFormCompanyCard;
+
+implementation
+
+{$R *.dfm}
+
+uses UserUpdateForm, UserNewForm, UserDismissForm;
+
+procedure TFormCompanyCard.BitBtnCloseClick(Sender: TObject);
+begin
+Close;
+end;
+
+end.

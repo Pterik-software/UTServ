@@ -12,9 +12,9 @@ type
     MySQLUniProvider1: TMySQLUniProvider;
     UniSQLMonitor1: TUniSQLMonitor;
     UniTransactionMySQL: TUniTransaction;
-    UniSQLite: TUniConnection;
-    SQLiteUniProvider1: TSQLiteUniProvider;
+    UniXBill: TUniConnection;
     UniTransactionSQLite: TUniTransaction;
+    MySQLUniProvider2: TMySQLUniProvider;
   private
     { Private declarations }
   public

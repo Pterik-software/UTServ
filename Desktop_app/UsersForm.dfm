@@ -98,9 +98,9 @@ object FormUsers: TFormUsers
       end
       item
         Expanded = False
-        FieldName = 'is_working'
+        FieldName = 'lang_is_active'
         Title.Caption = #1056#1072#1073#1086#1090#1072#1077#1090
-        Width = 54
+        Width = 80
         Visible = True
       end
       item
@@ -368,24 +368,25 @@ object FormUsers: TFormUsers
         FieldName = 'is_active'
         FieldType = ftBoolean
       end>
-    Connection = DM.UniSQLite
+    Connection = DM.UniXBill
     SQL.Strings = (
       'select '
       'user_id, full_name, user, password, '
-      'role_id, is_active, hiring_date, closure_date, '
+      'role_id, is_active, '
       
-        '(select max(orderby) from user_roles ur where ur.role_id  = user' +
-        's.role_id) as orderby'
-      'from users'
+        '(select name from set_yes_or_no t where t.id = u.is_active) lang' +
+        '_is_active, '
+      'hiring_date, closure_date, '
+      
+        '(select max(orderby) from user_roles ur where ur.role_id  = u.ro' +
+        'le_id) as orderby'
+      'from users u'
       'order by orderby')
+    Active = True
     AutoCalcFields = False
     OnCalcFields = UniSQLUsersCalcFields
-    Left = 64
-    Top = 168
-    object UniSQLUsersuser_id: TIntegerField
-      AutoGenerateValue = arAutoInc
-      FieldName = 'user_id'
-    end
+    Left = 104
+    Top = 256
     object UniSQLUsersfull_name: TStringField
       FieldName = 'full_name'
       Size = 255
@@ -405,6 +406,11 @@ object FormUsers: TFormUsers
     object UniSQLUsersis_active: TBooleanField
       FieldName = 'is_active'
     end
+    object UniSQLUserslang_is_active: TStringField
+      FieldName = 'lang_is_active'
+      ReadOnly = True
+      Size = 50
+    end
     object UniSQLUsersis_working: TStringField
       FieldKind = fkCalculated
       FieldName = 'is_working'
@@ -417,11 +423,14 @@ object FormUsers: TFormUsers
     object UniSQLUsersclosure_date: TDateField
       FieldName = 'closure_date'
     end
+    object UniSQLUsersuser_id: TLargeintField
+      FieldName = 'user_id'
+    end
   end
   object UniDataSource1: TDataSource
     DataSet = UniSQLUsers
     OnDataChange = UniDataSource1DataChange
-    Left = 336
-    Top = 184
+    Left = 288
+    Top = 264
   end
 end

@@ -16,7 +16,6 @@ type
     BitBtnDismiss: TBitBtn;
     UniSQLUsers: TUniQuery;
     UniDataSource1: TDataSource;
-    UniSQLUsersuser_id: TIntegerField;
     UniSQLUsersfull_name: TStringField;
     UniSQLUsersuser: TStringField;
     UniSQLUserspassword: TStringField;
@@ -25,6 +24,8 @@ type
     UniSQLUsershiring_date: TDateField;
     UniSQLUsersclosure_date: TDateField;
     UniSQLUsersis_working: TStringField;
+    UniSQLUsersuser_id: TLargeintField;
+    UniSQLUserslang_is_active: TStringField;
     procedure BitBtnCloseClick(Sender: TObject);
     procedure BitBtnEditClick(Sender: TObject);
     procedure UniSQLUsersCalcFields(DataSet: TDataSet);
@@ -55,6 +56,8 @@ if (UniSQLUsers['is_active'])
   then FormDismissUser.SetDismiss(true);
 if (not UniSQLUsers['is_active'])
   then FormDismissUser.SetDismiss(false);
+
+if FormDismissUser=nil then Application.CreateForm(TFormDismissUser, FormDismissUser);
 FormDismissUser.SetFormValues;
 FormDismissUser.ShowModal;
 UniSQLUsers.Refresh;
@@ -68,6 +71,7 @@ if not UniSQLUsers['is_active'] then
     exit;
   end;
 
+if FormUpdateUser = nil then Application.CreateForm(TFormUpdateUser, FormUpdateUser);
 FormUpdateUser.SetUserID(UniSQLUsers['user_id']);
 FormUpdateUser.SetFormValues;
 FormUpdateUser.ShowModal;
@@ -76,6 +80,7 @@ end;
 
 procedure TFormUsers.BitBtnNewClick(Sender: TObject);
 begin
+if FormNewUser=nil then Application.CreateForm(TFormNewUser, FormNewUser);
 FormNewUser.SetFormValues;
 FormNewUser.ShowModal;
 UniSQLUsers.Refresh;

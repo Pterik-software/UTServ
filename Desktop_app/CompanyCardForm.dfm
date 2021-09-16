@@ -137,13 +137,11 @@ object FormCompanyCard: TFormCompanyCard
     OnClick = BitBtnCloseClick
   end
   object UniSQLCompanyCard: TUniQuery
-    UpdatingTable = 'users'
     DataTypeMap = <
       item
         FieldName = 'is_active'
         FieldType = ftBoolean
       end>
-    Connection = DM.UniSQLite
     SQL.Strings = (
       'select '
       'user_id, full_name, user, password, '
@@ -153,7 +151,6 @@ object FormCompanyCard: TFormCompanyCard
         's.role_id) as orderby'
       'from users'
       'order by orderby')
-    Active = True
     AutoCalcFields = False
     Left = 64
     Top = 288

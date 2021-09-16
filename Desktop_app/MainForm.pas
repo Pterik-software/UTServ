@@ -104,6 +104,7 @@ end;
 
 procedure TFormMain.N6Click(Sender: TObject);
 begin
+FormCalendar.SetFormValues;
 FormCalendar.ShowModal;
 end;
 

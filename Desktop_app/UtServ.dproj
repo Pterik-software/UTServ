@@ -114,22 +114,10 @@
             <Form>FormPlans</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="UserDismissForm.pas">
-            <Form>FormDismissUser</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="DataModule.pas">
             <Form>DM</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="SettingsForm.pas">
-            <Form>FormSettings</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="UserUpdateForm.pas">
-            <Form>FormUpdateUser</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="CompanyCardForm.pas">
             <Form>FormCompanyCard</Form>
@@ -141,7 +129,9 @@
         </DCCReference>
         <DCCReference Include="UsersForm.pas">
             <Form>FormUsers</Form>
-            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="SettingsForm.pas">
+            <Form>FormSettings</Form>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

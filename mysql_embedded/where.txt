@@ -1,0 +1,25 @@
+libmysqld_569_x64.dll ->libmysqld.dll
+http://tmaplatform.ru/page/help/adm/installdb/mysqle
+Сайт mysql.com
+Сайт devart
+
+
+Встроенная база данных MySQL (MySQL Embedded Server).
+MySQL Embedded Server - это однопользовательская локальная база данных, которая полностью совместима с MySQL Server. Не требует установки, настройки и может запускаться со сменных накопителей.
+
+Перед использованием MySQL Embedded Server внимательно прочитайте лицензионное соглашение на официальном сайте MySQL.
+
+Что бы использовать эту базу данных, вам нужен файл libmysqld.dll. Этот файл можно найти на официальном сайте MySQL или собрать из исходных кодов MySQL Server (она из конфигураций проекта создает этот файл).
+
+Создайте в папке программы (там где находится TMAPlatform.exe), папку MySQL. Скопируйте в созданную папку файл libmysqld.dll.
+
+Еще вам необходим установленный и рабочий MySQL Server той же версии, что и libmysqld.dll. Из папки MySQL Server вам необходимо скопировать папки DATA и SHARED, в папку "папка_программы/MySQL/DATA" и "папка_программы/MySQL/SHARED".
+
+И последнее. Надо создать файл: "папка_программы/mysql/my.ini". Этот файл содержит параметры сервера баз данных. Минимально он должен содержать два следующих параметра:
+
+innodb_log_file_size=10M
+default-storage-engine=INNODB
+* Значение параметра innodb_log_file_size скопируйте из файла my.ini установленного MySQL Server.
+
+
+http://downloads.mysql.com/archives/mysql-5.0/mysql-essential-5.0.90-win32.msi

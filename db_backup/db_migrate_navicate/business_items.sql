@@ -1,0 +1,11 @@
+INSERT INTO `business_items`(`business_id`) VALUES ('Взносы на капитальный ремонт');
+INSERT INTO `business_items`(`business_id`) VALUES ('Вывоз мусора');
+INSERT INTO `business_items`(`business_id`) VALUES ('Оплата интернет-услуг');
+INSERT INTO `business_items`(`business_id`) VALUES ('Оплата телефонных услуг');
+INSERT INTO `business_items`(`business_id`) VALUES ('Отопление');
+INSERT INTO `business_items`(`business_id`) VALUES ('Поставка газа');
+INSERT INTO `business_items`(`business_id`) VALUES ('Поставка горячей воды');
+INSERT INTO `business_items`(`business_id`) VALUES ('Поставка холодной воды');
+INSERT INTO `business_items`(`business_id`) VALUES ('Поставка электричества');
+INSERT INTO `business_items`(`business_id`) VALUES ('Расходы на ведение ОСББ');
+INSERT INTO `business_items`(`business_id`) VALUES ('Уборка территории');

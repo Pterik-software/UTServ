@@ -1,0 +1,9 @@
+INSERT INTO `users`(`user_id`, `full_name`, `user`, `password`, `role_id`, `is_active`, `hiring_date`, `closure_date`) VALUES (1, 'Админов Иван', 'admin', 'admin', 'Администратор', 1, NULL, NULL);
+INSERT INTO `users`(`user_id`, `full_name`, `user`, `password`, `role_id`, `is_active`, `hiring_date`, `closure_date`) VALUES (2, 'Башлялкин Сергей', 'boss', 'boss', 'Директор', 1, NULL, NULL);
+INSERT INTO `users`(`user_id`, `full_name`, `user`, `password`, `role_id`, `is_active`, `hiring_date`, `closure_date`) VALUES (6, 'Расчётина Татьяна Игоревна', 'glavbuch', 'glavbuch', 'Главный бухгалтер', 1, NULL, NULL);
+INSERT INTO `users`(`user_id`, `full_name`, `user`, `password`, `role_id`, `is_active`, `hiring_date`, `closure_date`) VALUES (8, 'Мендельсон Абрам Моисеевич', 'znaet', 'znaert', 'Руководитель', 1, NULL, NULL);
+INSERT INTO `users`(`user_id`, `full_name`, `user`, `password`, `role_id`, `is_active`, `hiring_date`, `closure_date`) VALUES (10, 'Скворцова Наталья', 'buch1', 'buch1', 'Бухгалтер', 1, '2021-08-31', NULL);
+INSERT INTO `users`(`user_id`, `full_name`, `user`, `password`, `role_id`, `is_active`, `hiring_date`, `closure_date`) VALUES (14, 'Марков Сергей Валерьевич', 'mark1', 'ssrraa22', 'Главный бухгалтер', 1, '2021-08-28', '2021-08-28');
+INSERT INTO `users`(`user_id`, `full_name`, `user`, `password`, `role_id`, `is_active`, `hiring_date`, `closure_date`) VALUES (15, 'Ветренный Игорь', 'veter', '111', 'Персонал', 1, '2021-08-29', '2021-08-28');
+INSERT INTO `users`(`user_id`, `full_name`, `user`, `password`, `role_id`, `is_active`, `hiring_date`, `closure_date`) VALUES (24, 'Малявкин Владимир', 'adm1', 'aaaa', 'Администратор', 1, '2021-08-29', '2021-08-28');
+INSERT INTO `users`(`user_id`, `full_name`, `user`, `password`, `role_id`, `is_active`, `hiring_date`, `closure_date`) VALUES (25, 'Серенко Сергей', 'adm2', 'adm1', 'Администратор', 1, '2021-08-29', '2021-08-28');

@@ -2,7 +2,7 @@ object FormUpdateUser: TFormUpdateUser
   Left = 0
   Top = 0
   Caption = #1048#1079#1084#1077#1085#1080#1090#1100' '#1076#1072#1085#1085#1099#1077' '#1086' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1077
-  ClientHeight = 408
+  ClientHeight = 413
   ClientWidth = 430
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,10 +11,9 @@ object FormUpdateUser: TFormUpdateUser
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnCloseQuery = FormCloseQuery
   DesignSize = (
     430
-    408)
+    413)
   PixelsPerInch = 96
   TextHeight = 13
   object Label2: TLabel
@@ -109,8 +108,8 @@ object FormUpdateUser: TFormUpdateUser
     ParentFont = False
   end
   object BitBtnSave: TBitBtn
-    Left = 32
-    Top = 360
+    Left = 8
+    Top = 365
     Width = 113
     Height = 40
     Anchors = [akLeft, akBottom]
@@ -122,9 +121,9 @@ object FormUpdateUser: TFormUpdateUser
     OnClick = BitBtnSaveClick
   end
   object BitBtnCancel: TBitBtn
-    Left = 339
-    Top = 360
-    Width = 83
+    Left = 315
+    Top = 365
+    Width = 102
     Height = 40
     Anchors = [akRight, akBottom]
     Caption = #1054#1090#1084#1077#1085#1072
@@ -197,8 +196,8 @@ object FormUpdateUser: TFormUpdateUser
     OnChange = EditPasswordChange
   end
   object CheckBoxWorking: TCheckBox
-    Left = 276
-    Top = 265
+    Left = 252
+    Top = 267
     Width = 97
     Height = 17
     Caption = #1056#1072#1073#1086#1090#1072#1077#1090
@@ -242,8 +241,8 @@ object FormUpdateUser: TFormUpdateUser
     OnChange = DTDismissedChange
   end
   object BitBtnPassword: TBitBtn
-    Left = 178
-    Top = 360
+    Left = 154
+    Top = 365
     Width = 127
     Height = 40
     Anchors = [akLeft, akBottom]
@@ -275,16 +274,19 @@ object FormUpdateUser: TFormUpdateUser
   end
   object QueryCurrUser: TUniQuery
     UpdatingTable = 'users'
-    Connection = DM.UniSQLite
-    Transaction = DM.UniTransactionSQLite
+    Connection = DM.UniXBilly
+    Transaction = DM.TransactionLocal
     SQL.Strings = (
       'select'
       '    user_id,'
       '    full_name,'
-      '    user,'
+      '    login,'
       '    password,'
       '    role_id,'
       '    is_active,'
+      
+        '    (select lang_role_name from user_roles r where r.role_id = u' +
+        'sers.role_id) as lang_role_name,'
       '    hiring_date,'
       '    closure_date'
       'from'
@@ -299,69 +301,121 @@ object FormUpdateUser: TFormUpdateUser
         ParamType = ptInput
         Value = 0
       end>
+    object QueryCurrUseruser_id: TLargeintField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'user_id'
+    end
+    object QueryCurrUserfull_name: TStringField
+      FieldName = 'full_name'
+      Required = True
+      Size = 255
+    end
+    object QueryCurrUserlogin: TStringField
+      FieldName = 'login'
+      Required = True
+      Size = 255
+    end
+    object QueryCurrUserpassword: TStringField
+      FieldName = 'password'
+      Required = True
+      Size = 255
+    end
+    object QueryCurrUserrole_id: TStringField
+      FieldName = 'role_id'
+      Required = True
+      Size = 255
+    end
+    object QueryCurrUseris_active: TSmallintField
+      FieldName = 'is_active'
+      Required = True
+    end
+    object QueryCurrUserhiring_date: TDateField
+      FieldName = 'hiring_date'
+    end
+    object QueryCurrUserclosure_date: TDateField
+      FieldName = 'closure_date'
+    end
+    object QueryCurrUserlang_role_name: TStringField
+      FieldName = 'lang_role_name'
+      ReadOnly = True
+      Size = 255
+    end
   end
   object UniQueryRoles: TUniQuery
-    Connection = DM.UniSQLite
-    Transaction = DM.UniTransactionSQLite
+    Connection = DM.UniXBilly
+    Transaction = DM.TransactionLocal
     SQL.Strings = (
-      'select role_id from user_roles'
+      'select role_id, lang_role_name  from user_roles'
       'order by orderby')
-    Left = 256
-    Top = 216
+    Left = 312
+    Top = 16
     object UniQueryRolesrole_id: TStringField
       FieldName = 'role_id'
       Size = 50
     end
+    object UniQueryRoleslang_role_name: TStringField
+      FieldName = 'lang_role_name'
+      Size = 255
+    end
   end
   object UniUpdateSQLUser: TUniSQL
-    Connection = DM.UniSQLite
-    Transaction = DM.UniTransactionSQLite
+    Connection = DM.UniXBilly
+    Transaction = DM.TransactionLocal
     SQL.Strings = (
       'UPDATE users'
       'SET'
-      '  full_name = :p_full_name, user = :p_user, '
-      '  password = :p_password, role_id = :p_role_id, '
+      '  full_name = :p_full_name, login = :p_login, '
+      '  password = :p_password, '
+      
+        '  role_id = (select role_id from user_roles r where r.lang_role_' +
+        'name = :p_lang_role_name), '
       '  hiring_date = :p_hiring_date, '
       '  closure_date =:p_closure_date'
-      'WHERE'
-      '  user_id = :p_user_id')
+      'WHERE user_id = :p_user_id')
     Left = 248
     Top = 304
     ParamData = <
       item
-        DataType = ftWideString
+        DataType = ftString
         Name = 'p_full_name'
-        Value = nil
+        ParamType = ptInput
+        Value = '  '
       end
       item
-        DataType = ftWideString
-        Name = 'p_user'
-        Value = nil
+        DataType = ftString
+        Name = 'p_login'
+        ParamType = ptInput
+        Value = '  '
       end
       item
-        DataType = ftWideString
+        DataType = ftString
         Name = 'p_password'
-        Value = nil
+        ParamType = ptInput
+        Value = '  '
       end
       item
-        DataType = ftWideString
-        Name = 'p_role_id'
-        Value = nil
+        DataType = ftString
+        Name = 'p_lang_role_name'
+        ParamType = ptInput
+        Value = 'Staff'
       end
       item
         DataType = ftDate
         Name = 'p_hiring_date'
-        Value = nil
+        ParamType = ptInput
+        Value = 44197d
       end
       item
         DataType = ftDate
         Name = 'p_closure_date'
+        ParamType = ptInput
         Value = nil
       end
       item
         DataType = ftInteger
         Name = 'p_user_id'
-        Value = nil
+        ParamType = ptInput
+        Value = 0
       end>
   end
 end

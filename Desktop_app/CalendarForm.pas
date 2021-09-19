@@ -5,22 +5,23 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Data.DB,
-  MemDS, DBAccess, Uni, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.ExtCtrls;
+  MemDS, DBAccess, Uni, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.ExtCtrls,
+  DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, EhLibVCL,
+  GridsEh, DBAxisGridsEh, DBGridEh;
 
 type
   TFormCalendar = class(TForm)
     BitBtnClose: TBitBtn;
-    BitBtnEdit: TBitBtn;
+    BitBtnUpdateWorkday: TBitBtn;
     UniSQLCalendar: TUniQuery;
     UniSQLCalendarcalendar_id: TLargeintField;
     UniSQLCalendarc_date: TDateTimeField;
     UniSQLCalendarc_day_of_week: TSmallintField;
     MonthCalendar: TMonthCalendar;
-    DBGrid1: TDBGrid;
     DataSource1: TDataSource;
     UniSQLCalendarlang_day_of_week: TStringField;
     RadioGroupDays: TRadioGroup;
-    BitBtn1: TBitBtn;
+    BitBtnUpdateHolyday: TBitBtn;
     Label1: TLabel;
     UniSQLCalendarc_day_of_month: TSmallintField;
     UniSQLCalendarlang_is_work_day_locally: TStringField;
@@ -34,11 +35,16 @@ type
     UniSQLCalendarc_reason_dayoff_server: TStringField;
     UniSQLCalendarc_is_work_day_locally: TSmallintField;
     UniSQLCalendarc_is_work_day_server: TSmallintField;
+    UniSQLCalendarc_log_changes: TStringField;
+    DBGridEh1: TDBGridEh;
     procedure BitBtnCloseClick(Sender: TObject);
     procedure RadioGroupDaysClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure MonthCalendarClick(Sender: TObject);
-    procedure BitBtnEditClick(Sender: TObject);
+    procedure BitBtnUpdateWorkdayClick(Sender: TObject);
+    procedure BitBtnUpdateHolydayClick(Sender: TObject);
+    procedure DBGridEh1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -53,11 +59,34 @@ implementation
 
 {$R *.dfm}
 
-uses DateUtils, UpdateWorkDayForm;
+uses DateUtils, UpdateWorkDayForm, UpdateHolyDayForm;
 
-procedure TFormCalendar.BitBtnEditClick(Sender: TObject);
+procedure TFormCalendar.BitBtnUpdateWorkdayClick(Sender: TObject);
 begin
-if FormUpdate1Calendar=nil then Application.CreateForm(TFormUpdate1Calendar, FormUpdate1Calendar);
+if FormUpdateWorkdays=nil then Application.CreateForm(TFormUpdateWorkdays, FormUpdateWorkdays);
+FormUpdateWorkdays.SetFormValues(MonthCalendar.Date);
+FormUpdateWorkdays.ShowModal;
+SetCalendarQuery(MonthCalendar.Date);
+DBGridEh1.Refresh;
+end;
+
+procedure TFormCalendar.DBGridEh1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+  State: TGridDrawState);
+begin
+ inherited;
+  if UniSQLCalendar['c_is_work_day_locally']=1 then
+    TDBGridEh(Sender).Canvas.Brush.Color:= clWhite
+  else
+    TDBGridEh(Sender).Canvas.Brush.Color:= clYellow;
+  // Восстанавливаем выделение текущей позиции курсора
+  if gdSelected in State then
+  begin
+    TDBGridEh(Sender).Canvas.Brush.Color:= clHighLight;
+    TDBGridEh(Sender).Canvas.Font.Color:= clHighLightText;
+  end;
+  // Просим GRID перерисоваться самому
+  TDBGridEh(Sender).DefaultDrawColumnCell(Rect, DataCol, Column, TGridDrawState(State));
 end;
 
 procedure TFormCalendar.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -91,6 +120,15 @@ procedure TFormCalendar.SetFormValues;
 begin
 MonthCalendar.Date:=Now();
 SetCalendarQuery(Now());
+end;
+
+procedure TFormCalendar.BitBtnUpdateHolydayClick(Sender: TObject);
+begin
+if FormUpdateHolydays=nil then Application.CreateForm(TFormUpdateHolydays, FormUpdateHolydays);
+FormUpdateHolydays.SetFormValues(MonthCalendar.Date);
+FormUpdateHolydays.ShowModal;
+SetCalendarQuery(MonthCalendar.Date);
+DBGridEH1.Refresh;
 end;
 
 procedure TFormCalendar.BitBtnCloseClick(Sender: TObject);

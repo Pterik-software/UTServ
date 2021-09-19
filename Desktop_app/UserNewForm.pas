@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Data.DB,
-  MemDS, DBAccess, Uni, Vcl.Mask, Vcl.DBCtrls, Vcl.ComCtrls;
+  MemDS, DBAccess, Uni, Vcl.Mask, Vcl.DBCtrls, Vcl.ComCtrls, DBCtrlsEh,
+  DBGridEh, DBLookupEh;
 
 type
   TFormNewUser = class(TForm)
@@ -26,6 +27,10 @@ type
     UniInsertSQLUser: TUniSQL;
     StaticText1: TStaticText;
     StaticText2: TStaticText;
+    UniQueryRolesorderby: TIntegerField;
+    UniQueryRolesrole_name: TStringField;
+    UniQueryRoleslang_role_name: TStringField;
+    UniDataSource1: TUniDataSource;
     procedure BitBtnCancelClick(Sender: TObject);
     procedure BitBtnSaveClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -54,7 +59,7 @@ end;
 procedure TFormNewUser.BitBtnSaveClick(Sender: TObject);
 begin
 FormCanBeClosed:=true;
-
+ShowMessage('Добавить проверку на двойной логин');
 try
 
 if EditFullName.Text='' then
@@ -79,8 +84,8 @@ if EditPassword.Text='' then
 
 UniInsertSQLUser.Prepare;
 UniInsertSQLUser.ParambyName('p_full_name').Value:= EditFullName.Text;
-UniInsertSQLUser.ParamByName('p_user').Value:= EditLogin.Text;
-UniInsertSQLUser.ParamByName('p_role_id').Value:= ComboboxRoles.Text;
+UniInsertSQLUser.ParamByName('p_login').Value:= EditLogin.Text;
+UniInsertSQLUser.ParamByName('p_lang_role_name').Value:= ComboboxRoles.Text;
 UniInsertSQLUser.ParamByName('p_password').Value:= EditPassword.Text;
 UniInsertSQLUser.ParamByName('p_hiring_date').Value:= DTHired.Date;
 UniInsertSQLUser.Execute;
@@ -107,8 +112,8 @@ UniQueryRoles.Close;
 UniQueryRoles.Open;
 while not UniQueryRoles.EOF do
   begin
-    ComboBoxRoles.Items.Add(UniQueryRoles['role_id']);
-    if UniQueryRoles['role_id'] = 'Персонал' then ComboBoxRolesIndex:=ComboBoxRoles.Items.Count-1;
+    ComboBoxRoles.Items.Add(UniQueryRoles['lang_role_name']);
+    if UniQueryRoles['role_name'] = 'Staff' then ComboBoxRolesIndex:=ComboBoxRoles.Items.Count-1;
     UniQueryRoles.Next;
   end;
 ComboBoxRoles.ItemIndex:=ComboBoxRolesIndex;

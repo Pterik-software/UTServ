@@ -32,6 +32,16 @@ type
     ComboBoxRoles: TComboBox;
     UniQueryRolesrole_id: TStringField;
     UniUpdateSQLUser: TUniSQL;
+    QueryCurrUseruser_id: TLargeintField;
+    QueryCurrUserfull_name: TStringField;
+    QueryCurrUserlogin: TStringField;
+    QueryCurrUserpassword: TStringField;
+    QueryCurrUserrole_id: TStringField;
+    QueryCurrUseris_active: TSmallintField;
+    QueryCurrUserhiring_date: TDateField;
+    QueryCurrUserclosure_date: TDateField;
+    UniQueryRoleslang_role_name: TStringField;
+    QueryCurrUserlang_role_name: TStringField;
     procedure BitBtnCancelClick(Sender: TObject);
     procedure BitBtnPasswordClick(Sender: TObject);
     procedure BitBtnSaveClick(Sender: TObject);
@@ -43,15 +53,12 @@ type
     procedure CheckBoxWorkingClick(Sender: TObject);
     procedure ComboBoxRolesKeyPress(Sender: TObject; var Key: Char);
     procedure ComboBoxRolesMouseEnter(Sender: TObject);
-    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     FormChanged:boolean;
-    FormCanBeClosed:boolean;
+    FormCanBeSaved:boolean;
     UserID:integer;
   public
-    function GetUserID: integer;
-    procedure SetUserID(value: integer);
-    procedure SetFormValues;
+    procedure SetFormValues(LUserID:integer);
   end;
 
 var
@@ -79,6 +86,7 @@ end;
 procedure TFormUpdateUser.BitBtnSaveClick(Sender: TObject);
 var CanSave:boolean;
 begin
+ShowMessage('Исправить проверку на двойной логин')
 try
 CanSave:=true;
 if not FormChanged then
@@ -91,18 +99,21 @@ if CanSave then
   UniUpdateSQLUser.Prepare;
   UniUpdateSQLUser.ParamByName('p_user_id').Value:= UserID;
   UniUpdateSQLUser.ParambyName('p_full_name').Value:= EditFullName.Text;
-  UniUpdateSQLUser.ParamByName('p_user').Value:= EditLogin.Text;
+  UniUpdateSQLUser.ParamByName('p_login').Value:= EditLogin.Text;
   UniUpdateSQLUser.ParamByName('p_password').Value:= EditPassword.Text;
-  UniUpdateSQLUser.ParamByName('p_role_id').Value:= ComboboxRoles.Text;
+  UniUpdateSQLUser.ParamByName('p_lang_role_name').Value:= ComboboxRoles.Text;
   UniUpdateSQLUser.ParamByName('p_hiring_date').Value:= DTHired.Date;
   UniUpdateSQLUser.ParamByName('p_closure_date').Value:= DTDismissed.Date;
   UniUpdateSQLUser.Execute;
   end;
 
-except on Exception do
-FormCanBeClosed:=false;
+except on E:Exception do
+  begin
+  FormCanBeSaved:=false;
+  ShowMessage('Error:'+E.Message);
+  end;
 end;
-
+ModalResult:=mrCancel;
 end;
 
 procedure TFormUpdateUser.CheckBoxWorkingClick(Sender: TObject);
@@ -145,30 +156,19 @@ begin
 FormChanged:=true;
 end;
 
-procedure TFormUpdateUser.FormCloseQuery(Sender: TObject;
-  var CanClose: Boolean);
-begin
-if (DTHired.Date >= DTDismissed.Date) then FormCanBeClosed:=False;
-CanClose:= FormCanBeClosed;
-end;
-
-function TFormUpdateUser.GetUserID: integer;
-begin
-Result := UserID;
-end;
-
-procedure TFormUpdateUser.SetFormValues;
+procedure TFormUpdateUser.SetFormValues(LUserID:integer);
 var ComboRolesIndex:integer;
 begin
-FormCanBeClosed:=true;
+UserID:=LUserID;
+FormCanBeSaved:=true;
 ComboRolesIndex:=0;
 NullStrictConvert := false;
 QueryCurrUser.Close;
-QueryCurrUser.ParamByName('p_user_id').Value := UserID;
+QueryCurrUser.ParamByName('p_user_id').Value := LUserID;
 QueryCurrUser.Open;
 EditUserID.Text:=QueryCurrUser['user_id'];
 EditFullName.Text:=QueryCurrUser['full_name'];
-EditLogin.Text:=QueryCurrUser['user'];
+EditLogin.Text:=QueryCurrUser['login'];
 EditPassword.Text:=QueryCurrUser['password'];
 if VarIsNull(QueryCurrUser['hiring_date'])
   then begin DTHired.Visible:=false; LabelHired.Visible:=false; end
@@ -183,11 +183,11 @@ UniQueryRoles.Close;
 UniQueryRoles.Open;
 while not UniQueryRoles.EOF do
   begin
-    ComboBoxRoles.Items.Add(UniQueryRoles['role_id']);
-    if UniQueryRoles['role_id'] = QueryCurrUser['role_id']  then ComboRolesIndex:=ComboBoxRoles.Items.Count-1;
+    ComboBoxRoles.Items.Add(UniQueryRoles['lang_role_name']);
+    if UniQueryRoles['lang_role_name'] = QueryCurrUser['lang_role_name']  then ComboRolesIndex:=ComboBoxRoles.Items.Count-1;
     UniQueryRoles.Next;
   end;
-ComboBoxRoles.text:=QueryCurrUser['role_id'];
+ComboBoxRoles.Text:=QueryCurrUser['lang_role_name'];
 ComboBoxRoles.ItemIndex:=ComboRolesIndex;
 EditPassword.Enabled:=false;
 EditPassword.ReadOnly:=true;
@@ -195,11 +195,6 @@ EditPassword.PasswordChar:='*';
 
 if QueryCurrUser['is_active'] then CheckBoxWorking.Checked:=true else CheckBoxWorking.Checked:=false;
 FormChanged:=false;
-end;
-
-procedure TFormUpdateUser.SetUserID(value: integer);
-begin
-UserID := Value;
 end;
 
 end.

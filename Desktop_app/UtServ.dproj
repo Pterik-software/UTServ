@@ -102,36 +102,9 @@
             <Form>FormMain</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="AboutForm.pas">
-            <Form>FormAbout</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="PayersForm.pas">
-            <Form>FormPayers</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="PlansForm.pas">
-            <Form>FormPlans</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="DataModule.pas">
             <Form>DM</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="CompanyCardForm.pas">
-            <Form>FormCompanyCard</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="CalendarForm.pas">
-            <Form>FormCalendar</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="UsersForm.pas">
-            <Form>FormUsers</Form>
-        </DCCReference>
-        <DCCReference Include="SettingsForm.pas">
-            <Form>FormSettings</Form>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

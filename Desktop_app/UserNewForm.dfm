@@ -3,7 +3,7 @@ object FormNewUser: TFormNewUser
   Top = 0
   Caption = #1042#1074#1086#1076' '#1076#1072#1085#1085#1099#1093' '#1086' '#1085#1086#1074#1086#1084' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1077
   ClientHeight = 367
-  ClientWidth = 458
+  ClientWidth = 484
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,7 +13,7 @@ object FormNewUser: TFormNewUser
   OldCreateOrder = False
   OnCloseQuery = FormCloseQuery
   DesignSize = (
-    458
+    484
     367)
   PixelsPerInch = 96
   TextHeight = 13
@@ -113,7 +113,7 @@ object FormNewUser: TFormNewUser
     OnClick = BitBtnSaveClick
   end
   object BitBtnCancel: TBitBtn
-    Left = 270
+    Left = 296
     Top = 319
     Width = 156
     Height = 40
@@ -222,55 +222,76 @@ object FormNewUser: TFormNewUser
     TabOrder = 8
   end
   object UniQueryRoles: TUniQuery
-    Connection = DM.UniSQLite
+    Connection = DM.UniXBilly
+    Transaction = DM.TransactionLocal
     SQL.Strings = (
       'select * from user_roles')
-    Left = 248
-    Top = 216
+    Active = True
+    Left = 192
+    Top = 56
     object UniQueryRolesrole_id: TStringField
       FieldName = 'role_id'
       Size = 50
     end
+    object UniQueryRolesorderby: TIntegerField
+      FieldName = 'orderby'
+      Required = True
+    end
+    object UniQueryRolesrole_name: TStringField
+      FieldName = 'role_name'
+      Size = 255
+    end
+    object UniQueryRoleslang_role_name: TStringField
+      FieldName = 'lang_role_name'
+      Size = 255
+    end
   end
   object UniInsertSQLUser: TUniSQL
-    Connection = DM.UniSQLite
+    Connection = DM.UniXBilly
+    Transaction = DM.TransactionLocal
     SQL.Strings = (
       'insert into users '
-      
-        '(full_name, user, password, role_id, hiring_date, closure_date, ' +
-        'is_active  )'
+      '(full_name, login, password, '
+      'role_id, '
+      'hiring_date, closure_date, is_active)'
       'values'
+      '(:p_full_name, :p_login, :p_password, '
       
-        '(:p_full_name, :p_user, :p_password, :p_role_id, :p_hiring_date,' +
-        ' null, 1)'
-      '')
-    Left = 344
-    Top = 216
+        '(select role_id from user_roles r where r.lang_role_name = :p_la' +
+        'ng_role_name),'
+      ':p_hiring_date, null, 1)')
+    Left = 192
+    Top = 192
     ParamData = <
       item
-        DataType = ftWideString
+        DataType = ftString
         Name = 'p_full_name'
-        Value = #39#39
+        Value = 'Sergey Belov'
       end
       item
-        DataType = ftWideString
-        Name = 'p_user'
-        Value = nil
+        DataType = ftString
+        Name = 'p_login'
+        Value = 'aaa'
       end
       item
-        DataType = ftWideString
+        DataType = ftString
         Name = 'p_password'
-        Value = nil
+        Value = '111'
       end
       item
-        DataType = ftWideString
-        Name = 'p_role_id'
+        DataType = ftUnknown
+        Name = 'p_lang_role_name'
         Value = nil
       end
       item
         DataType = ftDate
         Name = 'p_hiring_date'
-        Value = nil
+        Value = 44197d
       end>
+  end
+  object UniDataSource1: TUniDataSource
+    DataSet = UniQueryRoles
+    Left = 192
+    Top = 128
   end
 end

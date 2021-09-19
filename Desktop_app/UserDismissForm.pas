@@ -29,6 +29,9 @@ type
     UniSQLDismiss: TUniSQL;
     LabelWarning: TLabel;
     LabelDismissComment: TLabel;
+    UniQueryRolesorderby: TIntegerField;
+    UniQueryRolesrole_name: TStringField;
+    UniQueryRoleslang_role_name: TStringField;
     procedure BitBtnCancelClick(Sender: TObject);
     procedure BitBtnSaveClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -36,10 +39,7 @@ type
     UserID:integer;
     DismissUser:boolean;
   public
-    function GetUserID: integer;
-    procedure SetUserID(value: integer);
-    procedure SetFormValues;
-    procedure SetDismiss(Dismiss: boolean);
+    procedure SetFormValues(LUserID:integer; LDismissUser:boolean);
   end;
 
 var
@@ -57,6 +57,7 @@ end;
 procedure TFormDismissUser.BitBtnSaveClick(Sender: TObject);
 var CanSave:boolean;
 begin
+ShowMessage('Проверить на двойной лони при воссстановлении');
 CanSave:=true;
 if DismissUser then
   begin
@@ -96,18 +97,10 @@ if (DTHired.Date >= DTDismissed.Date) and DismissUser
   else CanClose:=True;
 end;
 
-function TFormDismissUser.GetUserID: integer;
+procedure TFormDismissUser.SetFormValues(LUserID:integer; LDismissUser:boolean);
 begin
-Result := UserID;
-end;
-
-procedure TFormDismissUser.SetDismiss(Dismiss: boolean);
-begin
-DismissUser:= Dismiss;
-end;
-
-procedure TFormDismissUser.SetFormValues;
-begin
+DismissUser:=LDismissUser;
+UserID:=LUserID;
 if DismissUser then
   begin
     LabelWarning.Caption:='Увольнение сотрудника';
@@ -127,7 +120,7 @@ UniQueryRoles.Close;
 UniQueryRoles.Open;
 while not UniQueryRoles.EOF do
   begin
-    ComboBoxRoles.Items.Add(UniQueryRoles['role_id']);
+    ComboBoxRoles.Items.Add(UniQueryRoles['lang_role_name']);
     UniQueryRoles.Next;
   end;
 ComboBoxRoles.text:='Персонал';
@@ -139,19 +132,13 @@ QueryCurrUser.ParamByName('p_user_id').Value := UserID;
 QueryCurrUser.Open;
 EditUserID.Text:=QueryCurrUser['user_id'];
 EditFullName.Text:=QueryCurrUser['full_name'];
-EditLogin.Text:=QueryCurrUser['user'];
+EditLogin.Text:=QueryCurrUser['login'];
 DTHired.DateTime:=QueryCurrUser['hiring_date'];
 if DismissUser
   then DTDismissed.Visible:=true
   else DTDismissed.Visible:=false;
 
 LabelDismissComment.Visible:=false;
-
-end;
-
-procedure TFormDismissUser.SetUserID(value: integer);
-begin
-UserID := Value;
 end;
 
 end.

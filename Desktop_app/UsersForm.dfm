@@ -2,8 +2,8 @@ object FormUsers: TFormUsers
   Left = 0
   Top = 0
   Caption = #1057#1087#1080#1089#1086#1082' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1077#1081' '#1089#1080#1089#1090#1077#1084#1099
-  ClientHeight = 461
-  ClientWidth = 684
+  ClientHeight = 561
+  ClientWidth = 784
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,13 +13,13 @@ object FormUsers: TFormUsers
   OldCreateOrder = False
   OnCreate = FormCreate
   DesignSize = (
-    684
-    461)
+    784
+    561)
   PixelsPerInch = 96
   TextHeight = 13
   object BitBtnClose: TBitBtn
-    Left = 516
-    Top = 413
+    Left = 616
+    Top = 513
     Width = 160
     Height = 40
     Anchors = [akRight, akBottom]
@@ -47,82 +47,12 @@ object FormUsers: TFormUsers
     TabOrder = 0
     OnClick = BitBtnCloseClick
   end
-  object DBGrid1: TDBGrid
-    Left = 8
-    Top = 8
-    Width = 668
-    Height = 385
-    DataSource = UniDataSource1
-    Font.Charset = RUSSIAN_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    ReadOnly = True
-    TabOrder = 1
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-    Columns = <
-      item
-        Alignment = taLeftJustify
-        Expanded = False
-        FieldName = 'user_id'
-        Title.Caption = #8470
-        Width = 38
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'full_name'
-        Title.Caption = #1060#1048#1054
-        Width = 193
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'user'
-        Title.Caption = #1051#1086#1075#1080#1085
-        Width = 85
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'role_id'
-        Title.Caption = #1056#1086#1083#1100
-        Width = 123
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'lang_is_active'
-        Title.Caption = #1056#1072#1073#1086#1090#1072#1077#1090
-        Width = 80
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'hiring_date'
-        Title.Caption = #1053#1072#1105#1084
-        Width = 69
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'closure_date'
-        Title.Caption = #1059#1074#1086#1083#1100#1085#1077#1085#1080#1077
-        Width = 70
-        Visible = True
-      end>
-  end
   object BitBtnNew: TBitBtn
     Left = 8
-    Top = 413
+    Top = 513
     Width = 160
     Height = 40
+    Anchors = [akLeft]
     Caption = #1053#1086#1074#1099#1081' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1100
     Glyph.Data = {
       2E0A0000424D2E0A00000000000036000000280000001D0000001D0000000100
@@ -208,14 +138,15 @@ object FormUsers: TFormUsers
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00}
     Layout = blGlyphRight
-    TabOrder = 2
+    TabOrder = 1
     OnClick = BitBtnNewClick
   end
   object BitBtnEdit: TBitBtn
-    Left = 174
-    Top = 413
+    Left = 214
+    Top = 513
     Width = 160
     Height = 40
+    Anchors = [akLeft, akBottom]
     Caption = #1048#1089#1087#1088#1072#1074#1080#1090#1100' '#1076#1072#1085#1085#1099#1077
     Glyph.Data = {
       A20A0000424DA20A00000000000036000000280000001E0000001D0000000100
@@ -305,14 +236,15 @@ object FormUsers: TFormUsers
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFF0000}
     Layout = blGlyphRight
-    TabOrder = 3
+    TabOrder = 2
     OnClick = BitBtnEditClick
   end
   object BitBtnDismiss: TBitBtn
-    Left = 340
-    Top = 413
+    Left = 420
+    Top = 513
     Width = 160
     Height = 40
+    Anchors = [akLeft, akBottom]
     Caption = #1059#1074#1086#1083#1100#1085#1077#1085#1080#1077
     Glyph.Data = {
       22050000424D2205000000000000360000002800000014000000150000000100
@@ -358,53 +290,124 @@ object FormUsers: TFormUsers
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFF}
     Layout = blGlyphRight
-    TabOrder = 4
+    TabOrder = 3
     OnClick = BitBtnDismissClick
   end
+  object DBGridEh1: TDBGridEh
+    Left = 8
+    Top = 8
+    Width = 768
+    Height = 499
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    DataSource = UniDataSource1
+    DynProps = <>
+    TabOrder = 4
+    OnDrawColumnCell = DBGridEh1DrawColumnCell
+    Columns = <
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'full_name'
+        Footers = <>
+        Title.Caption = #1060#1048#1054
+        Width = 236
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'login'
+        Footers = <>
+        Title.Caption = #1051#1086#1075#1080#1085
+        Width = 148
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'lang_role_name'
+        Footers = <>
+        Title.Caption = #1056#1086#1083#1100
+        Width = 133
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'lang_is_active'
+        Footers = <>
+        Title.Caption = #1056#1072#1073#1086#1090#1072#1077#1090
+        Width = 80
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'hiring_date'
+        Footers = <>
+        Title.Caption = #1053#1072#1105#1084
+        Width = 70
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'closure_date'
+        Footers = <>
+        Title.Caption = #1059#1074#1086#1083#1100#1085#1077#1085#1080#1077
+        Width = 70
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'user_id'
+        Footers = <>
+        Title.Caption = #8470
+        Width = 30
+      end>
+    object RowDetailData: TRowDetailPanelControlEh
+    end
+  end
   object UniSQLUsers: TUniQuery
-    UpdatingTable = 'users'
     DataTypeMap = <
       item
         FieldName = 'is_active'
         FieldType = ftBoolean
       end>
-    Connection = DM.UniXBill
+    Connection = DM.UniXBilly
+    Transaction = DM.TransactionLocal
     SQL.Strings = (
       'select '
-      'user_id, full_name, user, password, '
-      'role_id, is_active, '
+      'user_id, full_name, login, password, '
+      'lang_role_name, '
+      'is_active, '
       
-        '(select name from set_yes_or_no t where t.id = u.is_active) lang' +
-        '_is_active, '
+        '(select lang_name from set_yes_or_no t where t.id = u.is_active)' +
+        ' lang_is_active, '
       'hiring_date, closure_date, '
-      
-        '(select max(orderby) from user_roles ur where ur.role_id  = u.ro' +
-        'le_id) as orderby'
-      'from users u'
+      'orderby'
+      'from users u, user_roles r'
+      'where u.role_id = r.role_id'
       'order by orderby')
     Active = True
     AutoCalcFields = False
-    OnCalcFields = UniSQLUsersCalcFields
     Left = 104
     Top = 256
+    object UniSQLUsersuser_id: TLargeintField
+      FieldName = 'user_id'
+    end
+    object UniSQLUsersis_active: TBooleanField
+      FieldName = 'is_active'
+    end
     object UniSQLUsersfull_name: TStringField
       FieldName = 'full_name'
-      Size = 255
-    end
-    object UniSQLUsersuser: TStringField
-      FieldName = 'user'
       Size = 255
     end
     object UniSQLUserspassword: TStringField
       FieldName = 'password'
       Size = 255
-    end
-    object UniSQLUsersrole_id: TStringField
-      FieldName = 'role_id'
-      Size = 255
-    end
-    object UniSQLUsersis_active: TBooleanField
-      FieldName = 'is_active'
     end
     object UniSQLUserslang_is_active: TStringField
       FieldName = 'lang_is_active'
@@ -423,8 +426,20 @@ object FormUsers: TFormUsers
     object UniSQLUsersclosure_date: TDateField
       FieldName = 'closure_date'
     end
-    object UniSQLUsersuser_id: TLargeintField
-      FieldName = 'user_id'
+    object UniSQLUserslogin: TStringField
+      FieldName = 'login'
+      Required = True
+      Size = 255
+    end
+    object UniSQLUserslang_role_name: TStringField
+      FieldName = 'lang_role_name'
+      ReadOnly = True
+      Size = 255
+    end
+    object UniSQLUsersorderby: TIntegerField
+      FieldName = 'orderby'
+      ReadOnly = True
+      Required = True
     end
   end
   object UniDataSource1: TDataSource

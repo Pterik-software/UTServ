@@ -8,18 +8,17 @@ uses
 
 type
   TDM = class(TDataModule)
-    UniMySQL: TUniConnection;
-    MySQLUniProvider1: TMySQLUniProvider;
     UniSQLMonitor1: TUniSQLMonitor;
-    UniTransactionMySQL: TUniTransaction;
-    UniXBill: TUniConnection;
-    UniTransactionSQLite: TUniTransaction;
-    MySQLUniProvider2: TMySQLUniProvider;
+    UniXBilly: TUniConnection;
+    ProviderLocal: TMySQLUniProvider;
+    TransactionLocal: TUniTransaction;
   private
     { Private declarations }
   public
      CurrentUser:string;
   end;
+
+     // DM.UNIXBILL
 
 var
   DM: TDM;

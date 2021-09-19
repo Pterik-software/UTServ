@@ -1,7 +1,7 @@
-object FormActivatePlan: TFormActivatePlan
+object FormDeactivatePlan: TFormDeactivatePlan
   Left = 0
   Top = 0
-  Caption = #1040#1082#1090#1080#1074#1080#1088#1086#1074#1072#1090#1100' '#1087#1083#1072#1085' '#1086#1087#1083#1072#1090' '#1089#1086#1075#1083#1072#1089#1085#1086' '#1086#1087#1083#1072#1095#1077#1085#1085#1086#1084#1091' '#1058#1055
+  Caption = #1042#1088#1091#1095#1085#1091#1102' '#1076#1077#1072#1082#1090#1080#1074#1080#1088#1086#1074#1072#1090#1100' '#1087#1083#1072#1085' '#1086#1087#1083#1072#1090' '#1074' '#1083#1086#1082#1072#1083#1100#1085#1086#1081' '#1073#1072#1079#1077
   ClientHeight = 561
   ClientWidth = 784
   Color = clBtnFace
@@ -17,7 +17,7 @@ object FormActivatePlan: TFormActivatePlan
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 8
+    Left = 24
     Top = 487
     Width = 58
     Height = 13
@@ -25,12 +25,12 @@ object FormActivatePlan: TFormActivatePlan
     Caption = #1055#1083#1072#1085' '#1086#1087#1083#1072#1090
   end
   object Label2: TLabel
-    Left = 241
+    Left = 263
     Top = 487
-    Width = 233
+    Width = 246
     Height = 13
     Anchors = [akLeft, akBottom]
-    Caption = #1072#1082#1090#1080#1074#1080#1088#1091#1077#1090#1089#1103' '#1074' '#1083#1086#1082#1072#1083#1100#1085#1086#1081' '#1073#1072#1079#1077' '#1089' '#1086#1089#1085#1086#1074#1072#1085#1080#1077#1084
+    Caption = #1076#1077#1072#1082#1090#1080#1074#1080#1088#1091#1077#1090#1089#1103' '#1074' '#1083#1086#1082#1072#1083#1100#1085#1086#1081' '#1073#1072#1079#1077' '#1089' '#1086#1089#1085#1086#1074#1072#1085#1080#1077#1084
   end
   object BitBtnClose: TBitBtn
     Left = 616
@@ -162,8 +162,8 @@ object FormActivatePlan: TFormActivatePlan
     OnClick = BitBtnSaveClick
   end
   object DBEdit1: TDBEdit
-    Left = 72
-    Top = 484
+    Left = 88
+    Top = 486
     Width = 165
     Height = 21
     Anchors = [akLeft, akBottom]
@@ -173,9 +173,9 @@ object FormActivatePlan: TFormActivatePlan
     TabOrder = 2
   end
   object EditChangeReason: TEdit
-    Left = 480
+    Left = 515
     Top = 484
-    Width = 296
+    Width = 261
     Height = 21
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 3
@@ -187,9 +187,7 @@ object FormActivatePlan: TFormActivatePlan
     Height = 470
     DataSource = UniDataSource1
     DynProps = <>
-    ReadOnly = True
     TabOrder = 4
-    OnDrawColumnCell = DBGridEh1DrawColumnCell
     Columns = <
       item
         CellButtons = <>
@@ -248,11 +246,11 @@ object FormActivatePlan: TFormActivatePlan
     end
   end
   object UniDataSource1: TDataSource
-    DataSet = UniSQLInactivePlans
-    Left = 344
-    Top = 176
+    DataSet = UniSQLActivePlans
+    Left = 520
+    Top = 160
   end
-  object UniSQLUpdateInactivePlan: TUniSQL
+  object UniSQLUpdateActivePlan: TUniSQL
     Connection = DM.UniXBilly
     Transaction = DM.TransactionLocal
     SQL.Strings = (
@@ -263,19 +261,18 @@ object FormActivatePlan: TFormActivatePlan
       'updated_datetime = :p_updated_datetime, '
       'log_changes = :p_log '
       'where business_id = :p_business_id')
-    Left = 534
-    Top = 176
+    Left = 430
+    Top = 240
     ParamData = <
       item
         DataType = ftString
         Name = 'p_reason'
         ParamType = ptInput
-        Value = 'Text value'
+        Value = nil
       end
       item
         DataType = ftString
         Name = 'p_updated_by'
-        ParamType = ptInput
         Value = 'Admin'
       end
       item
@@ -297,7 +294,7 @@ object FormActivatePlan: TFormActivatePlan
         Value = 0
       end>
   end
-  object UniSQLInactivePlans: TUniQuery
+  object UniSQLActivePlans: TUniQuery
     DataTypeMap = <
       item
         FieldName = 'is_active'
@@ -319,53 +316,51 @@ object FormActivatePlan: TFormActivatePlan
       'reason_change, updated_by, updated_datetime, '
       'log_changes'
       'from business_items b'
-      'where is_active_locally = 0')
-    ReadOnly = True
-    Active = True
+      'where is_active_locally = 1')
     AutoCalcFields = False
-    Left = 136
-    Top = 160
-    object UniSQLInactivePlansbusiness_id: TStringField
+    Left = 224
+    Top = 168
+    object UniSQLActivePlansbusiness_id: TStringField
       FieldName = 'business_id'
       Required = True
       Size = 50
     end
-    object UniSQLInactivePlansitem_name: TStringField
+    object UniSQLActivePlansitem_name: TStringField
       FieldName = 'item_name'
       Size = 100
     end
-    object UniSQLInactivePlanslang_item_name: TStringField
+    object UniSQLActivePlanslang_item_name: TStringField
       FieldName = 'lang_item_name'
       Size = 100
     end
-    object UniSQLInactivePlansis_active_locally: TBooleanField
+    object UniSQLActivePlansis_active_locally: TBooleanField
       FieldName = 'is_active_locally'
     end
-    object UniSQLInactivePlanslng_active_locally: TStringField
+    object UniSQLActivePlanslng_active_locally: TStringField
       FieldName = 'lng_active_locally'
       ReadOnly = True
       Size = 50
     end
-    object UniSQLInactivePlansis_active_server: TBooleanField
+    object UniSQLActivePlansis_active_server: TBooleanField
       FieldName = 'is_active_server'
     end
-    object UniSQLInactivePlanslng_active_server: TStringField
+    object UniSQLActivePlanslng_active_server: TStringField
       FieldName = 'lng_active_server'
       ReadOnly = True
       Size = 50
     end
-    object UniSQLInactivePlansupdated_by: TStringField
+    object UniSQLActivePlansupdated_by: TStringField
       FieldName = 'updated_by'
       Size = 255
     end
-    object UniSQLInactivePlansupdated_datetime: TDateTimeField
+    object UniSQLActivePlansupdated_datetime: TDateTimeField
       FieldName = 'updated_datetime'
     end
-    object UniSQLInactivePlanslog_changes: TStringField
+    object UniSQLActivePlanslog_changes: TStringField
       FieldName = 'log_changes'
       Size = 255
     end
-    object UniSQLInactivePlansreason_change: TStringField
+    object UniSQLActivePlansreason_change: TStringField
       FieldName = 'reason_change'
       Size = 255
     end

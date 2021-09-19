@@ -25,7 +25,7 @@ object FormActivatePlan: TFormActivatePlan
     Caption = #1055#1083#1072#1085' '#1086#1087#1083#1072#1090
   end
   object Label2: TLabel
-    Left = 241
+    Left = 159
     Top = 487
     Width = 233
     Height = 13
@@ -163,19 +163,19 @@ object FormActivatePlan: TFormActivatePlan
   end
   object DBEdit1: TDBEdit
     Left = 72
-    Top = 484
-    Width = 165
+    Top = 486
+    Width = 81
     Height = 21
     Anchors = [akLeft, akBottom]
-    DataField = 'lang_item_name'
+    DataField = 'c_date'
     DataSource = UniDataSource1
     ReadOnly = True
     TabOrder = 2
   end
   object EditChangeReason: TEdit
-    Left = 480
+    Left = 398
     Top = 484
-    Width = 296
+    Width = 378
     Height = 21
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 3
@@ -187,9 +187,7 @@ object FormActivatePlan: TFormActivatePlan
     Height = 470
     DataSource = UniDataSource1
     DynProps = <>
-    ReadOnly = True
     TabOrder = 4
-    OnDrawColumnCell = DBGridEh1DrawColumnCell
     Columns = <
       item
         CellButtons = <>
@@ -270,31 +268,28 @@ object FormActivatePlan: TFormActivatePlan
         DataType = ftString
         Name = 'p_reason'
         ParamType = ptInput
-        Value = 'Text value'
+        Value = nil
       end
       item
-        DataType = ftString
+        DataType = ftUnknown
         Name = 'p_updated_by'
-        ParamType = ptInput
-        Value = 'Admin'
+        Value = nil
       end
       item
-        DataType = ftDateTime
+        DataType = ftUnknown
         Name = 'p_updated_datetime'
-        ParamType = ptInput
-        Value = 44197d
+        Value = nil
       end
       item
         DataType = ftString
         Name = 'p_log'
         ParamType = ptInput
-        Value = 'Any reason'
+        Value = nil
       end
       item
-        DataType = ftInteger
+        DataType = ftUnknown
         Name = 'p_business_id'
-        ParamType = ptInput
-        Value = 0
+        Value = nil
       end>
   end
   object UniSQLInactivePlans: TUniQuery
@@ -320,8 +315,6 @@ object FormActivatePlan: TFormActivatePlan
       'log_changes'
       'from business_items b'
       'where is_active_locally = 0')
-    ReadOnly = True
-    Active = True
     AutoCalcFields = False
     Left = 136
     Top = 160

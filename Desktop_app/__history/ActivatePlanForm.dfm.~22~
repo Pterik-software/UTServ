@@ -187,9 +187,7 @@ object FormActivatePlan: TFormActivatePlan
     Height = 470
     DataSource = UniDataSource1
     DynProps = <>
-    ReadOnly = True
     TabOrder = 4
-    OnDrawColumnCell = DBGridEh1DrawColumnCell
     Columns = <
       item
         CellButtons = <>
@@ -320,7 +318,6 @@ object FormActivatePlan: TFormActivatePlan
       'log_changes'
       'from business_items b'
       'where is_active_locally = 0')
-    ReadOnly = True
     Active = True
     AutoCalcFields = False
     Left = 136

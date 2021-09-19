@@ -71,7 +71,7 @@ inherited;
     TDBGridEh(Sender).Canvas.Brush.Color:= clFuchsia
   else
     if UniSQLPlans['is_active_locally']=0 then
-      TDBGridEh(Sender).Canvas.Brush.Color:= clYellow
+    TDBGridEh(Sender).Canvas.Brush.Color:= clYellow
     else TDBGridEh(Sender).Canvas.Brush.Color:= clWhite;
   // Восстанавливаем выделение текущей позиции курсора
   if gdSelected in State then

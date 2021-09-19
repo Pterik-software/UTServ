@@ -34,8 +34,6 @@ type
     DBGridEh1: TDBGridEh;
     procedure BitBtnCloseClick(Sender: TObject);
     procedure BitBtnSaveClick(Sender: TObject);
-    procedure DBGridEh1DrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -66,27 +64,6 @@ UniSQLUpdateActivePlan.ParamByName('p_log').Value:= 'Изменено пользователем '+DM
 UniSQLUpdateActivePlan.Execute;
 MessageDlg('Сохранено', mtInformation, [mbOk],0);
 Close;
-end;
-
-procedure TFormDeactivatePlan.DBGridEh1DrawColumnCell(Sender: TObject;
-  const Rect: TRect; DataCol: Integer; Column: TColumnEh;
-  State: TGridDrawState);
-begin
-inherited;
-  if UniSQLActivePlans['is_active_server']=0 then
-    TDBGridEh(Sender).Canvas.Brush.Color:= clFuchsia
-  else
-    if UniSQLActivePlans['is_active_locally']=0 then
-      TDBGridEh(Sender).Canvas.Brush.Color:= clYellow
-     else TDBGridEh(Sender).Canvas.Brush.Color:= clWhite;
-  // Восстанавливаем выделение текущей позиции курсора
-  if gdSelected in State then
-  begin
-    TDBGridEh(Sender).Canvas.Brush.Color:= clHighLight;
-    TDBGridEh(Sender).Canvas.Font.Color:= clHighLightText;
-  end;
-  // Просим GRID перерисоваться самому
-  TDBGridEh(Sender).DefaultDrawColumnCell(Rect, DataCol, Column, TGridDrawState(State));
 end;
 
 procedure TFormDeactivatePlan.SetFormValues(const Business_id:string);

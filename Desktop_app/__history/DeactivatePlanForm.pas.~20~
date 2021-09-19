@@ -73,12 +73,12 @@ procedure TFormDeactivatePlan.DBGridEh1DrawColumnCell(Sender: TObject;
   State: TGridDrawState);
 begin
 inherited;
-  if UniSQLActivePlans['is_active_server']=0 then
-    TDBGridEh(Sender).Canvas.Brush.Color:= clFuchsia
+  if UniSQLPlans['is_active_locally']=0 then
+    TDBGridEh(Sender).Canvas.Brush.Color:= clYellow
   else
-    if UniSQLActivePlans['is_active_locally']=0 then
-      TDBGridEh(Sender).Canvas.Brush.Color:= clYellow
-     else TDBGridEh(Sender).Canvas.Brush.Color:= clWhite;
+    if UniSQLPlans['is_active_server']=0 then
+    TDBGridEh(Sender).Canvas.Brush.Color:= clFuchsia
+      else TDBGridEh(Sender).Canvas.Brush.Color:= clWhite;
   // Восстанавливаем выделение текущей позиции курсора
   if gdSelected in State then
   begin

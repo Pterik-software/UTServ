@@ -1,4 +1,4 @@
-object FormUpdateHolydays: TFormUpdateHolydays
+object FormDeactivatePlan: TFormDeactivatePlan
   Left = 0
   Top = 0
   Caption = #1042#1088#1091#1095#1085#1091#1102' '#1076#1077#1072#1082#1090#1080#1074#1080#1088#1086#1074#1072#1090#1100' '#1087#1083#1072#1085' '#1086#1087#1083#1072#1090' '#1074' '#1083#1086#1082#1072#1083#1100#1085#1086#1081' '#1073#1072#1079#1077
@@ -11,7 +11,6 @@ object FormUpdateHolydays: TFormUpdateHolydays
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnCreate = FormCreate
   DesignSize = (
     784
     561)
@@ -26,12 +25,12 @@ object FormUpdateHolydays: TFormUpdateHolydays
     Caption = #1055#1083#1072#1085' '#1086#1087#1083#1072#1090
   end
   object Label2: TLabel
-    Left = 207
+    Left = 263
     Top = 487
-    Width = 154
+    Width = 246
     Height = 13
     Anchors = [akLeft, akBottom]
-    Caption = #1076#1077#1072#1082#1090#1080#1074#1080#1088#1091#1077#1090#1089#1103' '#1089' '#1086#1089#1085#1086#1074#1072#1085#1080#1077#1084
+    Caption = #1076#1077#1072#1082#1090#1080#1074#1080#1088#1091#1077#1090#1089#1103' '#1074' '#1083#1086#1082#1072#1083#1100#1085#1086#1081' '#1073#1072#1079#1077' '#1089' '#1086#1089#1085#1086#1074#1072#1085#1080#1077#1084
   end
   object BitBtnClose: TBitBtn
     Left = 616
@@ -63,83 +62,6 @@ object FormUpdateHolydays: TFormUpdateHolydays
     NumGlyphs = 2
     TabOrder = 0
     OnClick = BitBtnCloseClick
-  end
-  object DBGrid1: TDBGrid
-    Left = 8
-    Top = 8
-    Width = 768
-    Height = 461
-    Anchors = [akLeft, akTop, akRight, akBottom]
-    DataSource = UniDataSource1
-    Font.Charset = RUSSIAN_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    ReadOnly = True
-    TabOrder = 1
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'business_id'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'item_name'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'lang_item_name'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'is_active_locally'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'lng_active_locally'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'is_active_server'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'lng_active_server'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'reason_deactivated'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'updated_by'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'updated_datetime'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'log_changes'
-        Visible = True
-      end>
   end
   object BitBtnSave: TBitBtn
     Left = 24
@@ -236,27 +158,94 @@ object FormUpdateHolydays: TFormUpdateHolydays
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFF0000}
     Layout = blGlyphRight
-    TabOrder = 2
+    TabOrder = 1
     OnClick = BitBtnSaveClick
   end
   object DBEdit1: TDBEdit
-    Left = 103
+    Left = 88
     Top = 486
-    Width = 81
+    Width = 165
     Height = 21
     Anchors = [akLeft, akBottom]
-    DataField = 'c_date'
+    DataField = 'lang_item_name'
     DataSource = UniDataSource1
     ReadOnly = True
-    TabOrder = 3
+    TabOrder = 2
   end
   object EditChangeReason: TEdit
-    Left = 379
+    Left = 515
     Top = 484
-    Width = 397
+    Width = 261
     Height = 21
     Anchors = [akLeft, akRight, akBottom]
+    TabOrder = 3
+  end
+  object DBGridEh1: TDBGridEh
+    Left = 8
+    Top = 8
+    Width = 768
+    Height = 470
+    DataSource = UniDataSource1
+    DynProps = <>
+    ReadOnly = True
     TabOrder = 4
+    OnDrawColumnCell = DBGridEh1DrawColumnCell
+    Columns = <
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'lang_item_name'
+        Footers = <>
+        Title.Caption = #1055#1083#1072#1085' '#1086#1087#1083#1072#1090#1099
+        Width = 195
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'is_active_locally'
+        Footers = <>
+        Title.Caption = #1040#1082#1090#1080#1074#1080#1088#1086#1074#1072#1085
+        Width = 104
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'is_active_server'
+        Footers = <>
+        Title.Caption = #1056#1072#1079#1088#1077#1096#1105#1085' '#1089#1077#1088#1074#1077#1088#1086#1084' '#1076#1083#1103' '#1058#1055
+        Width = 151
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'reason_change'
+        Footers = <>
+        Title.Caption = #1055#1088#1080#1095#1080#1085#1072' '#1080#1079#1084#1077#1085#1077#1085#1080#1103' '#1087#1083#1072#1085#1072' '#1086#1087#1083#1072#1090#1099
+        Width = 200
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'updated_datetime'
+        Footers = <>
+        Title.Caption = #1044#1072#1090#1072' '#1086#1073#1085#1086#1074#1083#1077#1085#1080#1103
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'log_changes'
+        Footers = <>
+        Title.Caption = #1046#1091#1088#1085#1072#1083' '#1080#1079#1084#1077#1085#1077#1085#1080#1081
+        Width = 200
+      end>
+    object RowDetailData: TRowDetailPanelControlEh
+    end
   end
   object UniDataSource1: TDataSource
     DataSet = UniSQLActivePlans
@@ -264,12 +253,16 @@ object FormUpdateHolydays: TFormUpdateHolydays
     Top = 160
   end
   object UniSQLUpdateActivePlan: TUniSQL
+    Connection = DM.UniXBilly
+    Transaction = DM.TransactionLocal
     SQL.Strings = (
-      'update calendar c'
-      'set c_is_work_day_locally=true, '
-      'c_reason_dayoff_locally = :p_reason, '
-      'c_log_changes = :p_log '
-      'where calendar_id = :p_calendar_id')
+      'update business_items c'
+      'set is_active_locally=true, '
+      'reason_change = :p_reason, '
+      'updated_by = :p_updated_by, '
+      'updated_datetime = :p_updated_datetime, '
+      'log_changes = :p_log '
+      'where business_id = :p_business_id')
     Left = 430
     Top = 240
     ParamData = <
@@ -281,15 +274,26 @@ object FormUpdateHolydays: TFormUpdateHolydays
       end
       item
         DataType = ftString
+        Name = 'p_updated_by'
+        Value = 'Admin'
+      end
+      item
+        DataType = ftDateTime
+        Name = 'p_updated_datetime'
+        ParamType = ptInput
+        Value = 44197d
+      end
+      item
+        DataType = ftString
         Name = 'p_log'
         ParamType = ptInput
-        Value = nil
+        Value = 'Any reason'
       end
       item
         DataType = ftInteger
-        Name = 'p_calendar_id'
+        Name = 'p_business_id'
         ParamType = ptInput
-        Value = nil
+        Value = 0
       end>
   end
   object UniSQLActivePlans: TUniQuery
@@ -298,6 +302,8 @@ object FormUpdateHolydays: TFormUpdateHolydays
         FieldName = 'is_active'
         FieldType = ftBoolean
       end>
+    Connection = DM.UniXBilly
+    Transaction = DM.TransactionLocal
     SQL.Strings = (
       'select '
       'business_id, item_name, lang_item_name, '
@@ -309,10 +315,12 @@ object FormUpdateHolydays: TFormUpdateHolydays
       
         '(select lang_name from set_yes_or_no t where t.id = b.is_active_' +
         'server) lng_active_server, '
-      'reason_deactivated, updated_by, updated_datetime, '
+      'reason_change, updated_by, updated_datetime, '
       'log_changes'
       'from business_items b'
       'where is_active_locally = 1')
+    ReadOnly = True
+    Active = True
     AutoCalcFields = False
     Left = 224
     Top = 168
@@ -345,10 +353,6 @@ object FormUpdateHolydays: TFormUpdateHolydays
       ReadOnly = True
       Size = 50
     end
-    object UniSQLActivePlansreason_deactivated: TStringField
-      FieldName = 'reason_deactivated'
-      Size = 255
-    end
     object UniSQLActivePlansupdated_by: TStringField
       FieldName = 'updated_by'
       Size = 255
@@ -358,6 +362,10 @@ object FormUpdateHolydays: TFormUpdateHolydays
     end
     object UniSQLActivePlanslog_changes: TStringField
       FieldName = 'log_changes'
+      Size = 255
+    end
+    object UniSQLActivePlansreason_change: TStringField
+      FieldName = 'reason_change'
       Size = 255
     end
   end

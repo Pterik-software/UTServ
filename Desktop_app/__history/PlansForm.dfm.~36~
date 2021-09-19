@@ -200,7 +200,6 @@ object FormPlans: TFormPlans
     Height = 489
     DataSource = UniDataSource1
     DynProps = <>
-    ReadOnly = True
     TabOrder = 3
     OnDrawColumnCell = DBGridEh1DrawColumnCell
     Columns = <
@@ -282,7 +281,6 @@ object FormPlans: TFormPlans
       'reason_change, updated_by, updated_datetime, '
       'log_changes'
       'from business_items b')
-    ReadOnly = True
     Active = True
     AutoCalcFields = False
     Left = 120

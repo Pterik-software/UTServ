@@ -34,12 +34,10 @@ type
     UniSQLInactivePlansreason_change: TStringField;
     procedure BitBtnCloseClick(Sender: TObject);
     procedure BitBtnSaveClick(Sender: TObject);
-    procedure DBGridEh1DrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
   private
     { Private declarations }
   public
-    procedure SetFormValues(const business_id:string);
+    procedure SetFormValues(const business_id:integer);
   end;
 
 var
@@ -52,7 +50,7 @@ uses System.UITypes, DateUtils, DataModule;
 
 procedure TFormActivatePlan.BitBtnSaveClick(Sender: TObject);
 begin
-if (UniSQLUpdateInactivePlan['is_active_locally']=0) then
+if (UniSQLUpdateInactivePlan['c_is_active_server']=0) then
   begin
   MessageDlg('Этот план отмечен как неактивный для Вашего тарифного плана на сервере. Свяжитесь с отделом продаж', mtError, [mbOk],0);
   exit;
@@ -73,36 +71,10 @@ MessageDlg('Сохранено', mtInformation, [mbOk],0);
 Close;
 end;
 
-procedure TFormActivatePlan.DBGridEh1DrawColumnCell(Sender: TObject;
-  const Rect: TRect; DataCol: Integer; Column: TColumnEh;
-  State: TGridDrawState);
-begin
-inherited;
-  if UniSQLInactivePlans['is_active_server']=0 then
-    TDBGridEh(Sender).Canvas.Brush.Color:= clFuchsia
-  else
-    if UniSQLInactivePlans['is_active_locally']=0 then
-      TDBGridEh(Sender).Canvas.Brush.Color:= clYellow
-    else TDBGridEh(Sender).Canvas.Brush.Color:= clWhite;
-  // Восстанавливаем выделение текущей позиции курсора
-  if gdSelected in State then
-  begin
-    TDBGridEh(Sender).Canvas.Brush.Color:= clHighLight;
-    TDBGridEh(Sender).Canvas.Font.Color:= clHighLightText;
-  end;
-  // Просим GRID перерисоваться самому
-  TDBGridEh(Sender).DefaultDrawColumnCell(Rect, DataCol, Column, TGridDrawState(State));
-end;
-
-procedure TFormActivatePlan.SetFormValues(const Business_id:string);
+procedure TFormActivatePlan.SetFormValues(const business_id:integer);
 begin
 EditChangereason.Text:='';
 if not UniSQLInactivePlans.Active then UniSQLInactivePlans.Active:=true;
-while not UniSQLInactivePlans.EOF do
-  begin
-  if UniSQLInactivePlans['business_id']=Business_id then exit;
-  UniSQLInactivePlans.next;
-  end;
 end;
 
 procedure TFormActivatePlan.BitBtnCloseClick(Sender: TObject);

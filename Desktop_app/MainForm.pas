@@ -12,8 +12,8 @@ type
   TFormMain = class(TForm)
     MainMenu1: TMainMenu;
     N1: TMenuItem;
-    N2: TMenuItem;
-    N3: TMenuItem;
+    NSettings: TMenuItem;
+    NExit: TMenuItem;
     N4: TMenuItem;
     mnuAbout: TMenuItem;
     N7: TMenuItem;
@@ -39,15 +39,16 @@ type
     N25: TMenuItem;
     N26: TMenuItem;
     C1: TMenuItem;
-    R1: TMenuItem;
+    NCard: TMenuItem;
     N6: TMenuItem;
-    procedure N3Click(Sender: TObject);
+    N21: TMenuItem;
+    procedure NExitClick(Sender: TObject);
     procedure BitBtnCloseClick(Sender: TObject);
     procedure N5Click(Sender: TObject);
     procedure mnuAboutClick(Sender: TObject);
     procedure N26Click(Sender: TObject);
     procedure N7Click(Sender: TObject);
-    procedure N2Click(Sender: TObject);
+    procedure NSettingsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure N6Click(Sender: TObject);
   private
@@ -79,6 +80,7 @@ end;
 
 procedure TFormMain.mnuAboutClick(Sender: TObject);
 begin
+if FormPayers=nil then Application.CreateForm(TFormPayers, FormPayers);
 FormPayers.ShowModal;
 end;
 
@@ -88,14 +90,14 @@ if FormUsers=nil then Application.CreateForm(TFormUsers, FormUsers);
 FormUsers.ShowModal;
 end;
 
-procedure TFormMain.N2Click(Sender: TObject);
+procedure TFormMain.NSettingsClick(Sender: TObject);
 begin
 if FormSettings=nil then Application.CreateForm(TFormSettings, FormSettings);
 FormSettings.SetFormValues;
 FormSettings.ShowModal;
 end;
 
-procedure TFormMain.N3Click(Sender: TObject);
+procedure TFormMain.NExitClick(Sender: TObject);
 begin
 FormMain.Close;
 end;
@@ -116,6 +118,7 @@ end;
 procedure TFormMain.N7Click(Sender: TObject);
 begin
 if FormPlans=nil then Application.CreateForm(TFormPlans, FormPlans);
+FormPlans.SetFormValues;
 FormPlans.ShowModal;
 end;
 

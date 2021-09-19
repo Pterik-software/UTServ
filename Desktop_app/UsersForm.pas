@@ -50,7 +50,7 @@ implementation
 
 {$R *.dfm}
 
-uses UserUpdateForm, UserNewForm, UserDismissForm;
+uses DataModule, UserUpdateForm, UserNewForm, UserDismissForm;
 
 procedure TFormUsers.BitBtnDismissClick(Sender: TObject);
 begin

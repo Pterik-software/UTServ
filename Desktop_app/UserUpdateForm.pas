@@ -86,7 +86,7 @@ end;
 procedure TFormUpdateUser.BitBtnSaveClick(Sender: TObject);
 var CanSave:boolean;
 begin
-ShowMessage('Исправить проверку на двойной логин')
+ShowMessage('Исправить проверку на двойной логин');
 try
 CanSave:=true;
 if not FormChanged then

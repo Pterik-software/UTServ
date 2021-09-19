@@ -44,8 +44,6 @@ object FormPlans: TFormPlans
     ModalResult = 2
     NumGlyphs = 2
     TabOrder = 0
-    ExplicitLeft = 516
-    ExplicitTop = 413
   end
   object BitBtnNew: TBitBtn
     Left = 8
@@ -139,6 +137,7 @@ object FormPlans: TFormPlans
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00}
     Layout = blGlyphRight
     TabOrder = 1
+    OnClick = BitBtnNewClick
   end
   object BitBtnDismiss: TBitBtn
     Left = 292
@@ -192,6 +191,7 @@ object FormPlans: TFormPlans
       FFFFFFFFFFFF}
     Layout = blGlyphRight
     TabOrder = 2
+    OnClick = BitBtnDismissClick
   end
   object DBGridEh1: TDBGridEh
     Left = 8
@@ -200,6 +200,7 @@ object FormPlans: TFormPlans
     Height = 489
     DataSource = UniDataSource1
     DynProps = <>
+    ReadOnly = True
     TabOrder = 3
     OnDrawColumnCell = DBGridEh1DrawColumnCell
     Columns = <
@@ -210,7 +211,7 @@ object FormPlans: TFormPlans
         FieldName = 'lang_item_name'
         Footers = <>
         Title.Caption = #1055#1083#1072#1085' '#1086#1087#1083#1072#1090#1099
-        Width = 225
+        Width = 195
       end
       item
         CellButtons = <>
@@ -218,7 +219,7 @@ object FormPlans: TFormPlans
         EditButtons = <>
         FieldName = 'is_active_locally'
         Footers = <>
-        Title.Caption = #1040#1082#1090#1080#1074#1077#1085
+        Title.Caption = #1040#1082#1090#1080#1074#1080#1088#1086#1074#1072#1085
         Width = 104
       end
       item
@@ -227,17 +228,17 @@ object FormPlans: TFormPlans
         EditButtons = <>
         FieldName = 'is_active_server'
         Footers = <>
-        Title.Caption = #1054#1075#1088#1072#1085#1080#1095#1077#1085' '#1074' '#1085#1072#1096#1077#1084' '#1058#1055
-        Width = 115
+        Title.Caption = #1056#1072#1079#1088#1077#1096#1105#1085' '#1089#1077#1088#1074#1077#1088#1086#1084' '#1076#1083#1103' '#1058#1055
+        Width = 151
       end
       item
         CellButtons = <>
         DynProps = <>
         EditButtons = <>
-        FieldName = 'updated_by'
+        FieldName = 'reason_change'
         Footers = <>
-        Title.Caption = #1050#1077#1084' '#1086#1073#1085#1086#1074#1083#1105#1085
-        Width = 111
+        Title.Caption = #1055#1088#1080#1095#1080#1085#1072' '#1080#1079#1084#1077#1085#1077#1085#1080#1103' '#1083#1086#1082#1072#1083#1100#1085#1086
+        Width = 200
       end
       item
         CellButtons = <>
@@ -251,18 +252,10 @@ object FormPlans: TFormPlans
         CellButtons = <>
         DynProps = <>
         EditButtons = <>
-        FieldName = 'update_reason'
+        FieldName = 'log_changes'
         Footers = <>
-        Title.Caption = #1050#1086#1084#1084#1077#1085#1090#1072#1088#1080#1081' '#1086#1073#1085#1086#1074#1083#1077#1085#1080#1103
-        Width = 169
-      end
-      item
-        CellButtons = <>
-        DynProps = <>
-        EditButtons = <>
-        FieldName = 'business_id'
-        Footers = <>
-        Width = 66
+        Title.Caption = #1046#1091#1088#1085#1072#1083' '#1080#1079#1084#1077#1085#1077#1085#1080#1081
+        Width = 200
       end>
     object RowDetailData: TRowDetailPanelControlEh
     end
@@ -276,7 +269,20 @@ object FormPlans: TFormPlans
     Connection = DM.UniXBilly
     Transaction = DM.TransactionLocal
     SQL.Strings = (
-      'select * from business_items')
+      'select '
+      'business_id, item_name, lang_item_name, '
+      'is_active_locally, '
+      
+        '(select lang_name from set_yes_or_no r where r.id = b.is_active_' +
+        'locally) lng_active_locally, '
+      'is_active_server, '
+      
+        '(select lang_name from set_yes_or_no t where t.id = b.is_active_' +
+        'server) lng_active_server, '
+      'reason_change, updated_by, updated_datetime, '
+      'log_changes'
+      'from business_items b')
+    ReadOnly = True
     Active = True
     AutoCalcFields = False
     Left = 120
@@ -297,12 +303,18 @@ object FormPlans: TFormPlans
     object UniSQLPlansis_active_locally: TBooleanField
       FieldName = 'is_active_locally'
     end
+    object UniSQLPlanslng_active_locally: TStringField
+      FieldName = 'lng_active_locally'
+      ReadOnly = True
+      Size = 50
+    end
     object UniSQLPlansis_active_server: TBooleanField
       FieldName = 'is_active_server'
     end
-    object UniSQLPlansupdate_reason: TStringField
-      FieldName = 'update_reason'
-      Size = 255
+    object UniSQLPlanslng_active_server: TStringField
+      FieldName = 'lng_active_server'
+      ReadOnly = True
+      Size = 50
     end
     object UniSQLPlansupdated_by: TStringField
       FieldName = 'updated_by'
@@ -311,10 +323,18 @@ object FormPlans: TFormPlans
     object UniSQLPlansupdated_datetime: TDateTimeField
       FieldName = 'updated_datetime'
     end
+    object UniSQLPlanslog_changes: TStringField
+      FieldName = 'log_changes'
+      Size = 255
+    end
+    object UniSQLPlansreason_change: TStringField
+      FieldName = 'reason_change'
+      Size = 255
+    end
   end
   object UniDataSource1: TDataSource
     DataSet = UniSQLPlans
-    Left = 456
+    Left = 368
     Top = 296
   end
 end

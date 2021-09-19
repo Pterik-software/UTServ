@@ -46,9 +46,9 @@ object FormPlans: TFormPlans
     TabOrder = 0
   end
   object BitBtnNew: TBitBtn
-    Left = 8
+    Left = 198
     Top = 513
-    Width = 225
+    Width = 201
     Height = 40
     Anchors = [akLeft]
     Caption = #1040#1082#1090#1080#1074#1080#1088#1086#1074#1072#1090#1100' '#1087#1083#1072#1085' '#1086#1087#1083#1072#1090#1099
@@ -140,9 +140,9 @@ object FormPlans: TFormPlans
     OnClick = BitBtnNewClick
   end
   object BitBtnDismiss: TBitBtn
-    Left = 292
+    Left = 405
     Top = 513
-    Width = 237
+    Width = 205
     Height = 40
     Anchors = [akLeft, akBottom]
     Caption = #1044#1077#1072#1082#1090#1080#1074#1080#1088#1086#1074#1072#1090#1100' '#1087#1083#1072#1085' '#1086#1087#1083#1072#1090#1099
@@ -197,7 +197,7 @@ object FormPlans: TFormPlans
     Left = 8
     Top = 8
     Width = 768
-    Height = 489
+    Height = 393
     DataSource = UniDataSource1
     DynProps = <>
     ReadOnly = True
@@ -259,6 +259,22 @@ object FormPlans: TFormPlans
       end>
     object RowDetailData: TRowDetailPanelControlEh
     end
+  end
+  object RadioGroupDays: TRadioGroup
+    Left = 8
+    Top = 419
+    Width = 184
+    Height = 134
+    Anchors = [akLeft, akBottom]
+    Caption = #1054#1090#1086#1073#1088#1072#1078#1072#1090#1100
+    ItemIndex = 0
+    Items.Strings = (
+      #1042#1089#1077' '#1087#1083#1072#1085#1099' '#1086#1087#1083#1072#1090#1099' '
+      #1058#1086#1083#1100#1082#1086' '#1072#1082#1090#1080#1074#1085#1099#1077' '#1087#1083#1072#1085#1099
+      #1058#1086#1083#1100#1082#1086' '#1085#1077#1072#1082#1090#1080#1074#1085#1099#1077' '#1087#1083#1072#1085#1099
+      #1058#1086#1083#1100#1082#1086' '#1088#1072#1079#1088#1077#1096#1077#1085#1085#1099#1077' '#1087#1086' '#1058#1055)
+    TabOrder = 4
+    OnClick = RadioGroupDaysClick
   end
   object UniSQLPlans: TUniQuery
     DataTypeMap = <

@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Data.DB,
   MemDS, DBAccess, Uni, Vcl.Grids, Vcl.DBGrids, DBGridEhGrouping, ToolCtrlsEh,
-  DBGridEhToolCtrls, DynVarsEh, EhLibVCL, GridsEh, DBAxisGridsEh, DBGridEh;
+  DBGridEhToolCtrls, DynVarsEh, EhLibVCL, GridsEh, DBAxisGridsEh, DBGridEh,
+  Vcl.ExtCtrls;
 
 type
   TFormPlans = class(TForm)
@@ -27,10 +28,12 @@ type
     UniSQLPlanslng_active_locally: TStringField;
     UniSQLPlanslng_active_server: TStringField;
     UniSQLPlansreason_change: TStringField;
+    RadioGroupDays: TRadioGroup;
     procedure DBGridEh1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
     procedure BitBtnNewClick(Sender: TObject);
     procedure BitBtnDismissClick(Sender: TObject);
+    procedure RadioGroupDaysClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -88,6 +91,11 @@ inherited;
   end;
   // Просим GRID перерисоваться самому
   TDBGridEh(Sender).DefaultDrawColumnCell(Rect, DataCol, Column, TGridDrawState(State));
+end;
+
+procedure TFormPlans.RadioGroupDaysClick(Sender: TObject);
+begin
+ShowMessage('Доработать');
 end;
 
 procedure TFormPlans.SetFormValues;

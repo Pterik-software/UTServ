@@ -21,12 +21,12 @@ type
     UniSQLPlanslang_item_name: TStringField;
     UniSQLPlansis_active_locally: TBooleanField;
     UniSQLPlansis_active_server: TBooleanField;
-    UniSQLPlansreason_deactivated: TStringField;
     UniSQLPlansupdated_by: TStringField;
     UniSQLPlansupdated_datetime: TDateTimeField;
     UniSQLPlanslog_changes: TStringField;
     UniSQLPlanslng_active_locally: TStringField;
     UniSQLPlanslng_active_server: TStringField;
+    UniSQLPlansreason_change: TStringField;
     procedure DBGridEh1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
     procedure BitBtnNewClick(Sender: TObject);
@@ -43,6 +43,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses DeactivatePlanForm, ActivatePlanForm;
 
 procedure TFormPlans.BitBtnDismissClick(Sender: TObject);
 begin
@@ -65,12 +67,12 @@ procedure TFormPlans.DBGridEh1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
 begin
 inherited;
-  if UniSQLPlans['is_active_locally']=0 then
-    TDBGridEh(Sender).Canvas.Brush.Color:= clYellow
-  else
-    if UniSQLPlans['is_active_server']=0 then
+  if UniSQLPlans['is_active_server']=0 then
     TDBGridEh(Sender).Canvas.Brush.Color:= clFuchsia
-      else TDBGridEh(Sender).Canvas.Brush.Color:= clWhite;
+  else
+    if UniSQLPlans['is_active_locally']=0 then
+      TDBGridEh(Sender).Canvas.Brush.Color:= clYellow
+    else TDBGridEh(Sender).Canvas.Brush.Color:= clWhite;
   // Восстанавливаем выделение текущей позиции курсора
   if gdSelected in State then
   begin

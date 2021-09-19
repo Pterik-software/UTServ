@@ -257,7 +257,7 @@ object FormDeactivatePlan: TFormDeactivatePlan
     Transaction = DM.TransactionLocal
     SQL.Strings = (
       'update business_items c'
-      'set is_active_locally=true, '
+      'set is_active_locally=0, '
       'reason_change = :p_reason, '
       'updated_by = :p_updated_by, '
       'updated_datetime = :p_updated_datetime, '
@@ -270,7 +270,7 @@ object FormDeactivatePlan: TFormDeactivatePlan
         DataType = ftString
         Name = 'p_reason'
         ParamType = ptInput
-        Value = nil
+        Value = 'ANy reason'
       end
       item
         DataType = ftString
@@ -290,10 +290,10 @@ object FormDeactivatePlan: TFormDeactivatePlan
         Value = 'Any reason'
       end
       item
-        DataType = ftInteger
+        DataType = ftString
         Name = 'p_business_id'
         ParamType = ptInput
-        Value = 0
+        Value = 'OTHER'
       end>
   end
   object UniSQLActivePlans: TUniQuery

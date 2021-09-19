@@ -51,15 +51,22 @@ begin
 if FormDeactivatePlan=nil then Application.CreateForm(TFormDeactivatePlan, FormDeactivatePlan);
 FormDeactivatePlan.SetFormValues(UniSQLPlans['business_id']);
 FormDeactivatePlan.ShowModal;
+UniSQLPlans.Refresh;
 DBGridEh1.Refresh;
-
 end;
 
 procedure TFormPlans.BitBtnNewClick(Sender: TObject);
 begin
 if FormActivatePlan=nil then Application.CreateForm(TFormActivatePlan, FormActivatePlan);
+if (UniSQLPlans['is_active_server']=0) then
+  begin
+  MessageDlg('План оплат отмечен как неактивный для Вашей компании на сервере. Свяжитесь с отделом продаж', mtError, [mbOk],0);
+  exit;
+  end;
+
 FormActivatePlan.SetFormValues(UniSQLPlans['business_id']);
 FormActivatePlan.ShowModal;
+UniSQLPlans.Refresh;
 DBGridEh1.Refresh;
 end;
 

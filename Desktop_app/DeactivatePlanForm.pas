@@ -61,8 +61,8 @@ UniSQLUpdateActivePlan.Prepare;
 UniSQLUpdateActivePlan.ParamByName('p_business_id').Value:= UniSQLActivePlans['business_id'];
 UniSQLUpdateActivePlan.ParamByName('p_reason').Value:= EditChangeReason.Text;
 UniSQLUpdateActivePlan.ParamByName('p_log').Value:= 'Изменено пользователем '+DM.CurrentUser+':'+DateTimeToStr(Now()) ;
-UniSQLUpdateActivePlan.ParamByName('p_log').Value:= 'Изменено пользователем '+DM.CurrentUser+':'+DateTimeToStr(Now()) ;
-UniSQLUpdateActivePlan.ParamByName('p_log').Value:= 'Изменено пользователем '+DM.CurrentUser+':'+DateTimeToStr(Now()) ;
+UniSQLUpdateActivePlan.ParamByName('p_updated_by').Value:= DM.CurrentUser;
+UniSQLUpdateActivePlan.ParamByName('p_updated_datetime').Value:= Now();
 UniSQLUpdateActivePlan.Execute;
 MessageDlg('Сохранено', mtInformation, [mbOk],0);
 Close;
@@ -93,7 +93,7 @@ procedure TFormDeactivatePlan.SetFormValues(const Business_id:string);
 begin
 EditChangereason.Text:='';
 if not UniSQLActivePlans.Active then UniSQLActivePlans.Active:=true;
-if not UniSQLActivePlans.Active then UniSQLActivePlans.Active:=true;
+UniSQLActivePlans.First;
 while not UniSQLActivePlans.EOF do
   begin
   if UniSQLActivePlans['business_id']=Business_id then exit;

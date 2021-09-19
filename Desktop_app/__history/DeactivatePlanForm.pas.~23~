@@ -5,12 +5,13 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Data.DB,
-  MemDS, DBAccess, Uni, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.DBCtrls;
+  MemDS, DBAccess, Uni, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.DBCtrls,
+  DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, EhLibVCL,
+  GridsEh, DBAxisGridsEh, DBGridEh;
 
 type
   TFormDeactivatePlan = class(TForm)
     BitBtnClose: TBitBtn;
-    DBGrid1: TDBGrid;
     BitBtnSave: TBitBtn;
     UniDataSource1: TDataSource;
     Label1: TLabel;
@@ -26,16 +27,19 @@ type
     UniSQLActivePlanslng_active_locally: TStringField;
     UniSQLActivePlansis_active_server: TBooleanField;
     UniSQLActivePlanslng_active_server: TStringField;
-    UniSQLActivePlansreason_deactivated: TStringField;
     UniSQLActivePlansupdated_by: TStringField;
     UniSQLActivePlansupdated_datetime: TDateTimeField;
     UniSQLActivePlanslog_changes: TStringField;
+    UniSQLActivePlansreason_change: TStringField;
+    DBGridEh1: TDBGridEh;
     procedure BitBtnCloseClick(Sender: TObject);
     procedure BitBtnSaveClick(Sender: TObject);
+    procedure DBGridEh1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
   private
     { Private declarations }
   public
-    procedure SetFormValues(CurDate:TDate);
+    procedure SetFormValues(const Business_id:string);
   end;
 
 var
@@ -57,15 +61,45 @@ UniSQLUpdateActivePlan.Prepare;
 UniSQLUpdateActivePlan.ParamByName('p_business_id').Value:= UniSQLActivePlans['business_id'];
 UniSQLUpdateActivePlan.ParamByName('p_reason').Value:= EditChangeReason.Text;
 UniSQLUpdateActivePlan.ParamByName('p_log').Value:= 'Изменено пользователем '+DM.CurrentUser+':'+DateTimeToStr(Now()) ;
+UniSQLUpdateActivePlan.ParamByName('p_log').Value:= 'Изменено пользователем '+DM.CurrentUser+':'+DateTimeToStr(Now()) ;
+UniSQLUpdateActivePlan.ParamByName('p_log').Value:= 'Изменено пользователем '+DM.CurrentUser+':'+DateTimeToStr(Now()) ;
 UniSQLUpdateActivePlan.Execute;
 MessageDlg('Сохранено', mtInformation, [mbOk],0);
 Close;
 end;
 
-procedure TFormDeactivatePlan.SetFormValues(CurDate:TDate);
+procedure TFormDeactivatePlan.DBGridEh1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+  State: TGridDrawState);
+begin
+inherited;
+  if UniSQLActivePlans['is_active_server']=0 then
+    TDBGridEh(Sender).Canvas.Brush.Color:= clFuchsia
+  else
+    if UniSQLActivePlans['is_active_locally']=0 then
+      TDBGridEh(Sender).Canvas.Brush.Color:= clYellow
+     else TDBGridEh(Sender).Canvas.Brush.Color:= clWhite;
+  // Восстанавливаем выделение текущей позиции курсора
+  if gdSelected in State then
+  begin
+    TDBGridEh(Sender).Canvas.Brush.Color:= clHighLight;
+    TDBGridEh(Sender).Canvas.Font.Color:= clHighLightText;
+  end;
+  // Просим GRID перерисоваться самому
+  TDBGridEh(Sender).DefaultDrawColumnCell(Rect, DataCol, Column, TGridDrawState(State));
+end;
+
+procedure TFormDeactivatePlan.SetFormValues(const Business_id:string);
 begin
 EditChangereason.Text:='';
 if not UniSQLActivePlans.Active then UniSQLActivePlans.Active:=true;
+if not UniSQLActivePlans.Active then UniSQLActivePlans.Active:=true;
+while not UniSQLActivePlans.EOF do
+  begin
+  if UniSQLActivePlans['business_id']=Business_id then exit;
+  UniSQLActivePlans.next;
+  end;
+
 end;
 
 procedure TFormDeactivatePlan.BitBtnCloseClick(Sender: TObject);

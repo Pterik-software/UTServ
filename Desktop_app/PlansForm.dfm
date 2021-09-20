@@ -16,10 +16,17 @@ object FormPlans: TFormPlans
     561)
   PixelsPerInch = 96
   TextHeight = 13
+  object Label1: TLabel
+    Left = 136
+    Top = 407
+    Width = 31
+    Height = 13
+    Caption = 'Label1'
+  end
   object BitBtnClose: TBitBtn
-    Left = 616
+    Left = 680
     Top = 513
-    Width = 160
+    Width = 96
     Height = 40
     Anchors = [akRight, akBottom]
     Caption = #1047#1072#1082#1088#1099#1090#1100
@@ -46,7 +53,7 @@ object FormPlans: TFormPlans
     TabOrder = 0
   end
   object BitBtnNew: TBitBtn
-    Left = 198
+    Left = 255
     Top = 513
     Width = 201
     Height = 40
@@ -140,7 +147,7 @@ object FormPlans: TFormPlans
     OnClick = BitBtnNewClick
   end
   object BitBtnDismiss: TBitBtn
-    Left = 405
+    Left = 469
     Top = 513
     Width = 205
     Height = 40
@@ -263,18 +270,36 @@ object FormPlans: TFormPlans
   object RadioGroupDays: TRadioGroup
     Left = 8
     Top = 419
-    Width = 184
+    Width = 241
     Height = 134
     Anchors = [akLeft, akBottom]
     Caption = #1054#1090#1086#1073#1088#1072#1078#1072#1090#1100
     ItemIndex = 0
     Items.Strings = (
-      #1042#1089#1077' '#1087#1083#1072#1085#1099' '#1086#1087#1083#1072#1090#1099' '
-      #1058#1086#1083#1100#1082#1086' '#1072#1082#1090#1080#1074#1085#1099#1077' '#1087#1083#1072#1085#1099
-      #1058#1086#1083#1100#1082#1086' '#1085#1077#1072#1082#1090#1080#1074#1085#1099#1077' '#1087#1083#1072#1085#1099
-      #1058#1086#1083#1100#1082#1086' '#1088#1072#1079#1088#1077#1096#1077#1085#1085#1099#1077' '#1087#1086' '#1058#1055)
+      #1042#1089#1077'  '#1074#1086#1079#1084#1086#1078#1085#1099#1077' '#1087#1083#1072#1085#1099' '#1086#1087#1083#1072#1090#1099
+      #1040#1082#1090#1080#1074#1085#1099#1077' '#1076#1083#1103' '#1085#1072#1089' '#1087#1083#1072#1085#1099' '#1086#1087#1083#1072#1090#1099
+      #1044#1077#1072#1082#1090#1080#1074#1080#1088#1086#1074#1072#1085#1085#1099#1077' '#1087#1083#1072#1085#1099' '#1086#1087#1083#1072#1090#1099
+      #1058#1086#1083#1100#1082#1086' '#1088#1072#1079#1088#1077#1096#1077#1085#1085#1099#1077' '#1087#1086' '#1085#1072#1096#1077#1081' '#1087#1086#1076#1087#1080#1089#1082#1077
+      #1053#1077#1076#1086#1089#1090#1091#1087#1085#1099#1077' '#1087#1086' '#1085#1072#1096#1077#1081' '#1087#1086#1076#1087#1080#1089#1082#1077)
     TabOrder = 4
     OnClick = RadioGroupDaysClick
+  end
+  object StaticText1: TStaticText
+    Left = 272
+    Top = 419
+    Width = 504
+    Height = 88
+    AutoSize = False
+    Caption = 
+      #1045#1089#1083#1080' '#1042#1099' '#1093#1086#1090#1080#1090#1077' '#1076#1086#1073#1072#1074#1080#1090#1100' '#1087#1083#1072#1085#1099' '#1086#1087#1083#1072#1090#1099', '#1085#1077#1076#1086#1089#1090#1091#1087#1085#1099#1077' '#1076#1083#1103' '#1042#1072#1089' '#1089#1077#1081#1095#1072#1089 +
+      ', '#1086#1073#1088#1072#1097#1072#1081#1090#1077#1089#1100' '#1074' '#1086#1090#1076#1077#1083' '#1087#1088#1086#1076#1072#1078' '#1080' '#1079#1072#1082#1072#1079#1099#1074#1072#1081#1090#1077' '#1088#1072#1089#1096#1080#1088#1077#1085#1085#1091#1102' '#1087#1086#1076#1087#1080#1089#1082#1091
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 5
   end
   object UniSQLPlans: TUniQuery
     DataTypeMap = <
@@ -297,12 +322,31 @@ object FormPlans: TFormPlans
         'server) lng_active_server, '
       'reason_change, updated_by, updated_datetime, '
       'log_changes'
-      'from business_items b')
+      'from business_items b'
+      
+        'where (is_active_locally = :p_active_locally or :p_active_locall' +
+        'y IS NULL) '
+      
+        'and (is_active_server = :p_active_server or :p_active_server IS ' +
+        'NULL)')
     ReadOnly = True
     Active = True
     AutoCalcFields = False
     Left = 120
     Top = 296
+    ParamData = <
+      item
+        DataType = ftBoolean
+        Name = 'p_active_locally'
+        ParamType = ptInput
+        Value = nil
+      end
+      item
+        DataType = ftBoolean
+        Name = 'p_active_server'
+        ParamType = ptInput
+        Value = nil
+      end>
     object UniSQLPlansbusiness_id: TStringField
       FieldName = 'business_id'
       Required = True

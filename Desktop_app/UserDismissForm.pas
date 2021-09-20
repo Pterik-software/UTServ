@@ -32,9 +32,13 @@ type
     UniQueryRolesorderby: TIntegerField;
     UniQueryRolesrole_name: TStringField;
     UniQueryRoleslang_role_name: TStringField;
+    UniLoginsCntr: TUniQuery;
+    UniLoginsCntrcntr: TLargeintField;
+    UniLoginsCntrcntr_active: TFloatField;
     procedure BitBtnCancelClick(Sender: TObject);
     procedure BitBtnSaveClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure EditLoginExit(Sender: TObject);
   private
     UserID:integer;
     DismissUser:boolean;
@@ -49,27 +53,30 @@ implementation
 
 {$R *.dfm}
 
+uses DataModule, System.UITypes;
+
 procedure TFormDismissUser.BitBtnCancelClick(Sender: TObject);
 begin
+
 Close;
 end;
 
 procedure TFormDismissUser.BitBtnSaveClick(Sender: TObject);
 var CanSave:boolean;
 begin
-ShowMessage('Проверить на двойной лони при воссстановлении');
 CanSave:=true;
-if DismissUser then
+EditLogin.Text:=Uppercase(Trim(EditLogin.Text));
+UniLoginsCntr.Close;
+UniLoginsCntr.ParamByName('p_login').Value:= EditLogin.Text;
+UniLoginsCntr.ParamByName('p_user_id').Value:= UserID;
+UniLoginsCntr.Execute;
+if UniLoginsCntr['cntr']>=1 then
   begin
-    //Увольняем пользователя и проверяем его даты
-
+    if UniLoginsCntr['cntr_active']>0
+      then MessageDlg('Уже существует работающий пользователь с таким же логином. Рекомендуем указать email в качестве логина',mtError, [mbOk],0)
+      else MessageDlg('Существует неактивный пользователь с таким же логином, выберите другой логин.',mtError, [mbOk],0);
+    exit;
   end;
-if not DismissUser then
-  begin
-    //Увольняем пользователя и проверяем его даты
-
-  end;
-
 if (DTHired.Date >= DTDismissed.Date) and DismissUser then
   begin
   ShowMessage('Дата увольнения меньше, чем дата наёма. Исправьте ошибку.');
@@ -86,7 +93,11 @@ if CanSave then
   UniSQLDismiss.ParamByName('p_closure_date').Value:= DTDismissed.Date;
   UniSQLDismiss.Execute;
   end;
-ModalResult:=mrCancel;
+end;
+
+procedure TFormDismissUser.EditLoginExit(Sender: TObject);
+begin
+EditLogin.Text:=Uppercase(Trim(EditLogin.Text));
 end;
 
 procedure TFormDismissUser.FormCloseQuery(Sender: TObject;

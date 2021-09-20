@@ -192,6 +192,7 @@ object FormDismissUser: TFormDismissUser
     ParentFont = False
     ReadOnly = True
     TabOrder = 3
+    OnExit = EditLoginExit
   end
   object ComboBoxRoles: TComboBox
     Left = 95
@@ -259,8 +260,8 @@ object FormDismissUser: TFormDismissUser
     Transaction = DM.TransactionLocal
     SQL.Strings = (
       'select * from user_roles')
-    Left = 272
-    Top = 200
+    Left = 264
+    Top = 24
     object UniQueryRolesrole_id: TStringField
       FieldName = 'role_id'
       Size = 50
@@ -294,8 +295,8 @@ object FormDismissUser: TFormDismissUser
       'from'
       '    users'
       'where user_id = :p_user_id')
-    Left = 272
-    Top = 256
+    Left = 168
+    Top = 16
     ParamData = <
       item
         DataType = ftInteger
@@ -335,5 +336,39 @@ object FormDismissUser: TFormDismissUser
         ParamType = ptInput
         Value = 0
       end>
+  end
+  object UniLoginsCntr: TUniQuery
+    Connection = DM.UniXBilly
+    Transaction = DM.TransactionLocal
+    SQL.Strings = (
+      'select count(*) as cntr,  '
+      'sum(is_active) as cntr_active'
+      'from users'
+      'where upper(login) = upper(:p_login)'
+      'and user_id <> :p_user_id')
+    Left = 320
+    Top = 128
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'p_login'
+        ParamType = ptInput
+        Value = 'AAA'
+      end
+      item
+        DataType = ftInteger
+        Name = 'p_user_id'
+        ParamType = ptInput
+        Value = 0
+      end>
+    object UniLoginsCntrcntr: TLargeintField
+      FieldName = 'cntr'
+      ReadOnly = True
+      Required = True
+    end
+    object UniLoginsCntrcntr_active: TFloatField
+      FieldName = 'cntr_active'
+      ReadOnly = True
+    end
   end
 end

@@ -42,6 +42,10 @@ type
     QueryCurrUserclosure_date: TDateField;
     UniQueryRoleslang_role_name: TStringField;
     QueryCurrUserlang_role_name: TStringField;
+    UniLoginsCntr: TUniQuery;
+    UniLoginsCntrcntr: TLargeintField;
+    UniLoginsCntrcntr_active: TFloatField;
+    LabelChangePWD: TLabel;
     procedure BitBtnCancelClick(Sender: TObject);
     procedure BitBtnPasswordClick(Sender: TObject);
     procedure BitBtnSaveClick(Sender: TObject);
@@ -53,9 +57,10 @@ type
     procedure CheckBoxWorkingClick(Sender: TObject);
     procedure ComboBoxRolesKeyPress(Sender: TObject; var Key: Char);
     procedure ComboBoxRolesMouseEnter(Sender: TObject);
+    procedure EditLoginExit(Sender: TObject);
   private
     FormChanged:boolean;
-    FormCanBeSaved:boolean;
+    FormCanBeClosed:boolean;
     UserID:integer;
   public
     procedure SetFormValues(LUserID:integer);
@@ -68,10 +73,11 @@ implementation
 
 {$R *.dfm}
 
-uses DataModule;
+uses DataModule, System.UITypes;
 
 procedure TFormUpdateUser.BitBtnCancelClick(Sender: TObject);
 begin
+FormCanBeClosed:=true;
 Close;
 end;
 
@@ -80,20 +86,33 @@ begin
 EditPassword.Enabled:=true;
 EditPassword.ReadOnly:=false;
 EditPassword.PasswordChar:=#0;
-ShowMessage('Введите новый пароль и нажмите "Сохранить"');
+LabelChangePWD.Visible:=true;
+//ShowMessage('Введите новый пароль и нажмите "Сохранить"');
 end;
 
 procedure TFormUpdateUser.BitBtnSaveClick(Sender: TObject);
 var CanSave:boolean;
 begin
-ShowMessage('Исправить проверку на двойной логин');
+EditLogin.Text:=Uppercase(Trim(EditLogin.Text));
 try
 CanSave:=true;
+UniLoginsCntr.Close;
+UniLoginsCntr.ParamByName('p_login').Value:= EditLogin.Text;
+UniLoginsCntr.ParamByName('p_user_id').Value:= UserID;
+UniLoginsCntr.Execute;
+if UniLoginsCntr['cntr']>=1 then
+  begin
+    if UniLoginsCntr['cntr_active']>0
+      then MessageDlg('Уже существует работающий пользователь с таким же логином. Рекомендуем указать email в качестве логина',mtError, [mbOk],0)
+      else MessageDlg('Существует неактивный пользователь с таким же логином, выберите другой логин.',mtError, [mbOk],0);
+    CanSave:=false;
+  end;
 if not FormChanged then
   begin
     CanSave:=false;
     ShowMessage('Данные не изменялись, сохранение отменено');
   end;
+
 if CanSave then
   begin
   UniUpdateSQLUser.Prepare;
@@ -103,17 +122,18 @@ if CanSave then
   UniUpdateSQLUser.ParamByName('p_password').Value:= EditPassword.Text;
   UniUpdateSQLUser.ParamByName('p_lang_role_name').Value:= ComboboxRoles.Text;
   UniUpdateSQLUser.ParamByName('p_hiring_date').Value:= DTHired.Date;
-  UniUpdateSQLUser.ParamByName('p_closure_date').Value:= DTDismissed.Date;
+  if QueryCurrUser['is_active']
+    then UniUpdateSQLUser.ParamByName('p_closure_date').Value:= NULL
+    else UniUpdateSQLUser.ParamByName('p_closure_date').Value:= DTDismissed.Date;
   UniUpdateSQLUser.Execute;
   end;
 
 except on E:Exception do
   begin
-  FormCanBeSaved:=false;
+  FormCanBeClosed:=false;
   ShowMessage('Error:'+E.Message);
   end;
 end;
-ModalResult:=mrCancel;
 end;
 
 procedure TFormUpdateUser.CheckBoxWorkingClick(Sender: TObject);
@@ -151,6 +171,11 @@ begin
 FormChanged:=true;
 end;
 
+procedure TFormUpdateUser.EditLoginExit(Sender: TObject);
+begin
+EditLogin.Text:=Uppercase(Trim(EditLogin.Text));
+end;
+
 procedure TFormUpdateUser.EditPasswordChange(Sender: TObject);
 begin
 FormChanged:=true;
@@ -160,7 +185,7 @@ procedure TFormUpdateUser.SetFormValues(LUserID:integer);
 var ComboRolesIndex:integer;
 begin
 UserID:=LUserID;
-FormCanBeSaved:=true;
+FormCanBeClosed:=true;
 ComboRolesIndex:=0;
 NullStrictConvert := false;
 QueryCurrUser.Close;
@@ -170,6 +195,7 @@ EditUserID.Text:=QueryCurrUser['user_id'];
 EditFullName.Text:=QueryCurrUser['full_name'];
 EditLogin.Text:=QueryCurrUser['login'];
 EditPassword.Text:=QueryCurrUser['password'];
+LabelChangePWD.Visible:=false;
 if VarIsNull(QueryCurrUser['hiring_date'])
   then begin DTHired.Visible:=false; LabelHired.Visible:=false; end
   else begin DTHired.Visible:=true; LabelHired.Visible:=true; DTHired.DateTime:=QueryCurrUser['hiring_date'];  end;
@@ -192,7 +218,6 @@ ComboBoxRoles.ItemIndex:=ComboRolesIndex;
 EditPassword.Enabled:=false;
 EditPassword.ReadOnly:=true;
 EditPassword.PasswordChar:='*';
-
 if QueryCurrUser['is_active'] then CheckBoxWorking.Checked:=true else CheckBoxWorking.Checked:=false;
 FormChanged:=false;
 end;

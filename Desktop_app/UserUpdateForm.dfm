@@ -107,6 +107,21 @@ object FormUpdateUser: TFormUpdateUser
     Font.Style = []
     ParentFont = False
   end
+  object LabelChangePWD: TLabel
+    Left = 240
+    Top = 205
+    Width = 169
+    Height = 44
+    AutoSize = False
+    Caption = #1059#1082#1072#1078#1080#1090#1077' '#1087#1072#1088#1086#1083#1100' '#1080' '#1085#1072#1078#1084#1080#1090#1077' "'#1057#1086#1093#1088#1072#1085#1080#1090#1100'"'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    WordWrap = True
+  end
   object BitBtnSave: TBitBtn
     Left = 8
     Top = 365
@@ -177,6 +192,7 @@ object FormUpdateUser: TFormUpdateUser
     TabOrder = 4
     Text = 'EditLogin'
     OnChange = EditLoginChange
+    OnExit = EditLoginExit
   end
   object EditPassword: TEdit
     Left = 91
@@ -370,7 +386,9 @@ object FormUpdateUser: TFormUpdateUser
         '  role_id = (select role_id from user_roles r where r.lang_role_' +
         'name = :p_lang_role_name), '
       '  hiring_date = :p_hiring_date, '
-      '  closure_date =:p_closure_date'
+      
+        '   closure_date = case when :p_closure_date is null then null el' +
+        'se :p_closure_date end'
       'WHERE user_id = :p_user_id')
     Left = 248
     Top = 304
@@ -417,5 +435,39 @@ object FormUpdateUser: TFormUpdateUser
         ParamType = ptInput
         Value = 0
       end>
+  end
+  object UniLoginsCntr: TUniQuery
+    Connection = DM.UniXBilly
+    Transaction = DM.TransactionLocal
+    SQL.Strings = (
+      'select count(*) as cntr,  '
+      'sum(is_active) as cntr_active'
+      'from users'
+      'where upper(login) = upper(:p_login)'
+      'and user_id <> :p_user_id')
+    Left = 320
+    Top = 128
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'p_login'
+        ParamType = ptInput
+        Value = 'AAA'
+      end
+      item
+        DataType = ftInteger
+        Name = 'p_user_id'
+        ParamType = ptInput
+        Value = 0
+      end>
+    object UniLoginsCntrcntr: TLargeintField
+      FieldName = 'cntr'
+      ReadOnly = True
+      Required = True
+    end
+    object UniLoginsCntrcntr_active: TFloatField
+      FieldName = 'cntr_active'
+      ReadOnly = True
+    end
   end
 end

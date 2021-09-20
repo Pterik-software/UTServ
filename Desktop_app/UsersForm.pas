@@ -28,6 +28,7 @@ type
     UniSQLUserslang_role_name: TStringField;
     UniSQLUsersorderby: TIntegerField;
     DBGridEh1: TDBGridEh;
+    UniSQLUsersaccess_to_app: TBooleanField;
     procedure BitBtnCloseClick(Sender: TObject);
     procedure BitBtnEditClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -99,7 +100,9 @@ begin
   if UniSQLUsers['is_active']=0 then
     TDBGridEh(Sender).Canvas.Brush.Color:= clYellow
   else
-    TDBGridEh(Sender).Canvas.Brush.Color:= clWhite;
+      if UniSQLUsers['access_to_app']=0
+      then TDBGridEh(Sender).Canvas.Brush.Color:= clFuchsia
+      else TDBGridEh(Sender).Canvas.Brush.Color:= clWhite;
   // Восстанавливаем выделение текущей позиции курсора
   if gdSelected in State then
   begin

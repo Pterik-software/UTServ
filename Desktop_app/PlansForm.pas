@@ -29,13 +29,15 @@ type
     UniSQLPlanslng_active_server: TStringField;
     UniSQLPlansreason_change: TStringField;
     RadioGroupDays: TRadioGroup;
+    Label1: TLabel;
+    StaticText1: TStaticText;
     procedure DBGridEh1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
     procedure BitBtnNewClick(Sender: TObject);
     procedure BitBtnDismissClick(Sender: TObject);
     procedure RadioGroupDaysClick(Sender: TObject);
   private
-    { Private declarations }
+    procedure SetPlansQuery(const active_locally, active_server:integer);
   public
     procedure SetFormValues;
   end;
@@ -47,7 +49,7 @@ implementation
 
 {$R *.dfm}
 
-uses DeactivatePlanForm, ActivatePlanForm;
+uses System.UITypes, DataModule, DeactivatePlanForm, ActivatePlanForm;
 
 procedure TFormPlans.BitBtnDismissClick(Sender: TObject);
 begin
@@ -94,13 +96,43 @@ inherited;
 end;
 
 procedure TFormPlans.RadioGroupDaysClick(Sender: TObject);
+var active_locally, active_server:integer;
 begin
-ShowMessage('Доработать');
+Label1.Caption:=IntToStr(RadioGroupDays.ItemIndex);
+active_locally := -1; active_server := -1;
+// active_locally = 1 true
+// active_locally = 0 false
+// active_locally = -1 null
+// active_server = 1 true
+// active_server = 0 false
+// active_server = -1 null
+
+case RadioGroupDays.ItemIndex of
+  0: begin active_locally := -1; active_server := -1; end;
+  1: begin active_locally := 1;  active_server := -1; end;
+  2: begin active_locally := 0;  active_server := -1; end;
+  3: begin active_locally := -1; active_server := 1;  end;
+  4: begin active_locally := -1; active_server := 0;  end;
+end;
+SetPlansQuery(active_locally, active_server);
 end;
 
 procedure TFormPlans.SetFormValues;
 begin
+SetPlansQuery(-1, -1);
 if not UniSQLPlans.Active then UniSQLPlans.Active:=true;
+end;
+
+procedure TFormPlans.SetPlansQuery(const active_locally,
+  active_server: integer);
+begin
+UniSQLPlans.Active:=false;
+if  active_locally=-1
+  then UniSQLPlans.ParamByName('p_active_locally').Value:=NULL
+  else UniSQLPlans.ParamByName('p_active_locally').Value:=active_locally;
+
+UniSQLPlans.ParamByName('p_active_server').Value:=active_server;
+UniSQLPlans.Active:=true;
 end;
 
 end.

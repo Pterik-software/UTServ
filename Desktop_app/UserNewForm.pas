@@ -31,13 +31,21 @@ type
     UniQueryRolesrole_name: TStringField;
     UniQueryRoleslang_role_name: TStringField;
     UniDataSource1: TUniDataSource;
+    UniLoginsCntr: TUniQuery;
+    UniLoginsCntrcntr: TLargeintField;
+    UniLoginsCntrcntr_active: TFloatField;
+    CheckBoxNoAccess: TCheckBox;
     procedure BitBtnCancelClick(Sender: TObject);
     procedure BitBtnSaveClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure EditLoginExit(Sender: TObject);
+    procedure CheckBoxNoAccessClick(Sender: TObject);
   private
     FormCanBeClosed:boolean;
+    function GetNoAccess: boolean;
+    procedure SetNoAccess(const Value: boolean);
   public
-    { Public declarations }
+     Property NoAccess : boolean read GetNoAccess write SetNoAccess;
     procedure SetFormValues;
   end;
 
@@ -58,10 +66,10 @@ end;
 
 procedure TFormNewUser.BitBtnSaveClick(Sender: TObject);
 begin
+SetNoAccess(CheckBoxNoAccess.Checked);
+EditFullName.Text:=Uppercase(Trim(EditFullName.Text));
 FormCanBeClosed:=true;
-ShowMessage('Добавить проверку на двойной логин');
 try
-
 if EditFullName.Text='' then
   begin
   MessageDlg('Укажите Фамилию Имя Отчество (ФИО). Поле не может быть пустым.',mtError, [mbOk],0);
@@ -81,6 +89,17 @@ if EditPassword.Text='' then
   FormCanBeClosed:=false;
   exit;
   end;
+UniLoginsCntr.Close;
+UniLoginsCntr.ParamByName('p_login').Value:= EditLogin.Text;
+UniLoginsCntr.Execute;
+if UniLoginsCntr['cntr']>=1 then
+  begin
+    if UniLoginsCntr['cntr_active']>0
+      then MessageDlg('Уже существует работающий пользователь с таким же логином. Рекомендуем указать email в качестве логина',mtError, [mbOk],0)
+      else MessageDlg('Существует неактивный пользователь с таким же логином, выберите другой логин.',mtError, [mbOk],0);
+    FormCanBeClosed:=false;
+    exit;
+  end;
 
 UniInsertSQLUser.Prepare;
 UniInsertSQLUser.ParambyName('p_full_name').Value:= EditFullName.Text;
@@ -88,6 +107,8 @@ UniInsertSQLUser.ParamByName('p_login').Value:= EditLogin.Text;
 UniInsertSQLUser.ParamByName('p_lang_role_name').Value:= ComboboxRoles.Text;
 UniInsertSQLUser.ParamByName('p_password').Value:= EditPassword.Text;
 UniInsertSQLUser.ParamByName('p_hiring_date').Value:= DTHired.Date;
+UniInsertSQLUser.ParamByName('p_access_to_app').Value:= not GetNoAccess;
+
 UniInsertSQLUser.Execute;
 
 except on Exception do
@@ -96,14 +117,31 @@ end;
 
 end;
 
+procedure TFormNewUser.CheckBoxNoAccessClick(Sender: TObject);
+begin
+SetNoAccess(CheckBoxNoAccess.Checked);
+end;
+
+procedure TFormNewUser.EditLoginExit(Sender: TObject);
+begin
+EditLogin.Text:=Uppercase(Trim(EditLogin.Text));
+end;
+
 procedure TFormNewUser.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
 CanClose:= FormCanBeClosed;
 end;
 
+function TFormNewUser.GetNoAccess: boolean;
+begin
+Result:=NoAccess;
+end;
+
 procedure TFormNewUser.SetFormValues;
 var ComboBoxRolesIndex:integer;
 begin
+SetNoAccess(false);
+CheckBoxNoAccess.Checked:=false;
 ComboBoxRolesIndex:=0;
 EditFullName.Text:='';
 EditLogin.Text:='';
@@ -118,6 +156,12 @@ while not UniQueryRoles.EOF do
   end;
 ComboBoxRoles.ItemIndex:=ComboBoxRolesIndex;
 DTHired.DateTime:=Now();
+end;
+
+procedure TFormNewUser.SetNoAccess(const Value: boolean);
+begin
+NoAccess:=Value;
+EditPassword.Visible:=not NoAccess;
 end;
 
 end.

@@ -11,12 +11,13 @@ object FormUpdateUser: TFormUpdateUser
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCloseQuery = FormCloseQuery
   DesignSize = (
     430
     413)
   PixelsPerInch = 96
   TextHeight = 13
-  object Label2: TLabel
+  object LabelLogin: TLabel
     Left = 34
     Top = 110
     Width = 35
@@ -29,7 +30,7 @@ object FormUpdateUser: TFormUpdateUser
     Font.Style = []
     ParentFont = False
   end
-  object Label3: TLabel
+  object LabelPassword: TLabel
     Left = 34
     Top = 208
     Width = 43
@@ -181,7 +182,7 @@ object FormUpdateUser: TFormUpdateUser
   object EditLogin: TEdit
     Left = 90
     Top = 110
-    Width = 199
+    Width = 143
     Height = 24
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -288,6 +289,22 @@ object FormUpdateUser: TFormUpdateUser
       #1055#1077#1088#1089#1086#1085#1072#1083
       #1055#1077#1088#1089#1086#1085#1072#1083'2')
   end
+  object CheckBoxNoAccess: TCheckBox
+    Left = 258
+    Top = 102
+    Width = 164
+    Height = 34
+    Caption = #1041#1077#1079' '#1076#1086#1089#1090#1091#1087#1072' '#1089#1086#1090#1088#1091#1076#1085#1080#1082#1091' '#1082' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 11
+    WordWrap = True
+    OnClick = CheckBoxNoAccessClick
+  end
   object QueryCurrUser: TUniQuery
     UpdatingTable = 'users'
     Connection = DM.UniXBilly
@@ -304,7 +321,8 @@ object FormUpdateUser: TFormUpdateUser
         '    (select lang_role_name from user_roles r where r.role_id = u' +
         'sers.role_id) as lang_role_name,'
       '    hiring_date,'
-      '    closure_date'
+      '    closure_date, '
+      '    access_to_app'
       'from'
       '    users'
       'where user_id = :p_user_id')
@@ -356,6 +374,9 @@ object FormUpdateUser: TFormUpdateUser
       ReadOnly = True
       Size = 255
     end
+    object QueryCurrUseraccess_to_app: TBooleanField
+      FieldName = 'access_to_app'
+    end
   end
   object UniQueryRoles: TUniQuery
     Connection = DM.UniXBilly
@@ -387,8 +408,9 @@ object FormUpdateUser: TFormUpdateUser
         'name = :p_lang_role_name), '
       '  hiring_date = :p_hiring_date, '
       
-        '   closure_date = case when :p_closure_date is null then null el' +
-        'se :p_closure_date end'
+        '  closure_date = case when :p_closure_date is null then null els' +
+        'e :p_closure_date end,'
+      '  access_to_app=:p_access_to_app'
       'WHERE user_id = :p_user_id')
     Left = 248
     Top = 304
@@ -430,6 +452,12 @@ object FormUpdateUser: TFormUpdateUser
         Value = nil
       end
       item
+        DataType = ftBoolean
+        Name = 'p_access_to_app'
+        ParamType = ptInput
+        Value = True
+      end
+      item
         DataType = ftInteger
         Name = 'p_user_id'
         ParamType = ptInput
@@ -444,9 +472,10 @@ object FormUpdateUser: TFormUpdateUser
       'sum(is_active) as cntr_active'
       'from users'
       'where upper(login) = upper(:p_login)'
-      'and user_id <> :p_user_id')
-    Left = 320
-    Top = 128
+      'and user_id <> :p_user_id'
+      'and access_to_app=1')
+    Left = 336
+    Top = 144
     ParamData = <
       item
         DataType = ftString

@@ -30,7 +30,7 @@ object FormNewUser: TFormNewUser
     Font.Style = []
     ParentFont = False
   end
-  object Label2: TLabel
+  object LabelLogin: TLabel
     Left = 34
     Top = 70
     Width = 35
@@ -56,7 +56,7 @@ object FormNewUser: TFormNewUser
     Font.Style = []
     ParentFont = False
   end
-  object Label3: TLabel
+  object LabelPassword: TLabel
     Left = 34
     Top = 208
     Width = 43
@@ -194,7 +194,7 @@ object FormNewUser: TFormNewUser
     ParentFont = False
     TabOrder = 6
   end
-  object StaticText1: TStaticText
+  object STComment2: TStaticText
     Left = 67
     Top = 131
     Width = 229
@@ -208,7 +208,7 @@ object FormNewUser: TFormNewUser
     ParentFont = False
     TabOrder = 7
   end
-  object StaticText2: TStaticText
+  object STComment1: TStaticText
     Left = 67
     Top = 105
     Width = 211
@@ -329,7 +329,8 @@ object FormNewUser: TFormNewUser
       'select count(*) as cntr,  '
       'sum(is_active) as cntr_active'
       'from users'
-      'where upper(login) = upper(:p_login)')
+      'where upper(login) = upper(:p_login)'
+      'and access_to_app=1')
     Left = 312
     Top = 256
     ParamData = <

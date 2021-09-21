@@ -11,7 +11,6 @@ object FormUsers: TFormUsers
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnCreate = FormCreate
   DesignSize = (
     784
     561)
@@ -401,7 +400,6 @@ object FormUsers: TFormUsers
       'from users u, user_roles r'
       'where u.role_id = r.role_id'
       'order by orderby')
-    Active = True
     AutoCalcFields = False
     Left = 104
     Top = 256

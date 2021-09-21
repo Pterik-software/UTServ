@@ -74,7 +74,7 @@ procedure TFormDeactivatePlan.DBGridEh1DrawColumnCell(Sender: TObject;
 begin
 inherited;
   if UniSQLActivePlans['is_active_server']=0 then
-    TDBGridEh(Sender).Canvas.Brush.Color:= clFuchsia
+    TDBGridEh(Sender).Canvas.Brush.Color:= clMoneyGreen
   else
     if UniSQLActivePlans['is_active_locally']=0 then
       TDBGridEh(Sender).Canvas.Brush.Color:= clYellow

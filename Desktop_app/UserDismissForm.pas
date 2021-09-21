@@ -42,6 +42,7 @@ type
   private
     UserID:integer;
     DismissUser:boolean;
+    FormCanBeClosed:boolean;
   public
     procedure SetFormValues(LUserID:integer; LDismissUser:boolean);
   end;
@@ -57,13 +58,14 @@ uses DataModule, System.UITypes;
 
 procedure TFormDismissUser.BitBtnCancelClick(Sender: TObject);
 begin
-
+FormCanBeClosed:=true;
 Close;
 end;
 
 procedure TFormDismissUser.BitBtnSaveClick(Sender: TObject);
 var CanSave:boolean;
 begin
+FormCanBeClosed:=True;
 CanSave:=true;
 EditLogin.Text:=Uppercase(Trim(EditLogin.Text));
 UniLoginsCntr.Close;
@@ -83,6 +85,7 @@ if (DTHired.Date >= DTDismissed.Date) and DismissUser then
   LabelDismissComment.Caption:='Дата увольнения меньше, чем дата наёма. Исправьте ошибку.';
   LabelDismissComment.Visible:=true;
   LabelDismissComment.Font.Color:=clRed;
+  FormCanBeClosed:=false;
   CanSave:=false;
   end;
 if CanSave then
@@ -103,13 +106,12 @@ end;
 procedure TFormDismissUser.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
-if (DTHired.Date >= DTDismissed.Date) and DismissUser
-  then CanClose:=False
-  else CanClose:=True;
+CanClose:=FormCanBeClosed;
 end;
 
 procedure TFormDismissUser.SetFormValues(LUserID:integer; LDismissUser:boolean);
 begin
+FormCanBeClosed:=true;
 DismissUser:=LDismissUser;
 UserID:=LUserID;
 if DismissUser then

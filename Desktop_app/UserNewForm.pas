@@ -14,19 +14,19 @@ type
     BitBtnCancel: TBitBtn;
     Label5: TLabel;
     EditFullName: TEdit;
-    Label2: TLabel;
+    LabelLogin: TLabel;
     EditLogin: TEdit;
     Label4: TLabel;
     ComboBoxRoles: TComboBox;
-    Label3: TLabel;
+    LabelPassword: TLabel;
     EditPassword: TEdit;
     LabelHired: TLabel;
     DTHired: TDateTimePicker;
     UniQueryRoles: TUniQuery;
     UniQueryRolesrole_id: TStringField;
     UniInsertSQLUser: TUniSQL;
-    StaticText1: TStaticText;
-    StaticText2: TStaticText;
+    STComment2: TStaticText;
+    STComment1: TStaticText;
     UniQueryRolesorderby: TIntegerField;
     UniQueryRolesrole_name: TStringField;
     UniQueryRoleslang_role_name: TStringField;
@@ -42,10 +42,8 @@ type
     procedure CheckBoxNoAccessClick(Sender: TObject);
   private
     FormCanBeClosed:boolean;
-    function GetNoAccess: boolean;
-    procedure SetNoAccess(const Value: boolean);
   public
-     Property NoAccess : boolean read GetNoAccess write SetNoAccess;
+     NoAccess : boolean;
     procedure SetFormValues;
   end;
 
@@ -56,7 +54,7 @@ implementation
 
 {$R *.dfm}
 
-uses system.UItypes;
+uses System.UItypes;
 
 procedure TFormNewUser.BitBtnCancelClick(Sender: TObject);
 begin
@@ -66,7 +64,7 @@ end;
 
 procedure TFormNewUser.BitBtnSaveClick(Sender: TObject);
 begin
-SetNoAccess(CheckBoxNoAccess.Checked);
+NoAccess:=CheckBoxNoAccess.Checked;
 EditFullName.Text:=Uppercase(Trim(EditFullName.Text));
 FormCanBeClosed:=true;
 try
@@ -76,14 +74,14 @@ if EditFullName.Text='' then
   FormCanBeClosed:=false;
   exit;
   end;
-if EditLogin.Text='' then
+if (EditLogin.Text='') and not NoAccess then
   begin
   MessageDlg('Укажите логин пользователя. Это поле не может быть пустым.',mtError, [mbOk],0);
   FormCanBeClosed:=false;
   exit;
   end;
 
-if EditPassword.Text='' then
+if (EditPassword.Text='') and not NoAccess then
   begin
   MessageDlg('Укажите пароль пользователя. Это поле не может быть пустым.',mtError, [mbOk],0);
   FormCanBeClosed:=false;
@@ -92,7 +90,7 @@ if EditPassword.Text='' then
 UniLoginsCntr.Close;
 UniLoginsCntr.ParamByName('p_login').Value:= EditLogin.Text;
 UniLoginsCntr.Execute;
-if UniLoginsCntr['cntr']>=1 then
+if (UniLoginsCntr['cntr']>=1) and not NoAccess then
   begin
     if UniLoginsCntr['cntr_active']>0
       then MessageDlg('Уже существует работающий пользователь с таким же логином. Рекомендуем указать email в качестве логина',mtError, [mbOk],0)
@@ -107,8 +105,7 @@ UniInsertSQLUser.ParamByName('p_login').Value:= EditLogin.Text;
 UniInsertSQLUser.ParamByName('p_lang_role_name').Value:= ComboboxRoles.Text;
 UniInsertSQLUser.ParamByName('p_password').Value:= EditPassword.Text;
 UniInsertSQLUser.ParamByName('p_hiring_date').Value:= DTHired.Date;
-UniInsertSQLUser.ParamByName('p_access_to_app').Value:= not GetNoAccess;
-
+UniInsertSQLUser.ParamByName('p_access_to_app').Value:= not NoAccess;
 UniInsertSQLUser.Execute;
 
 except on Exception do
@@ -119,7 +116,13 @@ end;
 
 procedure TFormNewUser.CheckBoxNoAccessClick(Sender: TObject);
 begin
-SetNoAccess(CheckBoxNoAccess.Checked);
+NoAccess:=CheckBoxNoAccess.Checked;
+EditPassword.Enabled:=not NoAccess;
+EditLogin.Enabled:=not NoAccess;
+if NoAccess then EditLogin.Text:='';
+if NoAccess then EditPassword.Text:='';
+STComment1.Visible:=not NoAccess;
+STComment2.Visible:=not NoAccess;
 end;
 
 procedure TFormNewUser.EditLoginExit(Sender: TObject);
@@ -132,15 +135,10 @@ begin
 CanClose:= FormCanBeClosed;
 end;
 
-function TFormNewUser.GetNoAccess: boolean;
-begin
-Result:=NoAccess;
-end;
-
 procedure TFormNewUser.SetFormValues;
 var ComboBoxRolesIndex:integer;
 begin
-SetNoAccess(false);
+NoAccess:=false;
 CheckBoxNoAccess.Checked:=false;
 ComboBoxRolesIndex:=0;
 EditFullName.Text:='';
@@ -156,12 +154,6 @@ while not UniQueryRoles.EOF do
   end;
 ComboBoxRoles.ItemIndex:=ComboBoxRolesIndex;
 DTHired.DateTime:=Now();
-end;
-
-procedure TFormNewUser.SetNoAccess(const Value: boolean);
-begin
-NoAccess:=Value;
-EditPassword.Visible:=not NoAccess;
 end;
 
 end.

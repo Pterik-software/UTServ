@@ -12,8 +12,8 @@ type
   TFormUpdateUser = class(TForm)
     BitBtnSave: TBitBtn;
     BitBtnCancel: TBitBtn;
-    Label2: TLabel;
-    Label3: TLabel;
+    LabelLogin: TLabel;
+    LabelPassword: TLabel;
     Label4: TLabel;
     Label1: TLabel;
     EditUserID: TEdit;
@@ -46,6 +46,8 @@ type
     UniLoginsCntrcntr: TLargeintField;
     UniLoginsCntrcntr_active: TFloatField;
     LabelChangePWD: TLabel;
+    CheckBoxNoAccess: TCheckBox;
+    QueryCurrUseraccess_to_app: TBooleanField;
     procedure BitBtnCancelClick(Sender: TObject);
     procedure BitBtnPasswordClick(Sender: TObject);
     procedure BitBtnSaveClick(Sender: TObject);
@@ -58,10 +60,13 @@ type
     procedure ComboBoxRolesKeyPress(Sender: TObject; var Key: Char);
     procedure ComboBoxRolesMouseEnter(Sender: TObject);
     procedure EditLoginExit(Sender: TObject);
+    procedure CheckBoxNoAccessClick(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     FormChanged:boolean;
     FormCanBeClosed:boolean;
     UserID:integer;
+    NoAccess:boolean;
   public
     procedure SetFormValues(LUserID:integer);
   end;
@@ -95,12 +100,32 @@ var CanSave:boolean;
 begin
 EditLogin.Text:=Uppercase(Trim(EditLogin.Text));
 try
+if EditFullName.Text='' then
+  begin
+  MessageDlg('Укажите Фамилию Имя Отчество (ФИО). Поле не может быть пустым.',mtError, [mbOk],0);
+  FormCanBeClosed:=false;
+  exit;
+  end;
+if (EditLogin.Text='') and not NoAccess then
+  begin
+  MessageDlg('Укажите логин пользователя. Это поле не может быть пустым.',mtError, [mbOk],0);
+  FormCanBeClosed:=false;
+  exit;
+  end;
+
+if (EditPassword.Text='') and not NoAccess then
+  begin
+  MessageDlg('Укажите пароль пользователя. Это поле не может быть пустым.',mtError, [mbOk],0);
+  FormCanBeClosed:=false;
+  exit;
+  end;
+
 CanSave:=true;
 UniLoginsCntr.Close;
 UniLoginsCntr.ParamByName('p_login').Value:= EditLogin.Text;
 UniLoginsCntr.ParamByName('p_user_id').Value:= UserID;
 UniLoginsCntr.Execute;
-if UniLoginsCntr['cntr']>=1 then
+if (UniLoginsCntr['cntr']>=1) and not NoAccess then
   begin
     if UniLoginsCntr['cntr_active']>0
       then MessageDlg('Уже существует работающий пользователь с таким же логином. Рекомендуем указать email в качестве логина',mtError, [mbOk],0)
@@ -125,6 +150,7 @@ if CanSave then
   if QueryCurrUser['is_active']
     then UniUpdateSQLUser.ParamByName('p_closure_date').Value:= NULL
     else UniUpdateSQLUser.ParamByName('p_closure_date').Value:= DTDismissed.Date;
+  UniUpdateSQLUser.ParamByName('p_access_to_app').Value:= not NoAccess;
   UniUpdateSQLUser.Execute;
   end;
 
@@ -134,6 +160,18 @@ except on E:Exception do
   ShowMessage('Error:'+E.Message);
   end;
 end;
+end;
+
+procedure TFormUpdateUser.CheckBoxNoAccessClick(Sender: TObject);
+begin
+NoAccess:=CheckBoxNoAccess.Checked;
+EditPassword.Enabled:=not NoAccess;
+EditLogin.Enabled:=not NoAccess;
+BitBtnPassword.Enabled:=not NoAccess;
+if NoAccess then EditPassword.Text:='';
+if NoAccess then EditLogin.Text:='';
+LabelChangePWD.Visible:=not NoAccess;
+if not NoAccess then EditPassword.ReadOnly:=false;
 end;
 
 procedure TFormUpdateUser.CheckBoxWorkingClick(Sender: TObject);
@@ -181,6 +219,12 @@ begin
 FormChanged:=true;
 end;
 
+procedure TFormUpdateUser.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+CanClose:= FormCanBeClosed;
+end;
+
 procedure TFormUpdateUser.SetFormValues(LUserID:integer);
 var ComboRolesIndex:integer;
 begin
@@ -204,6 +248,14 @@ if VarIsNull(QueryCurrUser['closure_date'])
   then begin DTDismissed.Visible:=false; LabelDismissed.Visible:=false; end
   else begin DTDismissed.Visible:=true; LabelDismissed.Visible:=true; DTDismissed.DateTime:=QueryCurrUser['closure_date']; end;
 
+NoAccess:=(QueryCurrUser['access_to_app']=0);
+CheckBoxNoAccess.Checked:=NoAccess;
+EditPassword.Enabled:=not NoAccess;
+EditLogin.Enabled:=not NoAccess;
+BitBtnPassword.Enabled:=not NoAccess;
+if NoAccess then EditPassword.Text:='';
+if NoAccess then EditLogin.Text:='';
+LabelChangePWD.Visible:=not NoAccess;
 ComboboxRoles.Clear;
 UniQueryRoles.Close;
 UniQueryRoles.Open;

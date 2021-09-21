@@ -15,42 +15,43 @@ type
     NSettings: TMenuItem;
     NExit: TMenuItem;
     N4: TMenuItem;
-    mnuAbout: TMenuItem;
-    N7: TMenuItem;
+    NPayers: TMenuItem;
+    NPlans: TMenuItem;
     N8: TMenuItem;
-    N9: TMenuItem;
-    N10: TMenuItem;
-    N11: TMenuItem;
-    N12: TMenuItem;
-    N13: TMenuItem;
+    NReceipts: TMenuItem;
+    NPayments: TMenuItem;
+    NArrears: TMenuItem;
+    NPaymentsArchive: TMenuItem;
+    NTurnovers: TMenuItem;
     N14: TMenuItem;
-    N15: TMenuItem;
-    N16: TMenuItem;
-    N17: TMenuItem;
-    N18: TMenuItem;
-    N19: TMenuItem;
+    NNextPeriod: TMenuItem;
+    NReminders: TMenuItem;
+    NPrintReceipts: TMenuItem;
+    NDebtors: TMenuItem;
+    NSubmitTheCourt: TMenuItem;
     N20: TMenuItem;
-    N22: TMenuItem;
-    N23: TMenuItem;
+    NBankStatements: TMenuItem;
+    NFineCalc: TMenuItem;
     BitBtnClose: TBitBtn;
-    N5: TMenuItem;
+    NAbout: TMenuItem;
     Help1: TMenuItem;
-    N24: TMenuItem;
-    N25: TMenuItem;
-    N26: TMenuItem;
-    C1: TMenuItem;
+    NUpdate: TMenuItem;
+    NAgreements: TMenuItem;
+    NUsers: TMenuItem;
+    NAccounts: TMenuItem;
     NCard: TMenuItem;
-    N6: TMenuItem;
-    N21: TMenuItem;
+    NCalendar: TMenuItem;
+    NObjects: TMenuItem;
     procedure NExitClick(Sender: TObject);
     procedure BitBtnCloseClick(Sender: TObject);
-    procedure N5Click(Sender: TObject);
-    procedure mnuAboutClick(Sender: TObject);
-    procedure N26Click(Sender: TObject);
-    procedure N7Click(Sender: TObject);
+    procedure NAboutClick(Sender: TObject);
+    procedure NPayersClick(Sender: TObject);
+    procedure NUsersClick(Sender: TObject);
+    procedure NPlansClick(Sender: TObject);
     procedure NSettingsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure N6Click(Sender: TObject);
+    procedure NCalendarClick(Sender: TObject);
+    procedure NObjectsClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -66,7 +67,7 @@ implementation
 {$R *.dfm}
 
 uses AboutForm, PayersForm, UsersForm, PlansForm, SettingsForm, DataModule,
-  CalendarForm;
+  CalendarForm, ObjectForm;
 
 procedure TFormMain.BitBtnCloseClick(Sender: TObject);
 begin
@@ -78,15 +79,23 @@ begin
 DM.CurrentUser:='Admin';
 end;
 
-procedure TFormMain.mnuAboutClick(Sender: TObject);
+procedure TFormMain.NPayersClick(Sender: TObject);
 begin
 if FormPayers=nil then Application.CreateForm(TFormPayers, FormPayers);
 FormPayers.ShowModal;
 end;
 
-procedure TFormMain.N26Click(Sender: TObject);
+procedure TFormMain.NObjectsClick(Sender: TObject);
+begin
+if FormObjects=nil then Application.CreateForm(TFormObjects, FormObjects);
+FormObjects.SetFormValues;
+FormObjects.ShowModal;
+end;
+
+procedure TFormMain.NUsersClick(Sender: TObject);
 begin
 if FormUsers=nil then Application.CreateForm(TFormUsers, FormUsers);
+FormUsers.SetFormValues;
 FormUsers.ShowModal;
 end;
 
@@ -102,20 +111,20 @@ begin
 FormMain.Close;
 end;
 
-procedure TFormMain.N5Click(Sender: TObject);
+procedure TFormMain.NAboutClick(Sender: TObject);
 begin
 if FormAbout=nil then Application.CreateForm(TFormAbout, FormAbout);
 FormAbout.ShowModal;
 end;
 
-procedure TFormMain.N6Click(Sender: TObject);
+procedure TFormMain.NCalendarClick(Sender: TObject);
 begin
 if FormCalendar=nil then Application.CreateForm(TFormCalendar, FormCalendar);
 FormCalendar.SetFormValues;
 FormCalendar.ShowModal;
 end;
 
-procedure TFormMain.N7Click(Sender: TObject);
+procedure TFormMain.NPlansClick(Sender: TObject);
 begin
 if FormPlans=nil then Application.CreateForm(TFormPlans, FormPlans);
 FormPlans.SetFormValues;

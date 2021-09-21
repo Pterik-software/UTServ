@@ -31,7 +31,6 @@ type
     UniSQLUsersaccess_to_app: TBooleanField;
     procedure BitBtnCloseClick(Sender: TObject);
     procedure BitBtnEditClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure BitBtnNewClick(Sender: TObject);
     procedure BitBtnDismissClick(Sender: TObject);
     procedure UniDataSource1DataChange(Sender: TObject; Field: TField);
@@ -41,7 +40,7 @@ type
     procedure ChangeDismissCaption;
     { Private declarations }
   public
-    { Public declarations }
+    procedure SetFormValues;
   end;
 
 var
@@ -101,7 +100,7 @@ begin
     TDBGridEh(Sender).Canvas.Brush.Color:= clYellow
   else
       if UniSQLUsers['access_to_app']=0
-      then TDBGridEh(Sender).Canvas.Brush.Color:= clFuchsia
+      then TDBGridEh(Sender).Canvas.Brush.Color:= clMoneyGreen
       else TDBGridEh(Sender).Canvas.Brush.Color:= clWhite;
   // Восстанавливаем выделение текущей позиции курсора
   if gdSelected in State then
@@ -113,9 +112,9 @@ begin
   TDBGridEh(Sender).DefaultDrawColumnCell(Rect, DataCol, Column, TGridDrawState(State));
 end;
 
-procedure TFormUsers.FormCreate(Sender: TObject);
+procedure TFormUsers.SetFormValues;
 begin
-if not UniSQLUsers.Active then UniSQLUsers.Active:=true;
+if not UniSQLUsers.Active then UniSQLUsers.Open;
 end;
 
 procedure TFormUsers.UniDataSource1DataChange(Sender: TObject; Field: TField);

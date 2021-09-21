@@ -80,7 +80,7 @@ procedure TFormPlans.DBGridEh1DrawColumnCell(Sender: TObject; const Rect: TRect;
 begin
 inherited;
   if UniSQLPlans['is_active_server']=0 then
-    TDBGridEh(Sender).Canvas.Brush.Color:= clFuchsia
+    TDBGridEh(Sender).Canvas.Brush.Color:= clMoneyGreen
   else
     if UniSQLPlans['is_active_locally']=0 then
       TDBGridEh(Sender).Canvas.Brush.Color:= clYellow

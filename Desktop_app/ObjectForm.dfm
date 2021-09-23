@@ -23,6 +23,27 @@ object FormObjects: TFormObjects
     Height = 13
     Caption = 'Label1'
   end
+  object Label2: TLabel
+    Left = 8
+    Top = 8
+    Width = 145
+    Height = 13
+    Caption = #1059#1087#1088#1072#1074#1083#1103#1077#1084#1099#1077' '#1076#1086#1084#1072' '#1080' '#1079#1076#1072#1085#1080#1103
+  end
+  object Label3: TLabel
+    Left = 24
+    Top = 184
+    Width = 154
+    Height = 13
+    Caption = #1054#1073#1098#1077#1082#1090#1099' '#1074' '#1074#1099#1073#1088#1072#1085#1085#1086#1084' '#1079#1076#1072#1085#1080#1080
+  end
+  object Label4: TLabel
+    Left = 128
+    Top = 480
+    Width = 291
+    Height = 13
+    Caption = #1060#1080#1083#1100#1090#1088#1099' '#1087#1086' '#1087#1086#1076#1098#1077#1079#1076#1091', '#1085#1086#1084#1077#1088#1091', '#1101#1090#1072#1078#1091'. '#1057#1073#1088#1086#1089#1080#1090#1100' '#1092#1080#1083#1100#1090#1088
+  end
   object BitBtnClose: TBitBtn
     Left = 680
     Top = 513
@@ -201,9 +222,9 @@ object FormObjects: TFormObjects
   end
   object DBGridEh1: TDBGridEh
     Left = 8
-    Top = 8
+    Top = 203
     Width = 768
-    Height = 393
+    Height = 263
     DataSource = UniDataSource1
     DynProps = <>
     ReadOnly = True
@@ -214,13 +235,26 @@ object FormObjects: TFormObjects
   end
   object RadioGroupObjects: TRadioGroup
     Left = 8
-    Top = 419
+    Top = 496
     Width = 241
-    Height = 134
+    Height = 57
     Anchors = [akLeft, akBottom]
     Caption = #1054#1090#1086#1073#1088#1072#1078#1072#1090#1100
     TabOrder = 4
     OnClick = RadioGroupObjectsClick
+  end
+  object DBGridEh2: TDBGridEh
+    Left = 8
+    Top = 27
+    Width = 768
+    Height = 150
+    DataSource = UniDataSource1
+    DynProps = <>
+    ReadOnly = True
+    TabOrder = 5
+    OnDrawColumnCell = DBGridEh1DrawColumnCell
+    object RowDetailData: TRowDetailPanelControlEh
+    end
   end
   object UniObjects: TUniQuery
     DataTypeMap = <

@@ -30,10 +30,6 @@ type
     UniObjectsreason_change: TStringField;
     RadioGroupObjects: TRadioGroup;
     Label1: TLabel;
-    DBGridEh2: TDBGridEh;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
     procedure DBGridEh1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
     procedure BitBtnNewClick(Sender: TObject);
